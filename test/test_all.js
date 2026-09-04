@@ -6,6 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const testSuites = [
   "test_engine.js",
+  "test_source.js",
   "test_api.js",
   "test_items.js",
   "test_scheduler.js",

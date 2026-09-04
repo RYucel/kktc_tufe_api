@@ -15,6 +15,7 @@ import {
   OFFICIAL_SOURCE,
   SOURCE_RSS_URL,
   ITEMS_CSV_SOURCE_URL,
+  TUFE_JSON_SOURCE_URL,
   UPDATE_SCHEDULE_TEXT,
   LICENSE,
 } from "./constants.js";
@@ -94,8 +95,9 @@ app.get("/api/v1/meta", (c) => {
       ...metaData,
       latestAvailablePeriod: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
       officialSource: OFFICIAL_SOURCE,
-      sourceRssUrl: SOURCE_RSS_URL,
+      tufeSourceUrl: TUFE_JSON_SOURCE_URL,
       itemsCsvSourceUrl: ITEMS_CSV_SOURCE_URL,
+      fallbackRssUrl: SOURCE_RSS_URL,
       updateSchedule: UPDATE_SCHEDULE_TEXT,
       deployedOn: "Cloudflare Edge Network",
       license: LICENSE,

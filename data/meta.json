@@ -1,5 +1,6 @@
 {
-  "lastChecked": "2026-09-04T10:20:30.454Z",
+  "lastChecked": "2026-09-04T11:56:53.388Z",
+  "lastChanged": "2026-08-05T11:21:08.184Z",
   "latestHeadline": "Tüketici Fiyat Endeksi - Temmuz 2026",
   "latestNewsUrl": "https://istatistik.gov.ct.tr/HABERLER/t252ketici-fiyat-endeksi-temmuz-2026",
   "latestPubDate": "Tue, 04 Aug 2026 11:31:00 GMT",
@@ -7,5 +8,5 @@
   "recordCount": 593,
   "startPeriod": "1977-03",
   "endPeriod": "2026-07",
-  "lastChanged": "2026-08-05T11:21:08.184Z"
+  "dataSource": "kktc_tufe veri deposu (github.com/RYucel/kktc_tufe)"
 }

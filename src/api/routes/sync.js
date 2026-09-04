@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { dataStore } from "../../engine/dataStore.js";
-import { scrapeTufeData } from "../../engine/scraper.js";
+import { fetchTufeData } from "../../engine/tufeSource.js";
 import { config } from "../../config.js";
 
 const router = Router();
@@ -21,7 +21,7 @@ router.post("/sync", async (req, res) => {
 
   try {
     console.log("[Sync API] Manuel senkronizasyon tetiklendi...");
-    const { records, meta } = await scrapeTufeData();
+    const { records, meta } = await fetchTufeData(dataStore.getMeta());
     const result = await dataStore.save(records, meta);
 
     return res.json({
@@ -30,6 +30,7 @@ router.post("/sync", async (req, res) => {
       changed: result.changed,
       recordCount: result.recordCount,
       latestHeadline: meta.latestHeadline,
+      dataSource: meta.dataSource,
       latestAvailablePeriod: `${records[records.length - 1].year}-${records[records.length - 1].month}`,
     });
   } catch (err) {

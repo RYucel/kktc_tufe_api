@@ -1,6 +1,6 @@
 import cron from "node-cron";
 import { config } from "../config.js";
-import { scrapeTufeData } from "./scraper.js";
+import { fetchTufeData } from "./tufeSource.js";
 import { dataStore } from "./dataStore.js";
 import { syncItemsFromGithub } from "./syncItemsService.js";
 
@@ -20,9 +20,9 @@ export function initScheduler() {
     async () => {
       console.log(`[Scheduler] [${new Date().toISOString()}] Zamanlanmış güncelleme çalıştırılıyor...`);
 
-      // 1. Genel TÜFE serisi (resmi RSS + arşiv XLS)
+      // 1. Genel TÜFE serisi (kktc_tufe veri deposu, yedek: resmî site)
       try {
-        const { records, meta } = await scrapeTufeData();
+        const { records, meta } = await fetchTufeData(dataStore.getMeta());
         const result = await dataStore.save(records, meta);
         console.log(`[Scheduler] TÜFE: ${result.changed ? 'Yeni veri tespit edildi' : 'Değişiklik yok'}, Toplam: ${result.recordCount} kayıt.`);
       } catch (err) {

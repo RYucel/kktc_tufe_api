@@ -17,6 +17,15 @@ export const SOURCE_RSS_URL =
 export const ITEMS_CSV_SOURCE_URL =
   "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv";
 
+// Aylık TÜFE serisi de aynı veri deposundan gelir: kktc_tufe, resmî siteyi
+// her gün tarayıp ayrıştırılmış JSON'u yayınlar. Böylece scraper mantığı tek
+// yerde yaşar ve dashboard ile API'nin farklı rakam göstermesi imkânsızlaşır.
+export const TUFE_JSON_SOURCE_URL =
+  "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json";
+
+export const TUFE_META_SOURCE_URL =
+  "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/meta.json";
+
 export const UPDATE_SCHEDULE_TEXT =
   "Resmi TÜFE bülteni ve sepet madde fiyatları her gün 09:00 UTC'de otomatik kontrol edilir.";
 

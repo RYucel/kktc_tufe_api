@@ -1,7 +1,12 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
-import { SOURCE_RSS_URL, ITEMS_CSV_SOURCE_URL } from "./constants.js";
+import {
+  SOURCE_RSS_URL,
+  ITEMS_CSV_SOURCE_URL,
+  TUFE_JSON_SOURCE_URL,
+  TUFE_META_SOURCE_URL,
+} from "./constants.js";
 
 dotenv.config();
 
@@ -28,6 +33,8 @@ export const config = {
   sources: {
     rssUrl: process.env.RSS_URL || SOURCE_RSS_URL,
     githubItemsCsvUrl: process.env.GITHUB_ITEMS_CSV_URL || ITEMS_CSV_SOURCE_URL,
+    githubTufeJsonUrl: process.env.GITHUB_TUFE_JSON_URL || TUFE_JSON_SOURCE_URL,
+    githubTufeMetaUrl: process.env.GITHUB_TUFE_META_URL || TUFE_META_SOURCE_URL,
     userAgent: process.env.USER_AGENT || "Mozilla/5.0 (compatible; KKTC-TUFE-API/1.0; +https://github.com/)",
   },
 };

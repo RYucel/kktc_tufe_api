@@ -23,7 +23,7 @@ Bu proje, resmi **KKTC Başbakanlık İstatistik Kurumu**'nun yayınladığı ay
 - 🧮 **Bileşik Enflasyon & Alım Gücü Hesaplayıcı:** İki tarih arasındaki toplam bileşik enflasyon çarpanını ve paranın (örn. 10.000 TL) hedef tarihteki reel değerini anında hesaplar.
 - ⚡ **Mikrosaniye Yanıt Süresi:** Akıllı in-memory indeksleme sayesinde harici veritabanı gerektirmeden ultra hızlı yanıtlar.
 - 📖 **İnteraktif OpenAPI / Swagger UI:** Tüm parametreleri tarayıcı üzerinden doğrudan deneyebilme (`/docs`).
-- ⏰ **Çift Hatlı Otomatik Senkronizasyon:** Resmi TÜFE bültenini ve sepet madde fiyatları CSV'sini her gün kontrol eden yerleşik Cron servisi + GitHub Actions boru hattı.
+- ⏰ **Tek Kaynaklı Otomatik Senkronizasyon:** Aylık TÜFE ve sepet fiyatları tek veri deposundan (`kktc_tufe`) her gün çekilir; doğrulanır, test edilir ve otomatik yayına alınır.
 - 📈 **Herkese Açık Kullanım Sayacı:** `/api/v1/stats` ile toplam çağrı sayısı, uç nokta bazında dağılım ve günlük istek serisi. Edge'de Durable Object üzerinde kalıcı tutulur.
 - 🐳 **Docker & Docker-Compose:** Tek komutla prodüksiyon ortamında ayağa kaldırılmaya hazır.
 
@@ -140,38 +140,48 @@ Uç noktalar ham URL yerine **rota kalıbıyla** kaydedilir (`/api/v1/items/ekme
 | `API_KEY` | `kktc_tufe_secret_key_2026` | `POST /api/v1/sync` için yetkilendirme anahtarı |
 | `RATE_LIMIT_MAX`| `120` | Dakika başına izin verilen maksimum istek sayısı |
 | `CRON_SCHEDULE` | `0 9 * * *` | Otomatik senkronizasyon zamanı (Her gün 09:00 UTC) |
-| `GITHUB_ITEMS_CSV_URL` | `.../RYucel/kktc_tufe/main/GRETL_TUFE.csv` | Sepet madde fiyatları CSV kaynağı |
+| `GITHUB_TUFE_JSON_URL` | `.../kktc_tufe/main/docs/data/tufe.json` | Aylık TÜFE serisi kaynağı (birincil) |
+| `GITHUB_ITEMS_CSV_URL` | `.../kktc_tufe/main/GRETL_TUFE.csv` | Sepet madde fiyatları CSV kaynağı |
+| `RSS_URL` | `istatistik.gov.ct.tr/.../rss` | Yedek kaynak: veri deposu erişilemezse doğrudan tarama |
 
 ---
 
 ## 🔄 Veri Güncelleme Akışı
 
-Projede **iki bağımsız veri hattı** vardır ve ikisi de otomatiktir:
+Tüm veriler tek bir kaynaktan gelir: [**`RYucel/kktc_tufe`**](https://github.com/RYucel/kktc_tufe) veri deposu. Bu API o deponun çıktısını tüketir, resmî siteyi kendisi taramaz.
 
-| Hat | Kaynak | Güncelleme şekli |
+| Hat | Nasıl üretilir | API nasıl alır |
 | :--- | :--- | :--- |
-| **Genel TÜFE** (1977→, 593 kayıt) | KKTC İstatistik Kurumu RSS → haber sayfası → `TUFE_ARSIV_*.xls` | Tamamen otomatik: bülten yayınlanınca ilk kontrolde yakalanır |
-| **Sepet Madde Fiyatları** (520 kalem × 139 ay) | [`RYucel/kktc_tufe`](https://github.com/RYucel/kktc_tufe) deposundaki `GRETL_TUFE.csv` | Elle yüklenir; API yüklemeyi otomatik algılar |
+| **Aylık TÜFE** (1977→, 593 kayıt) | `kktc_tufe` her gün 09:00 UTC'de resmî KKTC İstatistik Kurumu sitesini tarar (RSS → haber sayfası → `TUFE_ARSIV_*.xls`) ve `docs/data/tufe.json` olarak yayınlar | Her gün o JSON'u çeker |
+| **Sepet Madde Fiyatları** (520 kalem × 139 ay) | `GRETL_TUFE.csv` aynı depoya **elle yüklenir** | Her gün o CSV'yi çeker |
+
+```
+              istatistik.gov.ct.tr (resmî kaynak)
+                          │
+                          ↓  kktc_tufe cron'u tarar (her gün 09:00 UTC)
+              ┌───────────────────────────┐
+              │   kktc_tufe veri deposu   │
+              │  docs/data/tufe.json      │ ← otomatik
+              │  GRETL_TUFE.csv           │ ← elle yüklenir
+              └───────────────────────────┘
+                          │
+                          ↓  bu API her gün çeker + doğrular
+              GitHub Actions → testler → commit → Cloudflare deploy
+```
+
+**Neden tek kaynak?** Daha önce hem dashboard hem API resmî siteyi ayrı ayrı tarıyordu. Kurum sayfa yapısını değiştirdiğinde iki yerin de düzeltilmesi gerekiyordu ve biri düzelmezse ikisi farklı rakam gösterebilirdi. Artık ayrıştırma mantığı tek yerde yaşar.
 
 ### Sepet verisini güncellemek
 
-Tek yapmanız gereken, güncel `GRETL_TUFE.csv` dosyasını `RYucel/kktc_tufe` deposunun `main` dalına yüklemektir. Gerisi otomatiktir:
+Güncel `GRETL_TUFE.csv` dosyasını `kktc_tufe` deposunun `main` dalına yükleyin; gerisi otomatiktir.
 
-```
-GRETL_TUFE.csv yüklenir (kktc_tufe deposu)
-        ↓  (repository_dispatch — anında)  |  (günlük cron — en geç 09:00 UTC)
-GitHub Actions: npm run sync
-        ↓
-CSV doğrulanır → data/items_data.json + items_meta.json yeniden derlenir
-        ↓
-Değişiklik commit'lenir → Cloudflare Workers'a otomatik deploy
-```
+**Doğrulama kalkanı:** Her iki veri hattı da diske yazılmadan önce kontrol edilir. Kayıt/kalem sayısı düşerse, zaman serisi kısalırsa veya gelen veri mevcut olandan eskiyse **güncelleme reddedilir ve yayındaki veri korunur** ([`tufeSource.js`](src/engine/tufeSource.js), [`syncItemsService.js`](src/engine/syncItemsService.js)). Hatalı bir yükleme canlı API'yi bozamaz.
 
-**Doğrulama kalkanı:** İndirilen CSV diske yazılmadan önce hafızada ayrıştırılıp kontrol edilir. Kalem sayısı %10'dan fazla düşerse, zaman serisi kısalırsa veya dosya mevcut veriden eskiyse **güncelleme reddedilir ve yayındaki veri korunur** ([`syncItemsService.js`](src/engine/syncItemsService.js)). Böylece hatalı bir yükleme canlı API'yi bozamaz.
+**Yedek yol:** Veri deposuna ulaşılamazsa API resmî siteyi doğrudan tarayan yedek yola düşer ([`scraper.js`](src/engine/scraper.js)). Aynı resmî kaynaktan beslendiği için sapma üretmez, yalnızca kesinti anında verinin bayatlamasını önler. Hangi yolun kullanıldığı `/api/v1/meta` yanıtındaki `dataSource` alanında görünür.
 
 ### Anında tetikleme (opsiyonel)
 
-Varsayılan olarak sistem günlük cron ile çalışır; yeni CSV en geç ertesi sabah yayına girer. Gecikmeyi ~1 dakikaya indirmek için [`docs/trigger-api-sync.yml`](docs/trigger-api-sync.yml) dosyasını `kktc_tufe` deposuna kopyalayın — kurulum adımları dosyanın başındaki yorumda anlatılmıştır.
+Varsayılan olarak API günlük cron ile kontrol eder; yeni veri en geç ertesi sabah yayına girer. Gecikmeyi ~1 dakikaya indirmek için [`docs/trigger-api-sync.yml`](docs/trigger-api-sync.yml) dosyasını `kktc_tufe` deposuna kopyalayın — kurulum adımları dosyanın başındaki yorumda anlatılmıştır.
 
 ---
 

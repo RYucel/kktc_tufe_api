@@ -1,4 +1,4 @@
-import { scrapeTufeData } from "../engine/scraper.js";
+import { fetchTufeData } from "../engine/tufeSource.js";
 import { dataStore } from "../engine/dataStore.js";
 import { syncItemsFromGithub } from "../engine/syncItemsService.js";
 
@@ -9,13 +9,13 @@ async function main() {
 
   try {
     await dataStore.init();
-    console.log("1. Genel TÜFE verisi resmi kaynaktan çekiliyor (RSS + XLS)...");
+    console.log("1. Genel TÜFE verisi kktc_tufe veri deposundan çekiliyor...");
     try {
-      const { records, meta } = await scrapeTufeData();
+      const { records, meta } = await fetchTufeData(dataStore.getMeta());
       const result = await dataStore.save(records, meta);
-      console.log(`✓ Genel TÜFE tamamlandı: ${records.length} kayıt (Değişiklik: ${result.changed ? 'EVET' : 'HAYIR'})`);
+      console.log(`✓ Genel TÜFE tamamlandı: ${records.length} kayıt (Değişiklik: ${result.changed ? 'EVET' : 'HAYIR'}) [${meta.dataSource}]`);
     } catch (tufeErr) {
-      console.warn("⚠️ Genel TÜFE resmi kaynak uyarısı:", tufeErr.message);
+      console.warn("⚠️ Genel TÜFE uyarısı:", tufeErr.message);
     }
 
     console.log("\n2. Sepet Madde Fiyatları GitHub deposundan çekiliyor...");
