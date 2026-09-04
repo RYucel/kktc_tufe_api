@@ -9,6 +9,14 @@ import { calculateYearPeriods, calculateInflationBetween } from "./engine/calcul
 import { itemsStore } from "./engine/itemsStore.js";
 import { swaggerSpec } from "./api/docs/swaggerSpec.js";
 import { renderGuideHtml } from "./views/guide.js";
+import {
+  API_VERSION,
+  OFFICIAL_SOURCE,
+  SOURCE_RSS_URL,
+  ITEMS_CSV_SOURCE_URL,
+  UPDATE_SCHEDULE_TEXT,
+  LICENSE,
+} from "./constants.js";
 
 // Edge ortamı için sepet motorunu başlat
 itemsStore.init(itemsData, itemsMeta);
@@ -51,7 +59,7 @@ app.get("/health", (c) => {
       totalMonths: itemsMeta.totalMonths,
       periodRange: `${itemsMeta.startPeriod} - ${itemsMeta.endPeriod}`,
     },
-    version: "1.1.0",
+    version: API_VERSION,
   });
 });
 
@@ -63,9 +71,12 @@ app.get("/api/v1/meta", (c) => {
     meta: {
       ...metaData,
       latestAvailablePeriod: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
-      officialSource: "KKTC Başbakanlık İstatistik Kurumu",
+      officialSource: OFFICIAL_SOURCE,
+      sourceRssUrl: SOURCE_RSS_URL,
+      itemsCsvSourceUrl: ITEMS_CSV_SOURCE_URL,
+      updateSchedule: UPDATE_SCHEDULE_TEXT,
       deployedOn: "Cloudflare Edge Network",
-      license: "MIT - Açık Kaynak",
+      license: LICENSE,
       itemPrices: itemsMeta,
     },
   });

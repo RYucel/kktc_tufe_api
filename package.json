@@ -1,6 +1,6 @@
 {
   "name": "kktc-tufe-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "KKTC Tüketici Fiyat Endeksi (TÜFE / Enflasyon) Açık Kaynak RESTful API ve Otomatik Veri Senkronizasyonu",
   "type": "module",
   "main": "src/server.js",

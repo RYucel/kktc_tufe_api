@@ -1,6 +1,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
+import { SOURCE_RSS_URL, ITEMS_CSV_SOURCE_URL } from "./constants.js";
 
 dotenv.config();
 
@@ -25,8 +26,8 @@ export const config = {
     itemsCsvFile: path.join(ROOT_DIR, "GRETL_TUFE.csv"),
   },
   sources: {
-    rssUrl: process.env.RSS_URL || "https://istatistik.gov.ct.tr/HABERLER/rss/category/4213/haberler",
-    githubItemsCsvUrl: process.env.GITHUB_ITEMS_CSV_URL || "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
+    rssUrl: process.env.RSS_URL || SOURCE_RSS_URL,
+    githubItemsCsvUrl: process.env.GITHUB_ITEMS_CSV_URL || ITEMS_CSV_SOURCE_URL,
     userAgent: process.env.USER_AGENT || "Mozilla/5.0 (compatible; KKTC-TUFE-API/1.0; +https://github.com/)",
   },
 };

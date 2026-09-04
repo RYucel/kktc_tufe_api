@@ -1,8 +1,10 @@
+import { API_VERSION } from "../../constants.js";
+
 export const swaggerSpec = {
   openapi: "3.0.3",
   info: {
     title: "KKTC TÜFE (Enflasyon) RESTful API",
-    version: "1.0.0",
+    version: API_VERSION,
     description: `
 **KKTC Tüketici Fiyat Endeksi (TÜFE / Enflasyon) Açık Kaynak RESTful API Servisi**
 
@@ -42,14 +44,20 @@ Bu API, resmi **KKTC Başbakanlık İstatistik Kurumu** tarafından yayınlanan 
               "application/json": {
                 example: {
                   status: "healthy",
-                  uptimeSeconds: 120,
+                  platform: "Cloudflare Workers (Edge)",
                   timestamp: "2026-09-04T10:45:00.000Z",
                   dataEngine: {
                     initialized: true,
                     recordCount: 593,
                     latestDataPeriod: "2026-07",
                   },
-                  version: "1.0.0",
+                  itemsEngine: {
+                    initialized: true,
+                    totalItems: 520,
+                    totalMonths: 139,
+                    periodRange: "2015-01 - 2026-07",
+                  },
+                  version: API_VERSION,
                 },
               },
             },
