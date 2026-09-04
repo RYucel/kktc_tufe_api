@@ -24,6 +24,7 @@ Bu proje, resmi **KKTC Başbakanlık İstatistik Kurumu**'nun yayınladığı ay
 - ⚡ **Mikrosaniye Yanıt Süresi:** Akıllı in-memory indeksleme sayesinde harici veritabanı gerektirmeden ultra hızlı yanıtlar.
 - 📖 **İnteraktif OpenAPI / Swagger UI:** Tüm parametreleri tarayıcı üzerinden doğrudan deneyebilme (`/docs`).
 - ⏰ **Çift Hatlı Otomatik Senkronizasyon:** Resmi TÜFE bültenini ve sepet madde fiyatları CSV'sini her gün kontrol eden yerleşik Cron servisi + GitHub Actions boru hattı.
+- 📈 **Herkese Açık Kullanım Sayacı:** `/api/v1/stats` ile toplam çağrı sayısı, uç nokta bazında dağılım ve günlük istek serisi. Edge'de Durable Object üzerinde kalıcı tutulur.
 - 🐳 **Docker & Docker-Compose:** Tek komutla prodüksiyon ortamında ayağa kaldırılmaya hazır.
 
 ---
@@ -42,6 +43,7 @@ Bu proje, resmi **KKTC Başbakanlık İstatistik Kurumu**'nun yayınladığı ay
 | `GET` | `/api/v1/calculate` | İki tarih arası bileşik enflasyon ve para değerleme aracı |
 | `POST`| `/api/v1/sync` | Resmi kaynaktan anlık senkronizasyon tetikleme (*API Key korumalı*) |
 | `GET` | `/docs` | İnteraktif Swagger UI dokümantasyon sayfası |
+| `GET` | `/api/v1/stats` | API kullanım sayacı: toplam çağrı, uç nokta dağılımı, günlük seri |
 | `GET` | `/api/openapi.json` | Standart OpenAPI 3.0.3 JSON şeması |
 
 ---
@@ -94,6 +96,38 @@ Yayınlandığında API'niz anında `https://kktc-tufe-api.<hesabiniz>.workers.d
 # Docker Compose ile tek komutta başlatın:
 docker compose up -d
 ```
+
+---
+
+## 📈 Kullanım Sayacı
+
+`GET /api/v1/stats` API'nin ne kadar kullanıldığını herkese açık olarak gösterir:
+
+```bash
+curl -s "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/stats?days=7"
+```
+
+```json
+{
+  "success": true,
+  "data": {
+    "totalRequests": 20,
+    "countingSince": "2026-09-04T11:43:26.016Z",
+    "endpoints": [
+      { "path": "/api/v1/latest", "count": 8 },
+      { "path": "/api/v1/tufe/:year", "count": 5 }
+    ],
+    "dailyRequests": [{ "day": "2026-09-04", "count": 20 }]
+  }
+}
+```
+
+**Nasıl çalışır?** Edge sürümünde sayım, SQLite destekli tek bir **Durable Object** örneğinde tutulur. Her istek `waitUntil()` içinde, yanıt gönderildikten sonra yazılır; bu yüzden sayaç API gecikmesine eklenmez ve bir hata alsa bile isteği etkilemez.
+
+Uç noktalar ham URL yerine **rota kalıbıyla** kaydedilir (`/api/v1/items/ekmek` yerine `/api/v1/items/:item`), aksi halde 520 sepet kalemi 520 ayrı anahtar üretirdi.
+
+> Node.js/Docker ile kendi sunucunuzda çalıştırdığınızda sayaç süreç belleğinde tutulur ve yeniden başlatmada sıfırlanır; bu durum yanıttaki `countingSince` alanından görülebilir.
+
 
 ---
 

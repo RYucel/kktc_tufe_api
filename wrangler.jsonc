@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "kktc-tufe-api",
-  "main": "src/worker.js",
+  "main": "src/worker.entry.js",
   "compatibility_date": "2024-09-01",
   "compatibility_flags": [
     "nodejs_compat"
@@ -11,5 +11,20 @@
   // (.github/workflows/sync_and_deploy.yml) üstlenir.
   "vars": {
     "ENVIRONMENT": "production"
-  }
+  },
+  // Kullanım sayacı: tek global Durable Object örneği (SQLite destekli).
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "USAGE_COUNTER",
+        "class_name": "UsageCounter"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["UsageCounter"]
+    }
+  ]
 }

@@ -8,6 +8,7 @@ import { swaggerSpec } from "./docs/swaggerSpec.js";
 import { renderGuideHtml } from "../views/guide.js";
 import { dataStore } from "../engine/dataStore.js";
 import { itemsStore } from "../engine/itemsStore.js";
+import { usageStore } from "../engine/usageStore.js";
 
 import tufeRouter from "./routes/tufe.js";
 import periodsRouter from "./routes/periods.js";
@@ -31,6 +32,21 @@ export function createApp() {
 
   // JSON Body Parser
   app.use(express.json());
+
+  // Kullanım sayacı: yanıt tamamlandıktan sonra, ham URL yerine eşleşen
+  // rota kalıbıyla kaydeder (aksi halde /items/<520 slug> sınırsız anahtar üretir).
+  app.use((req, res, next) => {
+    res.on("finish", () => {
+      try {
+        const pattern = req.route?.path;
+        const base = req.baseUrl || "";
+        usageStore.record(pattern ? `${base}${pattern}`.replace(/\/$/, "") || "/" : req.path);
+      } catch {
+        // sayaç hatası isteği etkilemez
+      }
+    });
+    next();
+  });
 
   // OpenAPI JSON Şeması
   app.get("/api/openapi.json", (req, res) => {

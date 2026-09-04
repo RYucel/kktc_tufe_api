@@ -9,6 +9,7 @@ import { calculateYearPeriods, calculateInflationBetween } from "./engine/calcul
 import { itemsStore } from "./engine/itemsStore.js";
 import { swaggerSpec } from "./api/docs/swaggerSpec.js";
 import { renderGuideHtml } from "./views/guide.js";
+import { track, flush } from "./engine/usageBuffer.js";
 import {
   API_VERSION,
   OFFICIAL_SOURCE,
@@ -26,6 +27,27 @@ const app = new Hono();
 // Güvenlik Başlıkları & CORS
 app.use("*", cors());
 app.use("*", secureHeaders());
+
+/** Tek global sayaç örneğine erişim; binding yoksa undefined döner. */
+function counterStub(env) {
+  const ns = env?.USAGE_COUNTER;
+  if (!ns) return undefined;
+  return ns.get(ns.idFromName("global"));
+}
+
+// Kullanım sayacı: yanıt üretildikten sonra, engellemeden kaydeder.
+// Binding yoksa (yerel test, eski deploy) sessizce devre dışı kalır.
+app.use("*", async (c, next) => {
+  await next();
+  try {
+    // Ham URL yerine eşleşen rota kalıbı kullanılır; aksi halde
+    // /api/v1/items/<520 farkli slug> gibi sınırsız anahtar oluşurdu.
+    const path = c.req.routePath && c.req.routePath !== "/*" ? c.req.routePath : c.req.path;
+    track(path, counterStub(c.env), c.executionCtx);
+  } catch {
+    // sayaç hatası asla isteği etkilemez
+  }
+});
 
 const MONTH_NAMES = [
   "", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
@@ -344,7 +366,38 @@ app.get("/api/v1/prices", (c) => {
   });
 });
 
-// 13. OpenAPI JSON
+// 13. Kullanım İstatistikleri (herkese açık)
+app.get("/api/v1/stats", async (c) => {
+  const stub = counterStub(c.env);
+  if (!stub) {
+    return c.json({
+      success: false,
+      error: "Kullanım sayacı bu ortamda etkin değil.",
+    }, 503);
+  }
+
+  const days = Math.min(Math.max(Number(c.req.query("days")) || 30, 1), 365);
+
+  try {
+    // Bekleyen sayıları önce yaz ki rakamlar taze olsun
+    await flush(stub);
+    const stats = await stub.stats(days);
+    return c.json({
+      success: true,
+      description: "KKTC TÜFE API toplam çağrı sayısı ve uç nokta bazında kullanım dağılımı",
+      data: {
+        totalRequests: stats.total,
+        countingSince: stats.firstSeen,
+        endpoints: stats.endpoints,
+        dailyRequests: stats.daily,
+      },
+    });
+  } catch (err) {
+    return c.json({ success: false, error: `İstatistikler okunamadı: ${err.message}` }, 500);
+  }
+});
+
+// 14. OpenAPI JSON
 app.get("/api/openapi.json", (c) => {
   return c.json(swaggerSpec);
 });

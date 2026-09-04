@@ -448,6 +448,46 @@ Bu API, resmi **KKTC Başbakanlık İstatistik Kurumu** tarafından yayınlanan 
         },
       },
     },
+    "/api/v1/stats": {
+      get: {
+        summary: "API Kullanım İstatistikleri",
+        description:
+          "API'nin toplam çağrı sayısını, uç nokta bazında kullanım dağılımını ve günlük istek serisini döner. Edge sürümünde sayaç Durable Object üzerinde kalıcıdır; kimlik doğrulaması gerektirmez.",
+        tags: ["Sistem"],
+        parameters: [
+          {
+            name: "days",
+            in: "query",
+            description: "Günlük seride kaç gün döneceği (1-365, varsayılan 30)",
+            schema: { type: "integer", default: 30, minimum: 1, maximum: 365 },
+          },
+        ],
+        responses: {
+          200: {
+            description: "Kullanım istatistikleri",
+            content: {
+              "application/json": {
+                example: {
+                  success: true,
+                  description:
+                    "KKTC TÜFE API toplam çağrı sayısı ve uç nokta bazında kullanım dağılımı",
+                  data: {
+                    totalRequests: 20,
+                    countingSince: "2026-09-04T11:43:26.016Z",
+                    endpoints: [
+                      { path: "/api/v1/latest", count: 8 },
+                      { path: "/api/v1/tufe/:year", count: 5 },
+                    ],
+                    dailyRequests: [{ day: "2026-09-04", count: 20 }],
+                  },
+                },
+              },
+            },
+          },
+          503: { description: "Sayaç bu ortamda etkin değil" },
+        },
+      },
+    },
     "/api/v1/sync": {
       post: {
         summary: "Manuel Veri Senkronizasyonu Tetikleme",

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { dataStore } from "../../engine/dataStore.js";
 import { itemsStore } from "../../engine/itemsStore.js";
+import { usageStore } from "../../engine/usageStore.js";
 import { config } from "../../config.js";
 import {
   API_VERSION,
@@ -65,6 +66,30 @@ router.get("/api/v1/meta", (req, res) => {
       deployedOn: "Node.js (Express)",
       license: LICENSE,
       itemPrices: itemsStore.getMeta(),
+    },
+  });
+});
+
+/**
+ * GET /api/v1/stats
+ * Kullanım istatistikleri (herkese açık)
+ *
+ * Edge sürümünde Durable Object'ten, burada süreç belleğinden okunur;
+ * yanıt şeması iki tarafta aynıdır.
+ */
+router.get("/api/v1/stats", (req, res) => {
+  const days = Math.min(Math.max(Number(req.query.days) || 30, 1), 365);
+  const stats = usageStore.stats(days);
+
+  res.json({
+    success: true,
+    description:
+      "KKTC TÜFE API toplam çağrı sayısı ve uç nokta bazında kullanım dağılımı",
+    data: {
+      totalRequests: stats.total,
+      countingSince: stats.firstSeen,
+      endpoints: stats.endpoints,
+      dailyRequests: stats.daily,
     },
   });
 });
