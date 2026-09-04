@@ -5,6 +5,25 @@ import { parseItemPricesFromText } from "./csvParser.js";
 import { itemsStore } from "./itemsStore.js";
 
 /**
+ * CSV metnini karşılaştırma ve saklama için tek biçime indirger.
+ *
+ * Kaynak depodaki GRETL_TUFE.csv bir Excel çıktısı olduğu için UTF-8 BOM ve
+ * CRLF satır sonları taşır; bu depo ise (.gitattributes) LF saklar. Ham metin
+ * karşılaştırılırsa içerik hiç değişmemiş olsa bile her senkronizasyon
+ * "değişti" sonucu verir ve her gün gereksiz commit + deploy tetiklenir.
+ * @param {string} text
+ * @returns {string} BOM'suz, LF satır sonlu, tek trailing newline'lı metin
+ */
+function normalizeCsv(text) {
+  return (
+    text
+      .replace(/^﻿/, "") // UTF-8 BOM
+      .replace(/\r\n?/g, "\n") // CRLF ve yalnız CR -> LF
+      .replace(/\s+$/, "") + "\n"
+  );
+}
+
+/**
  * İndirilen CSV'yi diske yazmadan önce mantıksal olarak doğrular.
  * CSV depoya elle yüklendiği için hatalı/eksik bir dosyanın sessizce
  * canlı veriyi ezmesini engeller.
@@ -67,18 +86,20 @@ export async function syncItemsFromGithub() {
     throw new Error(`GitHub'dan CSV indirilemedi (HTTP ${res.status}): ${url}`);
   }
 
-  const newCsvContent = await res.text();
+  const rawCsv = await res.text();
 
-  if (!newCsvContent || newCsvContent.trim().length === 0) {
+  if (!rawCsv || rawCsv.trim().length === 0) {
     throw new Error("GitHub'dan indirilen CSV içeriği boş.");
   }
 
+  // BOM/CRLF farklarının sahte "değişiklik" üretmesini engeller
+  const newCsvContent = normalizeCsv(rawCsv);
   const prevMeta = itemsStore.getMeta();
 
   let isDifferent = true;
   if (existsSync(config.paths.itemsCsvFile)) {
-    const existingContent = readFileSync(config.paths.itemsCsvFile, "utf-8");
-    isDifferent = existingContent.trim() !== newCsvContent.trim();
+    const existingContent = normalizeCsv(readFileSync(config.paths.itemsCsvFile, "utf-8"));
+    isDifferent = existingContent !== newCsvContent;
   }
 
   if (!isDifferent) {

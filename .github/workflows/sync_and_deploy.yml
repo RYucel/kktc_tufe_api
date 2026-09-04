@@ -58,14 +58,18 @@ jobs:
 
       - name: Veri Değişikliğini Kontrol Et
         id: git-check
+        # data/meta.json bilerek dışarıda: içindeki "lastChecked" damgası her
+        # çalışmada değişir ve tek başına her gün boş bir commit + deploy üretir.
+        # Gerçek bir veri değişikliği olduğunda zaten birlikte commit'lenir.
         run: |
-          if git diff --quiet -- GRETL_TUFE.csv data/; then
+          DATA_PATHS="GRETL_TUFE.csv data/tufe.json data/items_data.json data/items_meta.json"
+          if git diff --quiet -- $DATA_PATHS; then
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "Veri dosyalarında değişiklik yok."
+            echo "Veri dosyalarında değişiklik yok (yalnızca kontrol zaman damgası güncellendi)."
           else
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "Değişen dosyalar:"
-            git diff --name-only -- GRETL_TUFE.csv data/
+            git diff --name-only -- $DATA_PATHS
           fi
 
       - name: Yeni Veri Varsa Commit ve Push Yap
