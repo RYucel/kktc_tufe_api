@@ -1,0 +1,11 @@
+node_modules/
+.env
+.DS_Store
+*.log
+
+# Wrangler yerel build/state klasörü
+.wrangler/
+
+# Geçici çalışma dosyaları
+*.tmp.mjs
+temp_*

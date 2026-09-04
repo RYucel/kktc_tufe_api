@@ -1,0 +1,46 @@
+# ============================================================================
+#  BU DOSYA "RYucel/kktc_tufe" DEPOSUNA KOPYALANACAKTIR.
+#  Hedef konum: .github/workflows/trigger-api-sync.yml
+#
+#  Amaç: GRETL_TUFE.csv her güncellendiğinde TUFE_API deposunu ANINDA tetikler,
+#        böylece API bir sonraki günlük cron'u beklemeden yayına alınır.
+#
+#  KURULUM (tek seferlik):
+#   1. https://github.com/settings/personal-access-tokens adresinden
+#      "Fine-grained token" oluşturun:
+#        - Repository access: yalnızca "RYucel/kktc_tufe_api"
+#        - Permissions -> Repository permissions -> Contents: Read and write
+#      (Klasik token kullanacaksanız "repo" kapsamı yeterlidir.)
+#   2. Token'ı "RYucel/kktc_tufe" deposunda
+#      Settings -> Secrets and variables -> Actions -> New repository secret
+#      adı: API_REPO_DISPATCH_TOKEN
+#   3. Bu dosyayı yukarıdaki konuma ekleyip commit'leyin.
+#
+#  Bu kurulum YAPILMAZSA da sistem çalışır: TUFE_API her gün 09:00 UTC'de
+#  CSV'yi kontrol eder. Dispatch yalnızca gecikmeyi ~24 saatten ~1 dakikaya indirir.
+# ============================================================================
+
+name: TÜFE API'sini Tetikle
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "GRETL_TUFE.csv"
+  workflow_dispatch: {}
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: TUFE_API deposunda senkronizasyonu başlat
+        env:
+          GH_TOKEN: ${{ secrets.API_REPO_DISPATCH_TOKEN }}
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/RYucel/kktc_tufe_api/dispatches \
+            -f event_type=csv-updated \
+            -f 'client_payload[source]=kktc_tufe/GRETL_TUFE.csv' \
+            -f "client_payload[commit]=${{ github.sha }}"

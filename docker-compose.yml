@@ -1,0 +1,18 @@
+services:
+  tufe-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kktc_tufe_api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+      - API_KEY=kktc_tufe_secret_key_2026
+      - CRON_SCHEDULE=0 9 1-10 * *
+      - RATE_LIMIT_MAX=120
+    volumes:
+      # Veri dosyalarının konteyner yeniden başlasa da kalıcı olması için volume
+      - ./data:/app/data

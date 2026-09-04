@@ -1,0 +1,11 @@
+# Depoda ve çalışma kopyasında satır sonları daima LF.
+# Proje Linux CI + Cloudflare Workers üzerinde çalışır; CRLF'e dönüşen
+# GRETL_TUFE.csv, GitHub'daki kaynakla byte-byte karşılaştırmayı bozar.
+* text=auto eol=lf
+
+*.csv text eol=lf
+*.json text eol=lf
+*.png binary
+*.jpg binary
+*.xls binary
+*.xlsx binary

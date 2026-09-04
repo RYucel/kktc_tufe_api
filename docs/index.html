@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KKTC TÜFE RESTful API - Resmi Kullanım Kılavuzu</title>
+  <meta name="description" content="1977'den günümüze resmi KKTC TÜFE enflasyon verileri açık kaynak RESTful API kullanım kılavuzu, parametreler ve kod örnekleri.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #f1f5f9;
+      --border: #e2e8f0;
+      --border-focus: #3b82f6;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #059669;
+      --accent-light: #ecfdf5;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+      --code-bg: #1e293b;
+      --code-text: #f8fafc;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Üst Başlık & Duyuru */
+    .announcement {
+      background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .announcement a {
+      color: #93c5fd;
+      text-decoration: underline;
+      margin-left: 0.5rem;
+    }
+
+    /* Header & Navigasyon */
+    header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .logo-icon {
+      background: var(--primary);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.15rem;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid #a7f3d0;
+      padding: 0.2rem 0.5rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.925rem;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .btn-swagger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--primary);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.55rem 1rem;
+      border-radius: 0.5rem;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn-swagger:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Ana Düzen */
+    .layout-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .layout-container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+
+    /* Sol Menü / Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 5.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .sidebar-link {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.4rem;
+      transition: all 0.15s;
+    }
+
+    .sidebar-link:hover {
+      background: var(--bg-surface-alt);
+      color: var(--primary);
+    }
+
+    /* Ana İçerik */
+    main {
+      min-width: 0;
+    }
+
+    .hero-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2.25rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border-left: 5px solid var(--primary);
+    }
+
+    .hero-card h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .hero-card p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-bar {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .meta-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Bölüm Başlıkları */
+    .section-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-size: 0.975rem;
+    }
+
+    /* Endpoint Kutuları */
+    .endpoint-card {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .endpoint-header {
+      background: var(--bg-surface-alt);
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .endpoint-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+    }
+
+    .method-get {
+      background: #10b981;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+
+    .method-post {
+      background: #3b82f6;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+
+    .endpoint-url {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .endpoint-desc-badge {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .endpoint-body {
+      padding: 1.25rem;
+    }
+
+    /* Parametre Tabloları */
+    table.param-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    table.param-table th {
+      background: var(--bg-surface-alt);
+      text-align: left;
+      padding: 0.6rem 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border);
+    }
+
+    table.param-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .param-name {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .param-type {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .param-req {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+    }
+
+    .param-opt {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #64748b;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+    }
+
+    /* Kod Blokları & Örnekler */
+    .code-tabs {
+      margin-top: 1rem;
+    }
+
+    .code-tab-header {
+      display: flex;
+      gap: 0.25rem;
+      background: #0f172a;
+      padding: 0.4rem 0.6rem 0;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    .code-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      border-top-left-radius: 0.4rem;
+      border-top-right-radius: 0.4rem;
+    }
+
+    .code-tab-btn.active {
+      background: #1e293b;
+      color: #38bdf8;
+    }
+
+    .code-container {
+      position: relative;
+      background: #1e293b;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      overflow-x: auto;
+    }
+
+    pre {
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.35rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    /* Canlı Test Konsolu (Try It Console) */
+    .live-tester {
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .live-tester-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .live-tester-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-run {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background 0.15s;
+    }
+
+    .btn-run:hover {
+      background: #047857;
+    }
+
+    .live-output {
+      background: #0f172a;
+      color: #34d399;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.4rem;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      display: none;
+    }
+
+    /* Özel Bilgi Kutuları */
+    .info-box {
+      background: var(--primary-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 0.6rem;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      color: #1e3a8a;
+      font-size: 0.925rem;
+    }
+
+    .info-box strong {
+      color: #1d4ed8;
+    }
+
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Duyuru Çubuğu -->
+  <div class="announcement">
+    <span>🌐 <strong>Canlı ve Ücretsiz:</strong> KKTC TÜFE API Cloudflare küresel Edge ağı üzerinden yayında!</span>
+    <a href="https://kktc-tufe-api.stevevaius.workers.dev/docs" target="_blank">Swagger UI Konsolu →</a>
+  </div>
+
+  <!-- Üst Başlık & Menü -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo-group">
+        <div class="logo-icon">%</div>
+        <div>
+          <span class="logo-text">KKTC TÜFE API</span>
+        </div>
+        <span class="logo-badge">v1.0.0 Canlı</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#quickstart" class="nav-link">Hızlı Başlangıç</a>
+        <a href="#endpoints" class="nav-link">Uç Noktalar</a>
+        <a href="#basket-items" class="nav-link">🛒 Sepet Fiyatları</a>
+        <a href="#periods" class="nav-link">KKTC Dönemleri</a>
+        <a href="#calculate" class="nav-link">Değerleme Aracı</a>
+        <a href="/docs" target="_blank" class="btn-swagger">
+          <span>📖 Swagger UI (/docs)</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Ana Düzen -->
+  <div class="layout-container">
+
+    <!-- Sol Menü -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Kılavuz İçeriği</div>
+      <ul class="sidebar-menu">
+        <li><a href="#overview" class="sidebar-link">📌 Genel Bakış</a></li>
+        <li><a href="#quickstart" class="sidebar-link">🚀 Hızlı Başlangıç (cURL)</a></li>
+        <li><a href="#ep-latest" class="sidebar-link">📊 En Son Enflasyon (/latest)</a></li>
+        <li><a href="#ep-tufe" class="sidebar-link">🔍 Zaman Serisi (/tufe)</a></li>
+        <li><a href="#ep-year" class="sidebar-link">📅 Yıllık Döküm (/:year)</a></li>
+        <li><a href="#basket-items" class="sidebar-link">🛒 Sepet Fiyatları (520 Kalem)</a></li>
+        <li><a href="#periods" class="sidebar-link">🏛️ KKTC Maaş Dönemleri</a></li>
+        <li><a href="#calculate" class="sidebar-link">🧮 Enflasyon Hesaplayıcı</a></li>
+        <li><a href="#code-examples" class="sidebar-link">💻 JS & Python Örnekleri</a></li>
+        <li><a href="#health" class="sidebar-link">⚡ Sistem & Sağlık (/health)</a></li>
+      </ul>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main>
+
+      <!-- Hero Tanıtım Kartı -->
+      <section class="hero-card" id="overview">
+        <h1>KKTC TÜFE RESTful API Kılavuzu</h1>
+        <p>
+          Resmi <strong>KKTC Başbakanlık İstatistik Kurumu</strong> bülten ve arşivlerini (1977'den günümüze) otomatik takip eden, 
+          geliştiricilerin doğrudan web, mobil, finans veya muhasebe uygulamalarına bağlayabileceği açık kaynaklı RESTful API.
+        </p>
+        <div class="meta-bar">
+          <div class="meta-item">
+            <span class="meta-label">Canlı API URL</span>
+            <span class="meta-value">https://kktc-tufe-api.stevevaius.workers.dev</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Veri Derinliği</span>
+            <span class="meta-value">1977 – Günümüz (590+ Kayıt)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Altyapı & Yanıt Süresi</span>
+            <span class="meta-value">Cloudflare Edge (~15 ms)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Lisans & Maliyet</span>
+            <span class="meta-value">MIT • Tamamen Ücretsiz</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hızlı Başlangıç -->
+      <section class="section-box" id="quickstart">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">🚀</span>
+          <h2 class="section-title">Hızlı Başlangıç (Quickstart)</h2>
+        </div>
+        <p class="section-desc">
+          API anahtarı veya kayıt gerektirmeden hemen terminalinizden veya kodunuzdan doğrudan çağrı yapabilirsiniz:
+        </p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Kopyala</button>
+          <pre><code>curl -s "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/latest"</code></pre>
+        </div>
+
+        <div class="info-box">
+          💡 <strong>İpucu:</strong> Tüm yanıtlar standart <code>application/json</code> formatında döner ve CORS tüm alan adlarına açıktır. Frontend (React, Vue, Flutter, iOS, Android) uygulamalarınızdan doğrudan çağırabilirsiniz.
+        </div>
+      </section>
+
+      <!-- Uç Noktalar (Endpoints) -->
+      <section class="section-box" id="endpoints">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">📊</span>
+          <h2 class="section-title">Uç Nokta Referansı & Canlı Test</h2>
+        </div>
+        <p class="section-desc">Her uç noktanın parametrelerini inceleyebilir ve canlı test konsolundan tarayıcınızda doğrudan deneyebilirsiniz:</p>
+
+        <!-- 1. Latest -->
+        <div class="endpoint-card" id="ep-latest">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/latest</span>
+            </div>
+            <span class="endpoint-desc-badge">En Son Açıklanan Enflasyon Oranı</span>
+          </div>
+          <div class="endpoint-body">
+            <p>Resmi olarak duyurulan en güncel ayın TÜFE oranlarını (aylık değişim, yılbaşından bu yana ve yıllık enflasyon) ve içinde bulunulan yılın dönem durumunu döndürür.</p>
+            
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Yanıtı Gör</span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/latest', 'output-latest')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-latest"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Tufe Serisi -->
+        <div class="endpoint-card" id="ep-tufe">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/tufe</span>
+            </div>
+            <span class="endpoint-desc-badge">Zaman Serisi Filtreleme ve Sayfalama</span>
+          </div>
+          <div class="endpoint-body">
+            <p>1977'den günümüze tüm enflasyon verilerini gelişmiş parametrelerle filtreler.</p>
+            
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama & Örnek</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">start_year</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Başlangıç yılı (örn: <code>2023</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">end_year</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Bitiş yılı (örn: <code>2024</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">month</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Sadece belirli bir ay (örn: <code>6</code> = Haziran)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">sort</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Sıralama yönü: <code>asc</code> (kronolojik) veya <code>desc</code> (en yeni başta)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">limit</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Maksimum kayıt adedi (örn: <code>10</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/tufe?start_year=2024&limit=3&sort=desc</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe?start_year=2024&limit=3&sort=desc', 'output-tufe')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-tufe"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Yıllık Döküm -->
+        <div class="endpoint-card" id="ep-year">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/tufe/:year</span>
+            </div>
+            <span class="endpoint-desc-badge">Belirli Bir Yılın 12 Aylık Dökümü & İstatistikleri</span>
+          </div>
+          <div class="endpoint-body">
+            <p>Belirtilen yıla ait tüm ayların dökümünü, ortalama aylık enflasyonu, en yüksek ve en düşük ayları ile dönem özetlerini döndürür.</p>
+            
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/tufe/2024</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe/2024', 'output-year')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-year"></div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Sepet Madde Fiyatları (2015-2026) -->
+      <section class="section-box" id="basket-items">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">🛒</span>
+          <h2 class="section-title">Sepet Madde Fiyatları (2015 – 2026 / 520 Kalem)</h2>
+        </div>
+        <p class="section-desc">
+          KKTC Tüketici Fiyat Endeksi sepetinde yer alan <strong>520 mal ve hizmet kaleminin</strong> (ekmek, pirinç, et, süt, akaryakıt, kira, elektrik, muayene ücreti vb.) 
+          Ocak 2015'ten günümüze kadar olan tüm resmi aylık fiyatları, değişim oranları ve karşılaştırma motoru.
+        </p>
+
+        <!-- 1. Items List -->
+        <div class="endpoint-card" style="margin-bottom: 1.5rem;">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/items</span>
+            </div>
+            <span class="endpoint-desc-badge">520 Kalemin Tam Listesi & Arama</span>
+          </div>
+          <div class="endpoint-body">
+            <p>Sepetteki tüm ürünleri listeler. Arama (<code>?search=ekmek</code>) ve sayfalama destekler. İlk fiyat (2015), son fiyat ve kümülatif artış oranını özetler.</p>
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">search</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Ürün adında veya slug'ında arama (örn: <code>ekmek</code>, <code>benzin</code>, <code>et</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">limit</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Döndürülecek ürün sayısı (varsayılan: <code>50</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">offset</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Atlanacak kayıt sayısı (sayfalama için)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/items?search=ekmek</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/items?search=ekmek', 'output-items-search')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-items-search"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Single Item History -->
+        <div class="endpoint-card" style="margin-bottom: 1.5rem;">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/items/:item</span>
+            </div>
+            <span class="endpoint-desc-badge">Tekil Kalem Aylık Fiyat Geçmişi & Artış İstatistikleri</span>
+          </div>
+          <div class="endpoint-body">
+            <p>Belirtilen ürünün (örn: <code>ekmek</code>, <code>benzin</code>, <code>dana-eti-taze</code>) 2015'ten günümüze 139 aylık kesintisiz fiyat geçmişini, her ayın bir önceki aya göre yüzde değişimini ve min/max istatistiklerini getirir.</p>
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">item</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-req">Zorunlu</span></td>
+                  <td>URL yolu: Ürün slug'ı veya adı (örn: <code>ekmek</code>, <code>benzin</code>, <code>Ekmek</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">start_year / end_year</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Yıl bazında filtreleme (örn: <code>start_year=2020&end_year=2024</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">sort</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Sıralama: <code>asc</code> (kronolojik) veya <code>desc</code> (en yeniden eskiye)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/items/ekmek</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/items/ekmek', 'output-item-ekmek')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-item-ekmek"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Monthly Basket Prices -->
+        <div class="endpoint-card" style="margin-bottom: 1.5rem;">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/prices</span>
+            </div>
+            <span class="endpoint-desc-badge">Belirli Bir Ayın Tüm Sepet Fiyat Dökümü</span>
+          </div>
+          <div class="endpoint-body">
+            <p>Seçilen aydaki (ör: Ocak 2024) tüm sepet kalemlerinin o aydaki fiyatlarını ve bir önceki aya göre değişim yüzdesini döndürür.</p>
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">period</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Dönem formatı: <code>YYYY-MM</code> (örn: <code>2024-01</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">search</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>İlgili ay içinde ürün adı arama (örn: <code>et</code>, <code>peynir</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">limit</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Döndürülecek kayıt sayısı (varsayılan: <code>50</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/prices?period=2024-01&limit=5</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/prices?period=2024-01&limit=5', 'output-prices-month')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-prices-month"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Compare Items -->
+        <div class="endpoint-card">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/items/compare</span>
+            </div>
+            <span class="endpoint-desc-badge">Çoklu Kalem Enflasyon & Fiyat Karşılaştırması</span>
+          </div>
+          <div class="endpoint-body">
+            <p>Birden fazla ürünün fiyat seyrini ve artış oranlarını tek çağrıda yan yana karşılaştırır.</p>
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">items</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-req">Zorunlu</span></td>
+                  <td>Virgülle ayrılmış ürün slug'ları (örn: <code>ekmek,pirinc,benzin</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">start_period / end_period</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Zaman aralığı filtreleme (örn: <code>start_period=2020-01&end_period=2024-01</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/items/compare?items=ekmek,pirinc,benzin</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/items/compare?items=ekmek,pirinc,benzin', 'output-compare')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-compare"></div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- KKTC Dönemleri (Periods) -->
+      <section class="section-box" id="periods">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">🏛️</span>
+          <h2 class="section-title">KKTC Hayat Pahalılığı & Maaş Endeksleme Dönemleri</h2>
+        </div>
+        <p class="section-desc">
+          KKTC yasaları gereği kamu maaşları, emekli maaşları ve asgari ücret yılda iki kez 6 aylık hayat pahalılığı kümülatiflerine göre artırılır.
+        </p>
+
+        <div class="endpoint-card">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/periods?year=2024</span>
+            </div>
+            <span class="endpoint-desc-badge">6 Aylık Kümülatif Oranlar</span>
+          </div>
+          <div class="endpoint-body">
+            <ul style="margin-left: 1.25rem; margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+              <li><strong>1. Dönem (Ocak – Haziran):</strong> Haziran ayının resmi "Yılbaşından Bu Yana" kümülatif değişim oranıdır.</li>
+              <li><strong>2. Dönem (Temmuz – Aralık):</strong> Temmuz'dan Aralık'a kadar olan aylık değişimlerin bileşik çarpımıdır: <code>∏ (1 + r_i/100) - 1</code>.</li>
+            </ul>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/periods?year=2024</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/periods?year=2024', 'output-periods')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-periods"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enflasyon Değerleme Aracı (Calculate) -->
+      <section class="section-box" id="calculate">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">🧮</span>
+          <h2 class="section-title">Enflasyon & Alım Gücü Değerleme Aracı</h2>
+        </div>
+        <p class="section-desc">
+          Geçmişteki belirli bir tarihteki paranın (örneğin Ocak 2023'teki 10.000 TL), hedeflenen tarihteki veya günümüzdeki reel alım gücü karşılığını otomatik hesaplar.
+        </p>
+
+        <div class="endpoint-card">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/calculate</span>
+            </div>
+            <span class="endpoint-desc-badge">Bileşik Değerleme Formülü</span>
+          </div>
+          <div class="endpoint-body">
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">start_year</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-req">Zorunlu</span></td>
+                  <td>Başlangıç yılı (örn: <code>2023</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">start_month</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-req">Zorunlu</span></td>
+                  <td>Başlangıç ayı (1-12, örn: <code>1</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">end_year</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Bitiş yılı (boşsa en güncel ayın yılı)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">end_month</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Bitiş ayı (boşsa en güncel ay)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">amount</td>
+                  <td class="param-type">number</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Değerlenecek ana para (varsayılan: <code>100</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/calculate?start_year=2023&start_month=1&amount=10000</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/calculate?start_year=2023&start_month=1&amount=10000', 'output-calc')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-calc"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kod Örnekleri (JavaScript & Python) -->
+      <section class="section-box" id="code-examples">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">💻</span>
+          <h2 class="section-title">Kod Örnekleri (JavaScript & Python)</h2>
+        </div>
+        <p class="section-desc">Kendi uygulamanızda verileri kullanmak için hazır kod şablonları:</p>
+
+        <!-- JS Tab -->
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem; color: var(--text-main);">JavaScript (Fetch API)</h4>
+          <div class="code-container">
+            <button class="copy-btn" onclick="copyCode(this)">Kopyala</button>
+            <pre><code>// Son enflasyon verisini çek
+const response = await fetch("https://kktc-tufe-api.stevevaius.workers.dev/api/v1/latest");
+const { data } = await response.json();
+
+console.log(`Dönem: ${data.monthName} ${data.year}`);
+console.log(`Aylık Enflasyon: %${data.aylikYuzde}`);
+console.log(`Yıllık Enflasyon: %${data.yillikYuzde}`);
+
+// Sepet ürünü fiyat geçmişi (Örn: Ekmek)
+const resEkmek = await fetch("https://kktc-tufe-api.stevevaius.workers.dev/api/v1/items/ekmek");
+const ekmekData = await resEkmek.json();
+console.log(`Ekmek 2015 Fiyatı: ${ekmekData.data.statistics.firstPrice} TL`);
+console.log(`Ekmek Güncel Fiyat: ${ekmekData.data.statistics.latestPrice} TL`);
+console.log(`Toplam Artış Oranı: %${ekmekData.data.statistics.totalChangePercentage}`);</code></pre>
+          </div>
+        </div>
+
+        <!-- Python Tab -->
+        <div>
+          <h4 style="margin-bottom: 0.5rem; color: var(--text-main);">Python (urllib - Harici kütüphane gerektirmez)</h4>
+          <div class="code-container">
+            <button class="copy-btn" onclick="copyCode(this)">Kopyala</button>
+            <pre><code>import urllib.request
+import json
+
+# Genel TÜFE verisi
+url = "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/latest"
+with urllib.request.urlopen(url) as res:
+    payload = json.loads(res.read().decode())
+    data = payload["data"]
+    print(f"Dönem: {data['monthName']} {data['year']}")
+    print(f"Aylık: %{data['aylikYuzde']} | Yıllık: %{data['yillikYuzde']}")
+
+# Sepet ürünü sorgulama (Benzin)
+url_benzin = "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/items/benzin"
+with urllib.request.urlopen(url_benzin) as res:
+    benzin = json.loads(res.read().decode())["data"]
+    print(f"Benzin Güncel Fiyat: {benzin['statistics']['latestPrice']} TL (Artış: %{benzin['statistics']['totalChangePercentage']})")</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sağlık Durumu -->
+      <section class="section-box" id="health">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">⚡</span>
+          <h2 class="section-title">Sistem Durumu & Sağlık Kontrolü</h2>
+        </div>
+        <p class="section-desc">API servisinin ayakta olduğunu izleme (uptime) sistemlerinize bağlamak için:</p>
+        
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Kopyala</button>
+          <pre><code>curl -s "https://kktc-tufe-api.stevevaius.workers.dev/health"</code></pre>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <strong>KKTC TÜFE RESTful API</strong> • Resmi KKTC Başbakanlık İstatistik Kurumu verileriyle güçlendirilmiştir.
+    </p>
+    <p style="margin-top: 0.5rem;">
+      Açık kaynak <a href="https://opensource.org/licenses/MIT" target="_blank">MIT Lisansı</a> ile sunulmaktadır.
+      • <a href="/docs" target="_blank">İnteraktif Swagger UI</a>
+      • <a href="/api/openapi.json" target="_blank">OpenAPI 3.0 Şeması</a>
+    </p>
+  </footer>
+
+  <script>
+    // Panoya Kopyalama
+    function copyCode(btn) {
+      const pre = btn.parentElement.querySelector('pre');
+      const text = pre.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = 'Kopyalandı!';
+        btn.style.background = '#059669';
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.style.background = '';
+        }, 2000);
+      });
+    }
+
+    // Canlı Konsol Çalıştırıcı
+    async function runLiveTest(url, outputId) {
+      const out = document.getElementById(outputId);
+      out.style.display = 'block';
+      out.textContent = 'İstek gönderiliyor... Lütfen bekleyin.';
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        out.textContent = JSON.stringify(json, null, 2);
+      } catch (err) {
+        out.textContent = 'Hata: ' + err.message;
+        out.style.color = '#f87171';
+      }
+    }
+  </script>
+</body>
+</html>

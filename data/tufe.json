@@ -1,0 +1,4153 @@
+[
+  {
+    "year": 1977,
+    "month": 3,
+    "aylikYuzde": 8.19,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 4,
+    "aylikYuzde": 0.5638,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 5,
+    "aylikYuzde": 2.9504,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 6,
+    "aylikYuzde": 1.1517,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 7,
+    "aylikYuzde": 3.5834,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 8,
+    "aylikYuzde": 2.5392,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 9,
+    "aylikYuzde": 1.3794,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 10,
+    "aylikYuzde": 6.4918,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 11,
+    "aylikYuzde": 1.0391,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1977,
+    "month": 12,
+    "aylikYuzde": -0.2666,
+    "yilBasindanYuzde": null,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1978,
+    "month": 1,
+    "aylikYuzde": 1.8179,
+    "yilBasindanYuzde": 1.8179,
+    "yillikYuzde": null
+  },
+  {
+    "year": 1978,
+    "month": 2,
+    "aylikYuzde": 1.7779,
+    "yilBasindanYuzde": 3.6282,
+    "yillikYuzde": 35.67
+  },
+  {
+    "year": 1978,
+    "month": 3,
+    "aylikYuzde": 0.2432,
+    "yilBasindanYuzde": 3.8802,
+    "yillikYuzde": 25.7048
+  },
+  {
+    "year": 1978,
+    "month": 4,
+    "aylikYuzde": 1.8971,
+    "yilBasindanYuzde": 5.8509,
+    "yillikYuzde": 27.3713
+  },
+  {
+    "year": 1978,
+    "month": 5,
+    "aylikYuzde": 6.9563,
+    "yilBasindanYuzde": 13.2142,
+    "yillikYuzde": 32.3275
+  },
+  {
+    "year": 1978,
+    "month": 6,
+    "aylikYuzde": 0.3171,
+    "yilBasindanYuzde": 13.5732,
+    "yillikYuzde": 31.2357
+  },
+  {
+    "year": 1978,
+    "month": 7,
+    "aylikYuzde": 0.9147,
+    "yilBasindanYuzde": 14.612,
+    "yillikYuzde": 27.8545
+  },
+  {
+    "year": 1978,
+    "month": 8,
+    "aylikYuzde": 0.3066,
+    "yilBasindanYuzde": 14.9633,
+    "yillikYuzde": 25.0706
+  },
+  {
+    "year": 1978,
+    "month": 9,
+    "aylikYuzde": 5.2688,
+    "yilBasindanYuzde": 21.0205,
+    "yillikYuzde": 29.8689
+  },
+  {
+    "year": 1978,
+    "month": 10,
+    "aylikYuzde": 7.7064,
+    "yilBasindanYuzde": 30.3468,
+    "yillikYuzde": 31.3501
+  },
+  {
+    "year": 1978,
+    "month": 11,
+    "aylikYuzde": 0.9845,
+    "yilBasindanYuzde": 31.63,
+    "yillikYuzde": 31.279
+  },
+  {
+    "year": 1978,
+    "month": 12,
+    "aylikYuzde": 0.5919,
+    "yilBasindanYuzde": 32.4091,
+    "yillikYuzde": 32.4091
+  },
+  {
+    "year": 1979,
+    "month": 1,
+    "aylikYuzde": 7.7185,
+    "yilBasindanYuzde": 7.7185,
+    "yillikYuzde": 40.0825
+  },
+  {
+    "year": 1979,
+    "month": 2,
+    "aylikYuzde": 2.1743,
+    "yilBasindanYuzde": 10.0606,
+    "yillikYuzde": 40.628
+  },
+  {
+    "year": 1979,
+    "month": 3,
+    "aylikYuzde": 2.8408,
+    "yilBasindanYuzde": 13.1872,
+    "yillikYuzde": 44.2721
+  },
+  {
+    "year": 1979,
+    "month": 4,
+    "aylikYuzde": 5.0456,
+    "yilBasindanYuzde": 18.8982,
+    "yillikYuzde": 48.73
+  },
+  {
+    "year": 1979,
+    "month": 5,
+    "aylikYuzde": 1.2324,
+    "yilBasindanYuzde": 20.3634,
+    "yillikYuzde": 40.7705
+  },
+  {
+    "year": 1979,
+    "month": 6,
+    "aylikYuzde": 12.6192,
+    "yilBasindanYuzde": 35.5524,
+    "yillikYuzde": 58.0335
+  },
+  {
+    "year": 1979,
+    "month": 7,
+    "aylikYuzde": 4.2301,
+    "yilBasindanYuzde": 41.2864,
+    "yillikYuzde": 63.2256
+  },
+  {
+    "year": 1979,
+    "month": 8,
+    "aylikYuzde": 4.9363,
+    "yilBasindanYuzde": 48.2607,
+    "yillikYuzde": 70.7594
+  },
+  {
+    "year": 1979,
+    "month": 9,
+    "aylikYuzde": 6.7351,
+    "yilBasindanYuzde": 58.2463,
+    "yillikYuzde": 73.1381
+  },
+  {
+    "year": 1979,
+    "month": 10,
+    "aylikYuzde": 4.6114,
+    "yilBasindanYuzde": 65.5437,
+    "yillikYuzde": 68.1629
+  },
+  {
+    "year": 1979,
+    "month": 11,
+    "aylikYuzde": 4.4987,
+    "yilBasindanYuzde": 72.9911,
+    "yillikYuzde": 74.015
+  },
+  {
+    "year": 1979,
+    "month": 12,
+    "aylikYuzde": 2.6977,
+    "yilBasindanYuzde": 77.6579,
+    "yillikYuzde": 77.6579
+  },
+  {
+    "year": 1980,
+    "month": 1,
+    "aylikYuzde": 16.021,
+    "yilBasindanYuzde": 16.021,
+    "yillikYuzde": 91.3511
+  },
+  {
+    "year": 1980,
+    "month": 2,
+    "aylikYuzde": 10.5483,
+    "yilBasindanYuzde": 28.2592,
+    "yillikYuzde": 107.0339
+  },
+  {
+    "year": 1980,
+    "month": 3,
+    "aylikYuzde": 0.9367,
+    "yilBasindanYuzde": 29.4607,
+    "yillikYuzde": 103.2007
+  },
+  {
+    "year": 1980,
+    "month": 4,
+    "aylikYuzde": 0.2583,
+    "yilBasindanYuzde": 29.7951,
+    "yillikYuzde": 93.9401
+  },
+  {
+    "year": 1980,
+    "month": 5,
+    "aylikYuzde": 3.3348,
+    "yilBasindanYuzde": 34.1235,
+    "yillikYuzde": 97.9679
+  },
+  {
+    "year": 1980,
+    "month": 6,
+    "aylikYuzde": 14.3248,
+    "yilBasindanYuzde": 53.3364,
+    "yillikYuzde": 100.966
+  },
+  {
+    "year": 1980,
+    "month": 7,
+    "aylikYuzde": 0.3092,
+    "yilBasindanYuzde": 53.8104,
+    "yillikYuzde": 93.406
+  },
+  {
+    "year": 1980,
+    "month": 8,
+    "aylikYuzde": 3.2468,
+    "yilBasindanYuzde": 58.8044,
+    "yillikYuzde": 90.2922
+  },
+  {
+    "year": 1980,
+    "month": 9,
+    "aylikYuzde": 5.6086,
+    "yilBasindanYuzde": 67.7111,
+    "yillikYuzde": 88.2838
+  },
+  {
+    "year": 1980,
+    "month": 10,
+    "aylikYuzde": 5.212,
+    "yilBasindanYuzde": 76.4523,
+    "yillikYuzde": 89.3647
+  },
+  {
+    "year": 1980,
+    "month": 11,
+    "aylikYuzde": 6.5971,
+    "yilBasindanYuzde": 88.093,
+    "yillikYuzde": 93.1673
+  },
+  {
+    "year": 1980,
+    "month": 12,
+    "aylikYuzde": 2.5946,
+    "yilBasindanYuzde": 92.9733,
+    "yillikYuzde": 92.9733
+  },
+  {
+    "year": 1981,
+    "month": 1,
+    "aylikYuzde": 4.5768,
+    "yilBasindanYuzde": 4.5768,
+    "yillikYuzde": 73.9386
+  },
+  {
+    "year": 1981,
+    "month": 2,
+    "aylikYuzde": 3.8986,
+    "yilBasindanYuzde": 8.6539,
+    "yillikYuzde": 63.4759
+  },
+  {
+    "year": 1981,
+    "month": 3,
+    "aylikYuzde": 1.8955,
+    "yilBasindanYuzde": 10.7134,
+    "yillikYuzde": 65.0288
+  },
+  {
+    "year": 1981,
+    "month": 4,
+    "aylikYuzde": -4.4637,
+    "yilBasindanYuzde": 5.7715,
+    "yillikYuzde": 57.2561
+  },
+  {
+    "year": 1981,
+    "month": 5,
+    "aylikYuzde": 2.9876,
+    "yilBasindanYuzde": 8.9315,
+    "yillikYuzde": 56.7278
+  },
+  {
+    "year": 1981,
+    "month": 6,
+    "aylikYuzde": 4.1459,
+    "yilBasindanYuzde": 13.4478,
+    "yillikYuzde": 42.7736
+  },
+  {
+    "year": 1981,
+    "month": 7,
+    "aylikYuzde": -0.7816,
+    "yilBasindanYuzde": 12.561,
+    "yillikYuzde": 41.2211
+  },
+  {
+    "year": 1981,
+    "month": 8,
+    "aylikYuzde": 8.3145,
+    "yilBasindanYuzde": 21.9199,
+    "yillikYuzde": 48.1526
+  },
+  {
+    "year": 1981,
+    "month": 9,
+    "aylikYuzde": 3.9693,
+    "yilBasindanYuzde": 26.7592,
+    "yillikYuzde": 45.8529
+  },
+  {
+    "year": 1981,
+    "month": 10,
+    "aylikYuzde": 6.9704,
+    "yilBasindanYuzde": 35.5948,
+    "yillikYuzde": 48.2905
+  },
+  {
+    "year": 1981,
+    "month": 11,
+    "aylikYuzde": 9.0415,
+    "yilBasindanYuzde": 47.8546,
+    "yillikYuzde": 51.6909
+  },
+  {
+    "year": 1981,
+    "month": 12,
+    "aylikYuzde": -3.3891,
+    "yilBasindanYuzde": 42.8437,
+    "yillikYuzde": 42.8437
+  },
+  {
+    "year": 1982,
+    "month": 1,
+    "aylikYuzde": 1.7929,
+    "yilBasindanYuzde": 1.7929,
+    "yillikYuzde": 39.041
+  },
+  {
+    "year": 1982,
+    "month": 2,
+    "aylikYuzde": 4.2898,
+    "yilBasindanYuzde": 6.1596,
+    "yillikYuzde": 39.5645
+  },
+  {
+    "year": 1982,
+    "month": 3,
+    "aylikYuzde": -4.8224,
+    "yilBasindanYuzde": 1.0401,
+    "yillikYuzde": 30.3631
+  },
+  {
+    "year": 1982,
+    "month": 4,
+    "aylikYuzde": 0.3404,
+    "yilBasindanYuzde": 1.3841,
+    "yillikYuzde": 36.9185
+  },
+  {
+    "year": 1982,
+    "month": 5,
+    "aylikYuzde": 5.6491,
+    "yilBasindanYuzde": 7.1114,
+    "yillikYuzde": 40.4569
+  },
+  {
+    "year": 1982,
+    "month": 6,
+    "aylikYuzde": 3.1574,
+    "yilBasindanYuzde": 10.4933,
+    "yillikYuzde": 39.1237
+  },
+  {
+    "year": 1982,
+    "month": 7,
+    "aylikYuzde": 0.1055,
+    "yilBasindanYuzde": 10.61,
+    "yillikYuzde": 40.3677
+  },
+  {
+    "year": 1982,
+    "month": 8,
+    "aylikYuzde": 6.1396,
+    "yilBasindanYuzde": 17.4009,
+    "yillikYuzde": 37.5492
+  },
+  {
+    "year": 1982,
+    "month": 9,
+    "aylikYuzde": 3.2369,
+    "yilBasindanYuzde": 21.2011,
+    "yillikYuzde": 36.5803
+  },
+  {
+    "year": 1982,
+    "month": 10,
+    "aylikYuzde": 5.4291,
+    "yilBasindanYuzde": 27.7812,
+    "yillikYuzde": 34.6123
+  },
+  {
+    "year": 1982,
+    "month": 11,
+    "aylikYuzde": 1.616,
+    "yilBasindanYuzde": 29.8462,
+    "yillikYuzde": 25.4455
+  },
+  {
+    "year": 1982,
+    "month": 12,
+    "aylikYuzde": 2.5792,
+    "yilBasindanYuzde": 33.1951,
+    "yillikYuzde": 33.1951
+  },
+  {
+    "year": 1983,
+    "month": 1,
+    "aylikYuzde": 4.9101,
+    "yilBasindanYuzde": 4.9101,
+    "yillikYuzde": 37.2741
+  },
+  {
+    "year": 1983,
+    "month": 2,
+    "aylikYuzde": 1.423,
+    "yilBasindanYuzde": 6.403,
+    "yillikYuzde": 33.5005
+  },
+  {
+    "year": 1983,
+    "month": 3,
+    "aylikYuzde": 2.1935,
+    "yilBasindanYuzde": 8.7369,
+    "yillikYuzde": 43.3413
+  },
+  {
+    "year": 1983,
+    "month": 4,
+    "aylikYuzde": 0.2595,
+    "yilBasindanYuzde": 9.019,
+    "yillikYuzde": 43.2256
+  },
+  {
+    "year": 1983,
+    "month": 5,
+    "aylikYuzde": 1.2955,
+    "yilBasindanYuzde": 10.4314,
+    "yillikYuzde": 37.3236
+  },
+  {
+    "year": 1983,
+    "month": 6,
+    "aylikYuzde": 2.1663,
+    "yilBasindanYuzde": 12.8237,
+    "yillikYuzde": 36.0043
+  },
+  {
+    "year": 1983,
+    "month": 7,
+    "aylikYuzde": 0.7792,
+    "yilBasindanYuzde": 13.7028,
+    "yillikYuzde": 36.9195
+  },
+  {
+    "year": 1983,
+    "month": 8,
+    "aylikYuzde": 2.2735,
+    "yilBasindanYuzde": 16.2879,
+    "yillikYuzde": 31.9323
+  },
+  {
+    "year": 1983,
+    "month": 9,
+    "aylikYuzde": 1.7195,
+    "yilBasindanYuzde": 18.2875,
+    "yillikYuzde": 29.9932
+  },
+  {
+    "year": 1983,
+    "month": 10,
+    "aylikYuzde": 4.5607,
+    "yilBasindanYuzde": 23.6823,
+    "yillikYuzde": 28.9225
+  },
+  {
+    "year": 1983,
+    "month": 11,
+    "aylikYuzde": 4.1351,
+    "yilBasindanYuzde": 28.7967,
+    "yillikYuzde": 32.1186
+  },
+  {
+    "year": 1983,
+    "month": 12,
+    "aylikYuzde": 3.9064,
+    "yilBasindanYuzde": 33.828,
+    "yillikYuzde": 33.828
+  },
+  {
+    "year": 1984,
+    "month": 1,
+    "aylikYuzde": 9.4256,
+    "yilBasindanYuzde": 9.4256,
+    "yillikYuzde": 39.5881
+  },
+  {
+    "year": 1984,
+    "month": 2,
+    "aylikYuzde": 1.6251,
+    "yilBasindanYuzde": 11.2039,
+    "yillikYuzde": 39.8663
+  },
+  {
+    "year": 1984,
+    "month": 3,
+    "aylikYuzde": 1.7549,
+    "yilBasindanYuzde": 13.1554,
+    "yillikYuzde": 39.266
+  },
+  {
+    "year": 1984,
+    "month": 4,
+    "aylikYuzde": 3.135,
+    "yilBasindanYuzde": 16.7028,
+    "yillikYuzde": 43.2603
+  },
+  {
+    "year": 1984,
+    "month": 5,
+    "aylikYuzde": 5.1802,
+    "yilBasindanYuzde": 22.7482,
+    "yillikYuzde": 48.7543
+  },
+  {
+    "year": 1984,
+    "month": 6,
+    "aylikYuzde": 4.6106,
+    "yilBasindanYuzde": 28.4076,
+    "yillikYuzde": 52.3132
+  },
+  {
+    "year": 1984,
+    "month": 7,
+    "aylikYuzde": 1.8095,
+    "yilBasindanYuzde": 30.7312,
+    "yillikYuzde": 53.8704
+  },
+  {
+    "year": 1984,
+    "month": 8,
+    "aylikYuzde": 2.6139,
+    "yilBasindanYuzde": 34.1484,
+    "yillikYuzde": 54.3825
+  },
+  {
+    "year": 1984,
+    "month": 9,
+    "aylikYuzde": 3.3735,
+    "yilBasindanYuzde": 38.6738,
+    "yillikYuzde": 56.8927
+  },
+  {
+    "year": 1984,
+    "month": 10,
+    "aylikYuzde": 6.2585,
+    "yilBasindanYuzde": 47.3527,
+    "yillikYuzde": 59.4401
+  },
+  {
+    "year": 1984,
+    "month": 11,
+    "aylikYuzde": 7.5411,
+    "yilBasindanYuzde": 58.4647,
+    "yillikYuzde": 64.655
+  },
+  {
+    "year": 1984,
+    "month": 12,
+    "aylikYuzde": 7.7355,
+    "yilBasindanYuzde": 70.7227,
+    "yillikYuzde": 70.7227
+  },
+  {
+    "year": 1985,
+    "month": 1,
+    "aylikYuzde": 0.125,
+    "yilBasindanYuzde": 0.125,
+    "yillikYuzde": 56.2122
+  },
+  {
+    "year": 1985,
+    "month": 2,
+    "aylikYuzde": 2.395,
+    "yilBasindanYuzde": 2.523,
+    "yillikYuzde": 57.3956
+  },
+  {
+    "year": 1985,
+    "month": 3,
+    "aylikYuzde": 3.3006,
+    "yilBasindanYuzde": 5.9069,
+    "yillikYuzde": 59.7866
+  },
+  {
+    "year": 1985,
+    "month": 4,
+    "aylikYuzde": 2.814,
+    "yilBasindanYuzde": 8.8871,
+    "yillikYuzde": 59.2892
+  },
+  {
+    "year": 1985,
+    "month": 5,
+    "aylikYuzde": 3.0882,
+    "yilBasindanYuzde": 12.2497,
+    "yillikYuzde": 56.121
+  },
+  {
+    "year": 1985,
+    "month": 6,
+    "aylikYuzde": 1.1687,
+    "yilBasindanYuzde": 13.5615,
+    "yillikYuzde": 50.9843
+  },
+  {
+    "year": 1985,
+    "month": 7,
+    "aylikYuzde": 2.3697,
+    "yilBasindanYuzde": 16.2525,
+    "yillikYuzde": 51.815
+  },
+  {
+    "year": 1985,
+    "month": 8,
+    "aylikYuzde": 22.1751,
+    "yilBasindanYuzde": 42.0317,
+    "yillikYuzde": 80.7553
+  },
+  {
+    "year": 1985,
+    "month": 9,
+    "aylikYuzde": 4.0084,
+    "yilBasindanYuzde": 47.7249,
+    "yillikYuzde": 81.8656
+  },
+  {
+    "year": 1985,
+    "month": 10,
+    "aylikYuzde": 3.0351,
+    "yilBasindanYuzde": 52.2085,
+    "yillikYuzde": 76.3487
+  },
+  {
+    "year": 1985,
+    "month": 11,
+    "aylikYuzde": -2.9152,
+    "yilBasindanYuzde": 47.7714,
+    "yillikYuzde": 59.2021
+  },
+  {
+    "year": 1985,
+    "month": 12,
+    "aylikYuzde": -3.2047,
+    "yilBasindanYuzde": 43.0358,
+    "yillikYuzde": 43.0358
+  },
+  {
+    "year": 1986,
+    "month": 1,
+    "aylikYuzde": 7.0952,
+    "yilBasindanYuzde": 7.0952,
+    "yillikYuzde": 52.9931
+  },
+  {
+    "year": 1986,
+    "month": 2,
+    "aylikYuzde": 4.1479,
+    "yilBasindanYuzde": 11.5374,
+    "yillikYuzde": 55.6122
+  },
+  {
+    "year": 1986,
+    "month": 3,
+    "aylikYuzde": 6.7002,
+    "yilBasindanYuzde": 19.0106,
+    "yillikYuzde": 60.7333
+  },
+  {
+    "year": 1986,
+    "month": 4,
+    "aylikYuzde": 0.1155,
+    "yilBasindanYuzde": 19.1481,
+    "yillikYuzde": 56.5148
+  },
+  {
+    "year": 1986,
+    "month": 5,
+    "aylikYuzde": 1.2917,
+    "yilBasindanYuzde": 20.6871,
+    "yillikYuzde": 53.7872
+  },
+  {
+    "year": 1986,
+    "month": 6,
+    "aylikYuzde": 0.3155,
+    "yilBasindanYuzde": 21.0679,
+    "yillikYuzde": 52.4903
+  },
+  {
+    "year": 1986,
+    "month": 7,
+    "aylikYuzde": 8.8271,
+    "yilBasindanYuzde": 31.7547,
+    "yillikYuzde": 62.1094
+  },
+  {
+    "year": 1986,
+    "month": 8,
+    "aylikYuzde": 3.5815,
+    "yilBasindanYuzde": 36.4735,
+    "yillikYuzde": 37.4383
+  },
+  {
+    "year": 1986,
+    "month": 9,
+    "aylikYuzde": 0.1481,
+    "yilBasindanYuzde": 36.6757,
+    "yillikYuzde": 32.3373
+  },
+  {
+    "year": 1986,
+    "month": 10,
+    "aylikYuzde": 1.5616,
+    "yilBasindanYuzde": 38.8101,
+    "yillikYuzde": 30.4448
+  },
+  {
+    "year": 1986,
+    "month": 11,
+    "aylikYuzde": 1.9227,
+    "yilBasindanYuzde": 41.4789,
+    "yillikYuzde": 36.945
+  },
+  {
+    "year": 1986,
+    "month": 12,
+    "aylikYuzde": 4.6705,
+    "yilBasindanYuzde": 48.0867,
+    "yillikYuzde": 48.0867
+  },
+  {
+    "year": 1987,
+    "month": 1,
+    "aylikYuzde": 3.1801,
+    "yilBasindanYuzde": 3.1801,
+    "yillikYuzde": 42.6732
+  },
+  {
+    "year": 1987,
+    "month": 2,
+    "aylikYuzde": 1.2157,
+    "yilBasindanYuzde": 4.4345,
+    "yillikYuzde": 38.6563
+  },
+  {
+    "year": 1987,
+    "month": 3,
+    "aylikYuzde": 4.4158,
+    "yilBasindanYuzde": 9.0461,
+    "yillikYuzde": 35.6877
+  },
+  {
+    "year": 1987,
+    "month": 4,
+    "aylikYuzde": 0.8741,
+    "yilBasindanYuzde": 9.9993,
+    "yillikYuzde": 36.7158
+  },
+  {
+    "year": 1987,
+    "month": 5,
+    "aylikYuzde": 1.2304,
+    "yilBasindanYuzde": 11.3527,
+    "yillikYuzde": 36.6331
+  },
+  {
+    "year": 1987,
+    "month": 6,
+    "aylikYuzde": 5.1763,
+    "yilBasindanYuzde": 17.1166,
+    "yillikYuzde": 43.2537
+  },
+  {
+    "year": 1987,
+    "month": 7,
+    "aylikYuzde": 1.8896,
+    "yilBasindanYuzde": 19.3297,
+    "yillikYuzde": 34.1215
+  },
+  {
+    "year": 1987,
+    "month": 8,
+    "aylikYuzde": 0.3709,
+    "yilBasindanYuzde": 19.7723,
+    "yillikYuzde": 29.9643
+  },
+  {
+    "year": 1987,
+    "month": 9,
+    "aylikYuzde": 3.89,
+    "yilBasindanYuzde": 24.4314,
+    "yillikYuzde": 34.8201
+  },
+  {
+    "year": 1987,
+    "month": 10,
+    "aylikYuzde": 8.1272,
+    "yilBasindanYuzde": 34.5441,
+    "yillikYuzde": 43.5357
+  },
+  {
+    "year": 1987,
+    "month": 11,
+    "aylikYuzde": 2.8659,
+    "yilBasindanYuzde": 38.4001,
+    "yillikYuzde": 44.864
+  },
+  {
+    "year": 1987,
+    "month": 12,
+    "aylikYuzde": 3.3285,
+    "yilBasindanYuzde": 43.0067,
+    "yillikYuzde": 43.0067
+  },
+  {
+    "year": 1988,
+    "month": 1,
+    "aylikYuzde": 8.08,
+    "yilBasindanYuzde": 8.08,
+    "yillikYuzde": 49.7979
+  },
+  {
+    "year": 1988,
+    "month": 2,
+    "aylikYuzde": 8.3314,
+    "yilBasindanYuzde": 17.0846,
+    "yillikYuzde": 60.329
+  },
+  {
+    "year": 1988,
+    "month": 3,
+    "aylikYuzde": 6.0003,
+    "yilBasindanYuzde": 24.11,
+    "yillikYuzde": 62.762
+  },
+  {
+    "year": 1988,
+    "month": 4,
+    "aylikYuzde": 1.9902,
+    "yilBasindanYuzde": 26.58,
+    "yillikYuzde": 64.5628
+  },
+  {
+    "year": 1988,
+    "month": 5,
+    "aylikYuzde": 1.5406,
+    "yilBasindanYuzde": 28.53,
+    "yillikYuzde": 65.067
+  },
+  {
+    "year": 1988,
+    "month": 6,
+    "aylikYuzde": 2.2718,
+    "yilBasindanYuzde": 31.45,
+    "yillikYuzde": 60.5086
+  },
+  {
+    "year": 1988,
+    "month": 7,
+    "aylikYuzde": 3.7961,
+    "yilBasindanYuzde": 36.44,
+    "yillikYuzde": 63.512
+  },
+  {
+    "year": 1988,
+    "month": 8,
+    "aylikYuzde": 6.0759,
+    "yilBasindanYuzde": 44.73,
+    "yillikYuzde": 72.8059
+  },
+  {
+    "year": 1988,
+    "month": 9,
+    "aylikYuzde": 2.3354,
+    "yilBasindanYuzde": 48.11,
+    "yillikYuzde": 70.22
+  },
+  {
+    "year": 1988,
+    "month": 10,
+    "aylikYuzde": 3.6662,
+    "yilBasindanYuzde": 53.5399,
+    "yillikYuzde": 63.1973
+  },
+  {
+    "year": 1988,
+    "month": 11,
+    "aylikYuzde": 2.8137,
+    "yilBasindanYuzde": 57.86,
+    "yillikYuzde": 63.1144
+  },
+  {
+    "year": 1988,
+    "month": 12,
+    "aylikYuzde": 2.9837,
+    "yilBasindanYuzde": 62.57,
+    "yillikYuzde": 62.57
+  },
+  {
+    "year": 1989,
+    "month": 1,
+    "aylikYuzde": 5.7083,
+    "yilBasindanYuzde": 5.7083,
+    "yillikYuzde": 59.0026
+  },
+  {
+    "year": 1989,
+    "month": 2,
+    "aylikYuzde": 7.9138,
+    "yilBasindanYuzde": 14.0739,
+    "yillikYuzde": 58.3897
+  },
+  {
+    "year": 1989,
+    "month": 3,
+    "aylikYuzde": 2.0976,
+    "yilBasindanYuzde": 16.4667,
+    "yillikYuzde": 52.5582
+  },
+  {
+    "year": 1989,
+    "month": 4,
+    "aylikYuzde": 3.7076,
+    "yilBasindanYuzde": 20.7848,
+    "yillikYuzde": 55.1272
+  },
+  {
+    "year": 1989,
+    "month": 5,
+    "aylikYuzde": 2.7399,
+    "yilBasindanYuzde": 24.0942,
+    "yillikYuzde": 56.9594
+  },
+  {
+    "year": 1989,
+    "month": 6,
+    "aylikYuzde": 0.8675,
+    "yilBasindanYuzde": 25.1707,
+    "yillikYuzde": 54.8041
+  },
+  {
+    "year": 1989,
+    "month": 7,
+    "aylikYuzde": 6.1084,
+    "yilBasindanYuzde": 32.8166,
+    "yillikYuzde": 58.2527
+  },
+  {
+    "year": 1989,
+    "month": 8,
+    "aylikYuzde": 5.7336,
+    "yilBasindanYuzde": 40.4318,
+    "yillikYuzde": 57.7421
+  },
+  {
+    "year": 1989,
+    "month": 9,
+    "aylikYuzde": 0.9242,
+    "yilBasindanYuzde": 41.7297,
+    "yillikYuzde": 55.5669
+  },
+  {
+    "year": 1989,
+    "month": 10,
+    "aylikYuzde": 1.5798,
+    "yilBasindanYuzde": 43.9687,
+    "yillikYuzde": 52.4359
+  },
+  {
+    "year": 1989,
+    "month": 11,
+    "aylikYuzde": 2.7693,
+    "yilBasindanYuzde": 47.9557,
+    "yillikYuzde": 52.3702
+  },
+  {
+    "year": 1989,
+    "month": 12,
+    "aylikYuzde": 2.6061,
+    "yilBasindanYuzde": 51.8115,
+    "yillikYuzde": 51.8115
+  },
+  {
+    "year": 1990,
+    "month": 1,
+    "aylikYuzde": 6.4384,
+    "yilBasindanYuzde": 6.4384,
+    "yillikYuzde": 52.8601
+  },
+  {
+    "year": 1990,
+    "month": 2,
+    "aylikYuzde": 9.8177,
+    "yilBasindanYuzde": 16.8882,
+    "yillikYuzde": 55.5568
+  },
+  {
+    "year": 1990,
+    "month": 3,
+    "aylikYuzde": 3.3659,
+    "yilBasindanYuzde": 20.8225,
+    "yillikYuzde": 57.4892
+  },
+  {
+    "year": 1990,
+    "month": 4,
+    "aylikYuzde": 3.4743,
+    "yilBasindanYuzde": 25.0203,
+    "yillikYuzde": 57.1349
+  },
+  {
+    "year": 1990,
+    "month": 5,
+    "aylikYuzde": 2.6252,
+    "yilBasindanYuzde": 28.3023,
+    "yillikYuzde": 56.9595
+  },
+  {
+    "year": 1990,
+    "month": 6,
+    "aylikYuzde": 3.0538,
+    "yilBasindanYuzde": 32.2204,
+    "yillikYuzde": 60.3617
+  },
+  {
+    "year": 1990,
+    "month": 7,
+    "aylikYuzde": 2.4332,
+    "yilBasindanYuzde": 35.4376,
+    "yillikYuzde": 54.8074
+  },
+  {
+    "year": 1990,
+    "month": 8,
+    "aylikYuzde": 11.4851,
+    "yilBasindanYuzde": 50.9927,
+    "yillikYuzde": 63.2282
+  },
+  {
+    "year": 1990,
+    "month": 9,
+    "aylikYuzde": 4.7659,
+    "yilBasindanYuzde": 58.1888,
+    "yillikYuzde": 69.4414
+  },
+  {
+    "year": 1990,
+    "month": 10,
+    "aylikYuzde": 2.3949,
+    "yilBasindanYuzde": 61.9773,
+    "yillikYuzde": 70.8011
+  },
+  {
+    "year": 1990,
+    "month": 11,
+    "aylikYuzde": 2.2538,
+    "yilBasindanYuzde": 65.628,
+    "yillikYuzde": 69.9444
+  },
+  {
+    "year": 1990,
+    "month": 12,
+    "aylikYuzde": 2.2849,
+    "yilBasindanYuzde": 69.4125,
+    "yillikYuzde": 69.4125
+  },
+  {
+    "year": 1991,
+    "month": 1,
+    "aylikYuzde": 3.3293,
+    "yilBasindanYuzde": 3.3293,
+    "yillikYuzde": 64.4638
+  },
+  {
+    "year": 1991,
+    "month": 2,
+    "aylikYuzde": 2.9975,
+    "yilBasindanYuzde": 6.4266,
+    "yillikYuzde": 54.2498
+  },
+  {
+    "year": 1991,
+    "month": 3,
+    "aylikYuzde": 3.9957,
+    "yilBasindanYuzde": 10.679,
+    "yillikYuzde": 55.1896
+  },
+  {
+    "year": 1991,
+    "month": 4,
+    "aylikYuzde": 4.0929,
+    "yilBasindanYuzde": 15.2089,
+    "yillikYuzde": 56.1173
+  },
+  {
+    "year": 1991,
+    "month": 5,
+    "aylikYuzde": 2.4081,
+    "yilBasindanYuzde": 17.9833,
+    "yillikYuzde": 55.7871
+  },
+  {
+    "year": 1991,
+    "month": 6,
+    "aylikYuzde": 4.9463,
+    "yilBasindanYuzde": 23.8191,
+    "yillikYuzde": 58.648
+  },
+  {
+    "year": 1991,
+    "month": 7,
+    "aylikYuzde": 2.3933,
+    "yilBasindanYuzde": 26.7824,
+    "yillikYuzde": 58.5861
+  },
+  {
+    "year": 1991,
+    "month": 8,
+    "aylikYuzde": 1.8846,
+    "yilBasindanYuzde": 29.1718,
+    "yillikYuzde": 44.9295
+  },
+  {
+    "year": 1991,
+    "month": 9,
+    "aylikYuzde": 4.4012,
+    "yilBasindanYuzde": 34.8569,
+    "yillikYuzde": 44.4251
+  },
+  {
+    "year": 1991,
+    "month": 10,
+    "aylikYuzde": 3.1196,
+    "yilBasindanYuzde": 39.0639,
+    "yillikYuzde": 45.4473
+  },
+  {
+    "year": 1991,
+    "month": 11,
+    "aylikYuzde": 2.4801,
+    "yilBasindanYuzde": 42.5128,
+    "yillikYuzde": 45.769
+  },
+  {
+    "year": 1991,
+    "month": 12,
+    "aylikYuzde": 2.6801,
+    "yilBasindanYuzde": 46.3323,
+    "yillikYuzde": 46.3323
+  },
+  {
+    "year": 1992,
+    "month": 1,
+    "aylikYuzde": 7.4187,
+    "yilBasindanYuzde": 7.4187,
+    "yillikYuzde": 52.1237
+  },
+  {
+    "year": 1992,
+    "month": 2,
+    "aylikYuzde": 10.1108,
+    "yilBasindanYuzde": 18.2796,
+    "yillikYuzde": 62.6298
+  },
+  {
+    "year": 1992,
+    "month": 3,
+    "aylikYuzde": 3.3897,
+    "yilBasindanYuzde": 22.2889,
+    "yillikYuzde": 61.6821
+  },
+  {
+    "year": 1992,
+    "month": 4,
+    "aylikYuzde": 2.6637,
+    "yilBasindanYuzde": 25.5463,
+    "yillikYuzde": 59.4623
+  },
+  {
+    "year": 1992,
+    "month": 5,
+    "aylikYuzde": 2.053,
+    "yilBasindanYuzde": 28.1238,
+    "yillikYuzde": 58.9094
+  },
+  {
+    "year": 1992,
+    "month": 6,
+    "aylikYuzde": 1.851,
+    "yilBasindanYuzde": 30.4954,
+    "yillikYuzde": 54.2225
+  },
+  {
+    "year": 1992,
+    "month": 7,
+    "aylikYuzde": 3.16,
+    "yilBasindanYuzde": 34.6191,
+    "yillikYuzde": 55.3774
+  },
+  {
+    "year": 1992,
+    "month": 8,
+    "aylikYuzde": 3.2951,
+    "yilBasindanYuzde": 39.055,
+    "yillikYuzde": 57.5285
+  },
+  {
+    "year": 1992,
+    "month": 9,
+    "aylikYuzde": 3.7025,
+    "yilBasindanYuzde": 44.2035,
+    "yillikYuzde": 56.4743
+  },
+  {
+    "year": 1992,
+    "month": 10,
+    "aylikYuzde": 4.12,
+    "yilBasindanYuzde": 50.1447,
+    "yillikYuzde": 57.9922
+  },
+  {
+    "year": 1992,
+    "month": 11,
+    "aylikYuzde": 3.8448,
+    "yilBasindanYuzde": 55.9175,
+    "yillikYuzde": 60.0963
+  },
+  {
+    "year": 1992,
+    "month": 12,
+    "aylikYuzde": 4.7801,
+    "yilBasindanYuzde": 63.3706,
+    "yillikYuzde": 63.3706
+  },
+  {
+    "year": 1993,
+    "month": 1,
+    "aylikYuzde": 4.9302,
+    "yilBasindanYuzde": 4.9302,
+    "yillikYuzde": 59.5858
+  },
+  {
+    "year": 1993,
+    "month": 2,
+    "aylikYuzde": 6.8524,
+    "yilBasindanYuzde": 12.1204,
+    "yillikYuzde": 54.8634
+  },
+  {
+    "year": 1993,
+    "month": 3,
+    "aylikYuzde": 5.12,
+    "yilBasindanYuzde": 17.861,
+    "yillikYuzde": 57.4552
+  },
+  {
+    "year": 1993,
+    "month": 4,
+    "aylikYuzde": 2.2401,
+    "yilBasindanYuzde": 20.5012,
+    "yillikYuzde": 56.8055
+  },
+  {
+    "year": 1993,
+    "month": 5,
+    "aylikYuzde": 1.5301,
+    "yilBasindanYuzde": 22.345,
+    "yillikYuzde": 56.002
+  },
+  {
+    "year": 1993,
+    "month": 6,
+    "aylikYuzde": 2.4507,
+    "yilBasindanYuzde": 25.3434,
+    "yillikYuzde": 56.9206
+  },
+  {
+    "year": 1993,
+    "month": 7,
+    "aylikYuzde": 4.9319,
+    "yilBasindanYuzde": 31.5252,
+    "yillikYuzde": 59.6158
+  },
+  {
+    "year": 1993,
+    "month": 8,
+    "aylikYuzde": 4.7716,
+    "yilBasindanYuzde": 37.801,
+    "yillikYuzde": 61.8973
+  },
+  {
+    "year": 1993,
+    "month": 9,
+    "aylikYuzde": 1.9319,
+    "yilBasindanYuzde": 40.4632,
+    "yillikYuzde": 59.1331
+  },
+  {
+    "year": 1993,
+    "month": 10,
+    "aylikYuzde": 2.5285,
+    "yilBasindanYuzde": 44.0148,
+    "yillikYuzde": 56.7007
+  },
+  {
+    "year": 1993,
+    "month": 11,
+    "aylikYuzde": 4.76,
+    "yilBasindanYuzde": 50.8699,
+    "yillikYuzde": 58.0816
+  },
+  {
+    "year": 1993,
+    "month": 12,
+    "aylikYuzde": 6.8202,
+    "yilBasindanYuzde": 61.1595,
+    "yillikYuzde": 61.1595
+  },
+  {
+    "year": 1994,
+    "month": 1,
+    "aylikYuzde": 4.8198,
+    "yilBasindanYuzde": 4.8198,
+    "yillikYuzde": 60.9898
+  },
+  {
+    "year": 1994,
+    "month": 2,
+    "aylikYuzde": 9.111,
+    "yilBasindanYuzde": 14.3699,
+    "yillikYuzde": 64.3928
+  },
+  {
+    "year": 1994,
+    "month": 3,
+    "aylikYuzde": 22.0528,
+    "yilBasindanYuzde": 39.5917,
+    "yillikYuzde": 90.8733
+  },
+  {
+    "year": 1994,
+    "month": 4,
+    "aylikYuzde": 19.5145,
+    "yilBasindanYuzde": 66.8322,
+    "yillikYuzde": 123.123
+  },
+  {
+    "year": 1994,
+    "month": 5,
+    "aylikYuzde": 25.5045,
+    "yilBasindanYuzde": 109.3819,
+    "yillikYuzde": 175.8091
+  },
+  {
+    "year": 1994,
+    "month": 6,
+    "aylikYuzde": 3.3681,
+    "yilBasindanYuzde": 116.434,
+    "yillikYuzde": 178.2786
+  },
+  {
+    "year": 1994,
+    "month": 7,
+    "aylikYuzde": 4.7154,
+    "yilBasindanYuzde": 126.6397,
+    "yillikYuzde": 177.7045
+  },
+  {
+    "year": 1994,
+    "month": 8,
+    "aylikYuzde": 9.9924,
+    "yilBasindanYuzde": 149.2864,
+    "yillikYuzde": 191.5427
+  },
+  {
+    "year": 1994,
+    "month": 9,
+    "aylikYuzde": 6.7525,
+    "yilBasindanYuzde": 166.1195,
+    "yillikYuzde": 205.3305
+  },
+  {
+    "year": 1994,
+    "month": 10,
+    "aylikYuzde": 4.8882,
+    "yilBasindanYuzde": 179.1281,
+    "yillikYuzde": 212.3577
+  },
+  {
+    "year": 1994,
+    "month": 11,
+    "aylikYuzde": 4.9302,
+    "yilBasindanYuzde": 192.8896,
+    "yillikYuzde": 212.8652
+  },
+  {
+    "year": 1994,
+    "month": 12,
+    "aylikYuzde": 7.551,
+    "yilBasindanYuzde": 215.0056,
+    "yillikYuzde": 215.0056
+  },
+  {
+    "year": 1995,
+    "month": 1,
+    "aylikYuzde": 9.536,
+    "yilBasindanYuzde": 9.536,
+    "yillikYuzde": 229.179
+  },
+  {
+    "year": 1995,
+    "month": 2,
+    "aylikYuzde": 6.8346,
+    "yilBasindanYuzde": 17.0223,
+    "yillikYuzde": 222.3112
+  },
+  {
+    "year": 1995,
+    "month": 3,
+    "aylikYuzde": 7.6135,
+    "yilBasindanYuzde": 25.9319,
+    "yillikYuzde": 184.1807
+  },
+  {
+    "year": 1995,
+    "month": 4,
+    "aylikYuzde": 1.1341,
+    "yilBasindanYuzde": 27.3601,
+    "yillikYuzde": 140.4759
+  },
+  {
+    "year": 1995,
+    "month": 5,
+    "aylikYuzde": 1.7863,
+    "yilBasindanYuzde": 29.635,
+    "yillikYuzde": 95.0301
+  },
+  {
+    "year": 1995,
+    "month": 6,
+    "aylikYuzde": 1.5238,
+    "yilBasindanYuzde": 31.6105,
+    "yillikYuzde": 91.5505
+  },
+  {
+    "year": 1995,
+    "month": 7,
+    "aylikYuzde": 6.8965,
+    "yilBasindanYuzde": 40.6869,
+    "yillikYuzde": 95.5402
+  },
+  {
+    "year": 1995,
+    "month": 8,
+    "aylikYuzde": 7.0138,
+    "yilBasindanYuzde": 50.5545,
+    "yillikYuzde": 90.245
+  },
+  {
+    "year": 1995,
+    "month": 9,
+    "aylikYuzde": 6.35,
+    "yilBasindanYuzde": 60.1147,
+    "yillikYuzde": 89.5277
+  },
+  {
+    "year": 1995,
+    "month": 10,
+    "aylikYuzde": 2.3188,
+    "yilBasindanYuzde": 63.8275,
+    "yillikYuzde": 84.885
+  },
+  {
+    "year": 1995,
+    "month": 11,
+    "aylikYuzde": 2.0569,
+    "yilBasindanYuzde": 67.1972,
+    "yillikYuzde": 79.8223
+  },
+  {
+    "year": 1995,
+    "month": 12,
+    "aylikYuzde": 2.9619,
+    "yilBasindanYuzde": 72.2,
+    "yillikYuzde": 72.2
+  },
+  {
+    "year": 1996,
+    "month": 1,
+    "aylikYuzde": 6.7446,
+    "yilBasindanYuzde": 6.7446,
+    "yillikYuzde": 67.7623
+  },
+  {
+    "year": 1996,
+    "month": 2,
+    "aylikYuzde": 6.5532,
+    "yilBasindanYuzde": 13.7398,
+    "yillikYuzde": 67.3205
+  },
+  {
+    "year": 1996,
+    "month": 3,
+    "aylikYuzde": 4.2282,
+    "yilBasindanYuzde": 18.5489,
+    "yillikYuzde": 62.0569
+  },
+  {
+    "year": 1996,
+    "month": 4,
+    "aylikYuzde": 3.7049,
+    "yilBasindanYuzde": 22.9411,
+    "yillikYuzde": 66.1764
+  },
+  {
+    "year": 1996,
+    "month": 5,
+    "aylikYuzde": 6.2265,
+    "yilBasindanYuzde": 30.596,
+    "yillikYuzde": 73.4255
+  },
+  {
+    "year": 1996,
+    "month": 6,
+    "aylikYuzde": 4.5612,
+    "yilBasindanYuzde": 36.5528,
+    "yillikYuzde": 78.614
+  },
+  {
+    "year": 1996,
+    "month": 7,
+    "aylikYuzde": 8.4521,
+    "yilBasindanYuzde": 48.0944,
+    "yillikYuzde": 81.2134
+  },
+  {
+    "year": 1996,
+    "month": 8,
+    "aylikYuzde": 8.5884,
+    "yilBasindanYuzde": 60.8134,
+    "yillikYuzde": 83.8798
+  },
+  {
+    "year": 1996,
+    "month": 9,
+    "aylikYuzde": 3.8454,
+    "yilBasindanYuzde": 66.9973,
+    "yillikYuzde": 79.5493
+  },
+  {
+    "year": 1996,
+    "month": 10,
+    "aylikYuzde": 3.8779,
+    "yilBasindanYuzde": 73.4733,
+    "yillikYuzde": 82.2852
+  },
+  {
+    "year": 1996,
+    "month": 11,
+    "aylikYuzde": 3.7102,
+    "yilBasindanYuzde": 79.9095,
+    "yillikYuzde": 85.2382
+  },
+  {
+    "year": 1996,
+    "month": 12,
+    "aylikYuzde": 4.243,
+    "yilBasindanYuzde": 87.5431,
+    "yillikYuzde": 87.5431
+  },
+  {
+    "year": 1997,
+    "month": 1,
+    "aylikYuzde": 5.1902,
+    "yilBasindanYuzde": 5.1902,
+    "yillikYuzde": 84.8122
+  },
+  {
+    "year": 1997,
+    "month": 2,
+    "aylikYuzde": 8.408,
+    "yilBasindanYuzde": 14.0346,
+    "yillikYuzde": 88.0293
+  },
+  {
+    "year": 1997,
+    "month": 3,
+    "aylikYuzde": 8.9439,
+    "yilBasindanYuzde": 24.2338,
+    "yillikYuzde": 96.5365
+  },
+  {
+    "year": 1997,
+    "month": 4,
+    "aylikYuzde": 3.8955,
+    "yilBasindanYuzde": 29.0734,
+    "yillikYuzde": 96.8978
+  },
+  {
+    "year": 1997,
+    "month": 5,
+    "aylikYuzde": 2.8911,
+    "yilBasindanYuzde": 32.805,
+    "yillikYuzde": 90.7155
+  },
+  {
+    "year": 1997,
+    "month": 6,
+    "aylikYuzde": 1.0938,
+    "yilBasindanYuzde": 34.2577,
+    "yillikYuzde": 84.391
+  },
+  {
+    "year": 1997,
+    "month": 7,
+    "aylikYuzde": 4.0412,
+    "yilBasindanYuzde": 39.6833,
+    "yillikYuzde": 76.8915
+  },
+  {
+    "year": 1997,
+    "month": 8,
+    "aylikYuzde": 7.9916,
+    "yilBasindanYuzde": 50.8461,
+    "yillikYuzde": 75.9192
+  },
+  {
+    "year": 1997,
+    "month": 9,
+    "aylikYuzde": 3.8273,
+    "yilBasindanYuzde": 56.6195,
+    "yillikYuzde": 75.8886
+  },
+  {
+    "year": 1997,
+    "month": 10,
+    "aylikYuzde": 5.0162,
+    "yilBasindanYuzde": 64.4758,
+    "yillikYuzde": 77.8159
+  },
+  {
+    "year": 1997,
+    "month": 11,
+    "aylikYuzde": 5.5721,
+    "yilBasindanYuzde": 73.6405,
+    "yillikYuzde": 81.0082
+  },
+  {
+    "year": 1997,
+    "month": 12,
+    "aylikYuzde": 4.6268,
+    "yilBasindanYuzde": 81.6746,
+    "yillikYuzde": 81.6746
+  },
+  {
+    "year": 1998,
+    "month": 1,
+    "aylikYuzde": 4.6435,
+    "yilBasindanYuzde": 4.6435,
+    "yillikYuzde": 80.7302
+  },
+  {
+    "year": 1998,
+    "month": 2,
+    "aylikYuzde": 8.0929,
+    "yilBasindanYuzde": 13.1121,
+    "yillikYuzde": 80.2049
+  },
+  {
+    "year": 1998,
+    "month": 3,
+    "aylikYuzde": 5.1637,
+    "yilBasindanYuzde": 18.9529,
+    "yillikYuzde": 73.952
+  },
+  {
+    "year": 1998,
+    "month": 4,
+    "aylikYuzde": 4.5848,
+    "yilBasindanYuzde": 24.4066,
+    "yillikYuzde": 75.106
+  },
+  {
+    "year": 1998,
+    "month": 5,
+    "aylikYuzde": 3.8807,
+    "yilBasindanYuzde": 29.2346,
+    "yillikYuzde": 76.7902
+  },
+  {
+    "year": 1998,
+    "month": 6,
+    "aylikYuzde": 2.7594,
+    "yilBasindanYuzde": 32.8006,
+    "yillikYuzde": 79.7029
+  },
+  {
+    "year": 1998,
+    "month": 7,
+    "aylikYuzde": 2.9502,
+    "yilBasindanYuzde": 36.7185,
+    "yillikYuzde": 77.8186
+  },
+  {
+    "year": 1998,
+    "month": 8,
+    "aylikYuzde": 5.2186,
+    "yilBasindanYuzde": 43.8533,
+    "yillikYuzde": 73.2526
+  },
+  {
+    "year": 1998,
+    "month": 9,
+    "aylikYuzde": 6.3799,
+    "yilBasindanYuzde": 53.031,
+    "yillikYuzde": 77.5121
+  },
+  {
+    "year": 1998,
+    "month": 10,
+    "aylikYuzde": 1.9879,
+    "yilBasindanYuzde": 56.0731,
+    "yillikYuzde": 72.3932
+  },
+  {
+    "year": 1998,
+    "month": 11,
+    "aylikYuzde": 3.2072,
+    "yilBasindanYuzde": 61.0786,
+    "yillikYuzde": 68.5314
+  },
+  {
+    "year": 1998,
+    "month": 12,
+    "aylikYuzde": 3.3617,
+    "yilBasindanYuzde": 66.4935,
+    "yillikYuzde": 66.4935
+  },
+  {
+    "year": 1999,
+    "month": 1,
+    "aylikYuzde": 4.851,
+    "yilBasindanYuzde": 4.851,
+    "yillikYuzde": 66.8237
+  },
+  {
+    "year": 1999,
+    "month": 2,
+    "aylikYuzde": 4.4763,
+    "yilBasindanYuzde": 9.5444,
+    "yillikYuzde": 61.2421
+  },
+  {
+    "year": 1999,
+    "month": 3,
+    "aylikYuzde": 5.4596,
+    "yilBasindanYuzde": 15.525,
+    "yillikYuzde": 61.6957
+  },
+  {
+    "year": 1999,
+    "month": 4,
+    "aylikYuzde": 2.8883,
+    "yilBasindanYuzde": 18.8617,
+    "yillikYuzde": 59.0727
+  },
+  {
+    "year": 1999,
+    "month": 5,
+    "aylikYuzde": 1.8047,
+    "yilBasindanYuzde": 21.0069,
+    "yillikYuzde": 55.8937
+  },
+  {
+    "year": 1999,
+    "month": 6,
+    "aylikYuzde": 2.3291,
+    "yilBasindanYuzde": 23.8252,
+    "yillikYuzde": 55.241
+  },
+  {
+    "year": 1999,
+    "month": 7,
+    "aylikYuzde": 1.9616,
+    "yilBasindanYuzde": 26.2542,
+    "yillikYuzde": 53.7503
+  },
+  {
+    "year": 1999,
+    "month": 8,
+    "aylikYuzde": 6.1883,
+    "yilBasindanYuzde": 34.0673,
+    "yillikYuzde": 55.1673
+  },
+  {
+    "year": 1999,
+    "month": 9,
+    "aylikYuzde": 6.5985,
+    "yilBasindanYuzde": 42.9138,
+    "yillikYuzde": 55.4862
+  },
+  {
+    "year": 1999,
+    "month": 10,
+    "aylikYuzde": 3.1887,
+    "yilBasindanYuzde": 47.4708,
+    "yillikYuzde": 57.3169
+  },
+  {
+    "year": 1999,
+    "month": 11,
+    "aylikYuzde": 1.8331,
+    "yilBasindanYuzde": 50.1741,
+    "yillikYuzde": 55.2224
+  },
+  {
+    "year": 1999,
+    "month": 12,
+    "aylikYuzde": 3.4143,
+    "yilBasindanYuzde": 55.3014,
+    "yillikYuzde": 55.3014
+  },
+  {
+    "year": 2000,
+    "month": 1,
+    "aylikYuzde": 4.3277,
+    "yilBasindanYuzde": 4.3277,
+    "yillikYuzde": 54.5263
+  },
+  {
+    "year": 2000,
+    "month": 2,
+    "aylikYuzde": 6.0583,
+    "yilBasindanYuzde": 10.6481,
+    "yillikYuzde": 56.8662
+  },
+  {
+    "year": 2000,
+    "month": 3,
+    "aylikYuzde": 5.3502,
+    "yilBasindanYuzde": 16.568,
+    "yillikYuzde": 56.7035
+  },
+  {
+    "year": 2000,
+    "month": 4,
+    "aylikYuzde": 2.758,
+    "yilBasindanYuzde": 19.7829,
+    "yillikYuzde": 56.505
+  },
+  {
+    "year": 2000,
+    "month": 5,
+    "aylikYuzde": 1.0449,
+    "yilBasindanYuzde": 21.0345,
+    "yillikYuzde": 55.3369
+  },
+  {
+    "year": 2000,
+    "month": 6,
+    "aylikYuzde": 3.5437,
+    "yilBasindanYuzde": 25.3236,
+    "yillikYuzde": 57.1807
+  },
+  {
+    "year": 2000,
+    "month": 7,
+    "aylikYuzde": 5.4918,
+    "yilBasindanYuzde": 32.2062,
+    "yillikYuzde": 62.6227
+  },
+  {
+    "year": 2000,
+    "month": 8,
+    "aylikYuzde": 5.0283,
+    "yilBasindanYuzde": 38.8539,
+    "yillikYuzde": 60.8461
+  },
+  {
+    "year": 2000,
+    "month": 9,
+    "aylikYuzde": 2.925,
+    "yilBasindanYuzde": 42.9154,
+    "yillikYuzde": 55.3032
+  },
+  {
+    "year": 2000,
+    "month": 10,
+    "aylikYuzde": 2.4459,
+    "yilBasindanYuzde": 46.4109,
+    "yillikYuzde": 54.1852
+  },
+  {
+    "year": 2000,
+    "month": 11,
+    "aylikYuzde": 1.8758,
+    "yilBasindanYuzde": 49.1573,
+    "yillikYuzde": 54.2499
+  },
+  {
+    "year": 2000,
+    "month": 12,
+    "aylikYuzde": 2.734,
+    "yilBasindanYuzde": 53.2353,
+    "yillikYuzde": 53.2353
+  },
+  {
+    "year": 2001,
+    "month": 1,
+    "aylikYuzde": 2.6,
+    "yilBasindanYuzde": 2.6,
+    "yillikYuzde": 47.8
+  },
+  {
+    "year": 2001,
+    "month": 2,
+    "aylikYuzde": 3.3,
+    "yilBasindanYuzde": 5.9,
+    "yillikYuzde": 45.5
+  },
+  {
+    "year": 2001,
+    "month": 3,
+    "aylikYuzde": 7,
+    "yilBasindanYuzde": 13.3,
+    "yillikYuzde": 50.2
+  },
+  {
+    "year": 2001,
+    "month": 4,
+    "aylikYuzde": 15.3,
+    "yilBasindanYuzde": 30.7,
+    "yillikYuzde": 69.1
+  },
+  {
+    "year": 2001,
+    "month": 5,
+    "aylikYuzde": 3,
+    "yilBasindanYuzde": 34.5,
+    "yillikYuzde": 70.8
+  },
+  {
+    "year": 2001,
+    "month": 6,
+    "aylikYuzde": 3.5,
+    "yilBasindanYuzde": 39.2,
+    "yillikYuzde": 67.3
+  },
+  {
+    "year": 2001,
+    "month": 7,
+    "aylikYuzde": 2.9,
+    "yilBasindanYuzde": 43.3,
+    "yillikYuzde": 67.1
+  },
+  {
+    "year": 2001,
+    "month": 8,
+    "aylikYuzde": 5.2,
+    "yilBasindanYuzde": 50.8,
+    "yillikYuzde": 69.6
+  },
+  {
+    "year": 2001,
+    "month": 9,
+    "aylikYuzde": 5.9,
+    "yilBasindanYuzde": 59.7,
+    "yillikYuzde": 71.8
+  },
+  {
+    "year": 2001,
+    "month": 10,
+    "aylikYuzde": 5.9,
+    "yilBasindanYuzde": 69.1,
+    "yillikYuzde": 75
+  },
+  {
+    "year": 2001,
+    "month": 11,
+    "aylikYuzde": 1.7,
+    "yilBasindanYuzde": 71.9,
+    "yillikYuzde": 75.4
+  },
+  {
+    "year": 2001,
+    "month": 12,
+    "aylikYuzde": 2.9,
+    "yilBasindanYuzde": 76.8,
+    "yillikYuzde": 76.8
+  },
+  {
+    "year": 2002,
+    "month": 1,
+    "aylikYuzde": 1.8,
+    "yilBasindanYuzde": 1.8,
+    "yillikYuzde": 75.5
+  },
+  {
+    "year": 2002,
+    "month": 2,
+    "aylikYuzde": 2,
+    "yilBasindanYuzde": 3.9,
+    "yillikYuzde": 73.4
+  },
+  {
+    "year": 2002,
+    "month": 3,
+    "aylikYuzde": 2.3,
+    "yilBasindanYuzde": 6.2,
+    "yillikYuzde": 65.8
+  },
+  {
+    "year": 2002,
+    "month": 4,
+    "aylikYuzde": 1,
+    "yilBasindanYuzde": 7.3,
+    "yillikYuzde": 45.2
+  },
+  {
+    "year": 2002,
+    "month": 5,
+    "aylikYuzde": 0,
+    "yilBasindanYuzde": 7.3,
+    "yillikYuzde": 41.1
+  },
+  {
+    "year": 2002,
+    "month": 6,
+    "aylikYuzde": 0.8,
+    "yilBasindanYuzde": 8.2,
+    "yillikYuzde": 37.4
+  },
+  {
+    "year": 2002,
+    "month": 7,
+    "aylikYuzde": 2.9,
+    "yilBasindanYuzde": 11.4,
+    "yillikYuzde": 37.5
+  },
+  {
+    "year": 2002,
+    "month": 8,
+    "aylikYuzde": 3.4,
+    "yilBasindanYuzde": 15.2,
+    "yillikYuzde": 35.1
+  },
+  {
+    "year": 2002,
+    "month": 9,
+    "aylikYuzde": 1.5,
+    "yilBasindanYuzde": 16.9,
+    "yillikYuzde": 29.5
+  },
+  {
+    "year": 2002,
+    "month": 10,
+    "aylikYuzde": 3.3,
+    "yilBasindanYuzde": 20.7,
+    "yillikYuzde": 26.3
+  },
+  {
+    "year": 2002,
+    "month": 11,
+    "aylikYuzde": 1,
+    "yilBasindanYuzde": 22,
+    "yillikYuzde": 25.4
+  },
+  {
+    "year": 2002,
+    "month": 12,
+    "aylikYuzde": 2.1,
+    "yilBasindanYuzde": 24.5,
+    "yillikYuzde": 24.5
+  },
+  {
+    "year": 2003,
+    "month": 1,
+    "aylikYuzde": 3.4,
+    "yilBasindanYuzde": 3.4,
+    "yillikYuzde": 26.4
+  },
+  {
+    "year": 2003,
+    "month": 2,
+    "aylikYuzde": 2.5,
+    "yilBasindanYuzde": 6,
+    "yillikYuzde": 26.9
+  },
+  {
+    "year": 2003,
+    "month": 3,
+    "aylikYuzde": 1.9,
+    "yilBasindanYuzde": 7.9,
+    "yillikYuzde": 26.4
+  },
+  {
+    "year": 2003,
+    "month": 4,
+    "aylikYuzde": 1.8,
+    "yilBasindanYuzde": 9.8,
+    "yillikYuzde": 27.4
+  },
+  {
+    "year": 2003,
+    "month": 5,
+    "aylikYuzde": 2.8,
+    "yilBasindanYuzde": 12.9,
+    "yillikYuzde": 31
+  },
+  {
+    "year": 2003,
+    "month": 6,
+    "aylikYuzde": -3.4,
+    "yilBasindanYuzde": 9,
+    "yillikYuzde": 25.5
+  },
+  {
+    "year": 2003,
+    "month": 7,
+    "aylikYuzde": -2,
+    "yilBasindanYuzde": 6.9,
+    "yillikYuzde": 19.5
+  },
+  {
+    "year": 2003,
+    "month": 8,
+    "aylikYuzde": 0.2,
+    "yilBasindanYuzde": 7.1,
+    "yillikYuzde": 15.8
+  },
+  {
+    "year": 2003,
+    "month": 9,
+    "aylikYuzde": 1.8,
+    "yilBasindanYuzde": 9.1,
+    "yillikYuzde": 16.2
+  },
+  {
+    "year": 2003,
+    "month": 10,
+    "aylikYuzde": 1.6,
+    "yilBasindanYuzde": 10.9,
+    "yillikYuzde": 14.3
+  },
+  {
+    "year": 2003,
+    "month": 11,
+    "aylikYuzde": 0.8,
+    "yilBasindanYuzde": 11.7,
+    "yillikYuzde": 14.1
+  },
+  {
+    "year": 2003,
+    "month": 12,
+    "aylikYuzde": 0.8,
+    "yilBasindanYuzde": 12.6,
+    "yillikYuzde": 12.6
+  },
+  {
+    "year": 2004,
+    "month": 1,
+    "aylikYuzde": 0.7,
+    "yilBasindanYuzde": 0.7,
+    "yillikYuzde": 9.8
+  },
+  {
+    "year": 2004,
+    "month": 2,
+    "aylikYuzde": -0.4,
+    "yilBasindanYuzde": 0.3,
+    "yillikYuzde": 6.6
+  },
+  {
+    "year": 2004,
+    "month": 3,
+    "aylikYuzde": 1.5,
+    "yilBasindanYuzde": 1.8,
+    "yillikYuzde": 6.3
+  },
+  {
+    "year": 2004,
+    "month": 4,
+    "aylikYuzde": 0.6,
+    "yilBasindanYuzde": 2.4,
+    "yillikYuzde": 5
+  },
+  {
+    "year": 2004,
+    "month": 5,
+    "aylikYuzde": 2.2,
+    "yilBasindanYuzde": 4.6,
+    "yillikYuzde": 4.3
+  },
+  {
+    "year": 2004,
+    "month": 6,
+    "aylikYuzde": -0.4,
+    "yilBasindanYuzde": 4.2,
+    "yillikYuzde": 7.6
+  },
+  {
+    "year": 2004,
+    "month": 7,
+    "aylikYuzde": 0,
+    "yilBasindanYuzde": 4.2,
+    "yillikYuzde": 9.8
+  },
+  {
+    "year": 2004,
+    "month": 8,
+    "aylikYuzde": 2.2,
+    "yilBasindanYuzde": 6.5,
+    "yillikYuzde": 12
+  },
+  {
+    "year": 2004,
+    "month": 9,
+    "aylikYuzde": 1.8,
+    "yilBasindanYuzde": 8.4,
+    "yillikYuzde": 11.9
+  },
+  {
+    "year": 2004,
+    "month": 10,
+    "aylikYuzde": 1.6853,
+    "yilBasindanYuzde": 10.264,
+    "yillikYuzde": 12.0118
+  },
+  {
+    "year": 2004,
+    "month": 11,
+    "aylikYuzde": 0.6,
+    "yilBasindanYuzde": 10.9,
+    "yillikYuzde": 11.8
+  },
+  {
+    "year": 2004,
+    "month": 12,
+    "aylikYuzde": 0.6,
+    "yilBasindanYuzde": 11.5592,
+    "yillikYuzde": 11.5592
+  },
+  {
+    "year": 2005,
+    "month": 1,
+    "aylikYuzde": -0.9,
+    "yilBasindanYuzde": -0.9,
+    "yillikYuzde": 9.8
+  },
+  {
+    "year": 2005,
+    "month": 2,
+    "aylikYuzde": -0.0064,
+    "yilBasindanYuzde": -0.921,
+    "yillikYuzde": 10.2327
+  },
+  {
+    "year": 2005,
+    "month": 3,
+    "aylikYuzde": 0.0281,
+    "yilBasindanYuzde": -0.8932,
+    "yillikYuzde": 8.622
+  },
+  {
+    "year": 2005,
+    "month": 4,
+    "aylikYuzde": 1.4,
+    "yilBasindanYuzde": 0.5,
+    "yillikYuzde": 9.5
+  },
+  {
+    "year": 2005,
+    "month": 5,
+    "aylikYuzde": -0.6069,
+    "yilBasindanYuzde": -0.1564,
+    "yillikYuzde": 6.4826
+  },
+  {
+    "year": 2005,
+    "month": 6,
+    "aylikYuzde": -0.2783,
+    "yilBasindanYuzde": -0.4343,
+    "yillikYuzde": 6.6185
+  },
+  {
+    "year": 2005,
+    "month": 7,
+    "aylikYuzde": 0.2,
+    "yilBasindanYuzde": -0.2,
+    "yillikYuzde": 6.8
+  },
+  {
+    "year": 2005,
+    "month": 8,
+    "aylikYuzde": 0.7,
+    "yilBasindanYuzde": 0.5,
+    "yillikYuzde": 5.2
+  },
+  {
+    "year": 2005,
+    "month": 9,
+    "aylikYuzde": 1.5,
+    "yilBasindanYuzde": 2,
+    "yillikYuzde": 4.9
+  },
+  {
+    "year": 2005,
+    "month": 10,
+    "aylikYuzde": 0.5298,
+    "yilBasindanYuzde": 2.5074,
+    "yillikYuzde": 3.7105
+  },
+  {
+    "year": 2005,
+    "month": 11,
+    "aylikYuzde": -0.1647,
+    "yilBasindanYuzde": 2.3355,
+    "yillikYuzde": 2.9458
+  },
+  {
+    "year": 2005,
+    "month": 12,
+    "aylikYuzde": 0.4,
+    "yilBasindanYuzde": 2.7,
+    "yillikYuzde": 2.7
+  },
+  {
+    "year": 2006,
+    "month": 1,
+    "aylikYuzde": 1,
+    "yilBasindanYuzde": 1,
+    "yillikYuzde": 4.8
+  },
+  {
+    "year": 2006,
+    "month": 2,
+    "aylikYuzde": -0.3,
+    "yilBasindanYuzde": 0.7,
+    "yillikYuzde": 4.5
+  },
+  {
+    "year": 2006,
+    "month": 3,
+    "aylikYuzde": 1.7698,
+    "yilBasindanYuzde": 2.5273,
+    "yillikYuzde": 6.2938
+  },
+  {
+    "year": 2006,
+    "month": 4,
+    "aylikYuzde": 1.7,
+    "yilBasindanYuzde": 4.2,
+    "yillikYuzde": 6.6
+  },
+  {
+    "year": 2006,
+    "month": 5,
+    "aylikYuzde": 2,
+    "yilBasindanYuzde": 6.3728,
+    "yillikYuzde": 9.4667
+  },
+  {
+    "year": 2006,
+    "month": 6,
+    "aylikYuzde": 2,
+    "yilBasindanYuzde": 8.5,
+    "yillikYuzde": 12
+  },
+  {
+    "year": 2006,
+    "month": 7,
+    "aylikYuzde": 1.5986,
+    "yilBasindanYuzde": 10.2371,
+    "yillikYuzde": 13.5051
+  },
+  {
+    "year": 2006,
+    "month": 8,
+    "aylikYuzde": 2.1019,
+    "yilBasindanYuzde": 12.5541,
+    "yillikYuzde": 15.0722
+  },
+  {
+    "year": 2006,
+    "month": 9,
+    "aylikYuzde": 3,
+    "yilBasindanYuzde": 15.9,
+    "yillikYuzde": 16.8
+  },
+  {
+    "year": 2006,
+    "month": 10,
+    "aylikYuzde": 2.3,
+    "yilBasindanYuzde": 18.6,
+    "yillikYuzde": 18.9
+  },
+  {
+    "year": 2006,
+    "month": 11,
+    "aylikYuzde": 0.4,
+    "yilBasindanYuzde": 19,
+    "yillikYuzde": 19.5
+  },
+  {
+    "year": 2006,
+    "month": 12,
+    "aylikYuzde": 0.1,
+    "yilBasindanYuzde": 19.2,
+    "yillikYuzde": 19.2
+  },
+  {
+    "year": 2007,
+    "month": 1,
+    "aylikYuzde": 1.3,
+    "yilBasindanYuzde": 1.3,
+    "yillikYuzde": 19.5
+  },
+  {
+    "year": 2007,
+    "month": 2,
+    "aylikYuzde": 0.7,
+    "yilBasindanYuzde": 2,
+    "yillikYuzde": 20.6
+  },
+  {
+    "year": 2007,
+    "month": 3,
+    "aylikYuzde": 1.4337,
+    "yilBasindanYuzde": 3.4689,
+    "yillikYuzde": 20.2474
+  },
+  {
+    "year": 2007,
+    "month": 4,
+    "aylikYuzde": 0.7022,
+    "yilBasindanYuzde": 4.1954,
+    "yillikYuzde": 19.0965
+  },
+  {
+    "year": 2007,
+    "month": 5,
+    "aylikYuzde": 0.0661,
+    "yilBasindanYuzde": 4.2642,
+    "yillikYuzde": 16.7918
+  },
+  {
+    "year": 2007,
+    "month": 6,
+    "aylikYuzde": -0.8351,
+    "yilBasindanYuzde": 3.3935,
+    "yillikYuzde": 13.5427
+  },
+  {
+    "year": 2007,
+    "month": 7,
+    "aylikYuzde": 0.2056,
+    "yilBasindanYuzde": 3.6061,
+    "yillikYuzde": 11.9859
+  },
+  {
+    "year": 2007,
+    "month": 8,
+    "aylikYuzde": 2.2353,
+    "yilBasindanYuzde": 5.922,
+    "yillikYuzde": 12.1323
+  },
+  {
+    "year": 2007,
+    "month": 9,
+    "aylikYuzde": 1.6314,
+    "yilBasindanYuzde": 7.65,
+    "yillikYuzde": 10.6292
+  },
+  {
+    "year": 2007,
+    "month": 10,
+    "aylikYuzde": 1.5247,
+    "yilBasindanYuzde": 9.2913,
+    "yillikYuzde": 9.8257
+  },
+  {
+    "year": 2007,
+    "month": 11,
+    "aylikYuzde": -0.276,
+    "yilBasindanYuzde": 8.9896,
+    "yillikYuzde": 9.1007
+  },
+  {
+    "year": 2007,
+    "month": 12,
+    "aylikYuzde": 0.4,
+    "yilBasindanYuzde": 9.4,
+    "yillikYuzde": 9.4
+  },
+  {
+    "year": 2008,
+    "month": 1,
+    "aylikYuzde": 1.6089,
+    "yilBasindanYuzde": 1.6089,
+    "yillikYuzde": 9.6989
+  },
+  {
+    "year": 2008,
+    "month": 2,
+    "aylikYuzde": 0.5636,
+    "yilBasindanYuzde": 2.1816,
+    "yillikYuzde": 9.6022
+  },
+  {
+    "year": 2008,
+    "month": 3,
+    "aylikYuzde": 1.5533,
+    "yilBasindanYuzde": 3.7687,
+    "yillikYuzde": 9.7315
+  },
+  {
+    "year": 2008,
+    "month": 4,
+    "aylikYuzde": 2.4224,
+    "yilBasindanYuzde": 6.2824,
+    "yillikYuzde": 11.6059
+  },
+  {
+    "year": 2008,
+    "month": 5,
+    "aylikYuzde": 1.5426,
+    "yilBasindanYuzde": 7.9219,
+    "yillikYuzde": 13.2527
+  },
+  {
+    "year": 2008,
+    "month": 6,
+    "aylikYuzde": 1.7311,
+    "yilBasindanYuzde": 9.7901,
+    "yillikYuzde": 16.1834
+  },
+  {
+    "year": 2008,
+    "month": 7,
+    "aylikYuzde": 1.5724,
+    "yilBasindanYuzde": 11.5165,
+    "yillikYuzde": 17.7681
+  },
+  {
+    "year": 2008,
+    "month": 8,
+    "aylikYuzde": -0.2121,
+    "yilBasindanYuzde": 11.2799,
+    "yillikYuzde": 14.9489
+  },
+  {
+    "year": 2008,
+    "month": 9,
+    "aylikYuzde": 2.6874,
+    "yilBasindanYuzde": 14.2705,
+    "yillikYuzde": 16.1433
+  },
+  {
+    "year": 2008,
+    "month": 10,
+    "aylikYuzde": 1.2044,
+    "yilBasindanYuzde": 15.6468,
+    "yillikYuzde": 15.777
+  },
+  {
+    "year": 2008,
+    "month": 11,
+    "aylikYuzde": 0.6902,
+    "yilBasindanYuzde": 16.445,
+    "yillikYuzde": 16.8988
+  },
+  {
+    "year": 2008,
+    "month": 12,
+    "aylikYuzde": -1.6275,
+    "yilBasindanYuzde": 14.5499,
+    "yillikYuzde": 14.5499
+  },
+  {
+    "year": 2009,
+    "month": 1,
+    "aylikYuzde": -0.0722,
+    "yilBasindanYuzde": -0.0722,
+    "yillikYuzde": 12.6545
+  },
+  {
+    "year": 2009,
+    "month": 2,
+    "aylikYuzde": 0.1265,
+    "yilBasindanYuzde": 0.0542,
+    "yillikYuzde": 12.1648
+  },
+  {
+    "year": 2009,
+    "month": 3,
+    "aylikYuzde": 1.0015,
+    "yilBasindanYuzde": 1.0562,
+    "yillikYuzde": 11.5554
+  },
+  {
+    "year": 2009,
+    "month": 4,
+    "aylikYuzde": 0.1251,
+    "yilBasindanYuzde": 1.1826,
+    "yillikYuzde": 9.0532
+  },
+  {
+    "year": 2009,
+    "month": 5,
+    "aylikYuzde": 1.3294,
+    "yilBasindanYuzde": 2.5278,
+    "yillikYuzde": 8.8243
+  },
+  {
+    "year": 2009,
+    "month": 6,
+    "aylikYuzde": 0.6956,
+    "yilBasindanYuzde": 3.2409,
+    "yillikYuzde": 7.7166
+  },
+  {
+    "year": 2009,
+    "month": 7,
+    "aylikYuzde": -2.3435,
+    "yilBasindanYuzde": 0.8215,
+    "yillikYuzde": 3.5638
+  },
+  {
+    "year": 2009,
+    "month": 8,
+    "aylikYuzde": 1.7,
+    "yilBasindanYuzde": 2.6,
+    "yillikYuzde": 5.6
+  },
+  {
+    "year": 2009,
+    "month": 9,
+    "aylikYuzde": 0.7,
+    "yilBasindanYuzde": 3.3,
+    "yillikYuzde": 3.6
+  },
+  {
+    "year": 2009,
+    "month": 10,
+    "aylikYuzde": 1.5,
+    "yilBasindanYuzde": 4.9,
+    "yillikYuzde": 3.9
+  },
+  {
+    "year": 2009,
+    "month": 11,
+    "aylikYuzde": 1.1,
+    "yilBasindanYuzde": 6,
+    "yillikYuzde": 4.3
+  },
+  {
+    "year": 2009,
+    "month": 12,
+    "aylikYuzde": -0.3,
+    "yilBasindanYuzde": 5.7,
+    "yillikYuzde": 5.7
+  },
+  {
+    "year": 2010,
+    "month": 1,
+    "aylikYuzde": -0.2667,
+    "yilBasindanYuzde": -0.2667,
+    "yillikYuzde": 3.7101
+  },
+  {
+    "year": 2010,
+    "month": 2,
+    "aylikYuzde": -0.05,
+    "yilBasindanYuzde": -0.31,
+    "yillikYuzde": 4.02
+  },
+  {
+    "year": 2010,
+    "month": 3,
+    "aylikYuzde": 0.3136,
+    "yilBasindanYuzde": 0,
+    "yillikYuzde": 3.1001
+  },
+  {
+    "year": 2010,
+    "month": 4,
+    "aylikYuzde": 0.71,
+    "yilBasindanYuzde": 0.71,
+    "yillikYuzde": 4.86
+  },
+  {
+    "year": 2010,
+    "month": 5,
+    "aylikYuzde": -0.42,
+    "yilBasindanYuzde": 0.2851,
+    "yillikYuzde": 4.1146
+  },
+  {
+    "year": 2010,
+    "month": 6,
+    "aylikYuzde": 0.03,
+    "yilBasindanYuzde": 0.31,
+    "yillikYuzde": 3.22
+  },
+  {
+    "year": 2010,
+    "month": 7,
+    "aylikYuzde": 0.61,
+    "yilBasindanYuzde": 0.92,
+    "yillikYuzde": 5.24
+  },
+  {
+    "year": 2010,
+    "month": 8,
+    "aylikYuzde": 0.99,
+    "yilBasindanYuzde": 1.92,
+    "yillikYuzde": 5.39
+  },
+  {
+    "year": 2010,
+    "month": 9,
+    "aylikYuzde": 0.65,
+    "yilBasindanYuzde": 2.58,
+    "yillikYuzde": 5.17
+  },
+  {
+    "year": 2010,
+    "month": 10,
+    "aylikYuzde": 1,
+    "yilBasindanYuzde": 3.61,
+    "yillikYuzde": 4.98
+  },
+  {
+    "year": 2010,
+    "month": 11,
+    "aylikYuzde": -0.07,
+    "yilBasindanYuzde": 3.54,
+    "yillikYuzde": 3.25
+  },
+  {
+    "year": 2010,
+    "month": 12,
+    "aylikYuzde": -0.26,
+    "yilBasindanYuzde": 3.27,
+    "yillikYuzde": 3.27
+  },
+  {
+    "year": 2011,
+    "month": 1,
+    "aylikYuzde": 1.39,
+    "yilBasindanYuzde": 1.39,
+    "yillikYuzde": 4.99
+  },
+  {
+    "year": 2011,
+    "month": 2,
+    "aylikYuzde": 0.7,
+    "yilBasindanYuzde": 2.1,
+    "yillikYuzde": 5.77
+  },
+  {
+    "year": 2011,
+    "month": 3,
+    "aylikYuzde": 1.7441,
+    "yilBasindanYuzde": 3.8821,
+    "yillikYuzde": 7.2828
+  },
+  {
+    "year": 2011,
+    "month": 4,
+    "aylikYuzde": 0.93,
+    "yilBasindanYuzde": 4.85,
+    "yillikYuzde": 7.52
+  },
+  {
+    "year": 2011,
+    "month": 5,
+    "aylikYuzde": 1.537,
+    "yilBasindanYuzde": 6.4643,
+    "yillikYuzde": 9.6369
+  },
+  {
+    "year": 2011,
+    "month": 6,
+    "aylikYuzde": -0.4851,
+    "yilBasindanYuzde": 5.9478,
+    "yillikYuzde": 9.0751
+  },
+  {
+    "year": 2011,
+    "month": 7,
+    "aylikYuzde": 1.0085,
+    "yilBasindanYuzde": 7.0163,
+    "yillikYuzde": 9.5125
+  },
+  {
+    "year": 2011,
+    "month": 8,
+    "aylikYuzde": 2.31,
+    "yilBasindanYuzde": 9.49,
+    "yillikYuzde": 10.94
+  },
+  {
+    "year": 2011,
+    "month": 9,
+    "aylikYuzde": 0.82,
+    "yilBasindanYuzde": 10.39,
+    "yillikYuzde": 11.13
+  },
+  {
+    "year": 2011,
+    "month": 10,
+    "aylikYuzde": 1.36,
+    "yilBasindanYuzde": 11.9,
+    "yillikYuzde": 11.53
+  },
+  {
+    "year": 2011,
+    "month": 11,
+    "aylikYuzde": 1.8,
+    "yilBasindanYuzde": 13.91,
+    "yillikYuzde": 13.61
+  },
+  {
+    "year": 2011,
+    "month": 12,
+    "aylikYuzde": 0.71,
+    "yilBasindanYuzde": 14.72,
+    "yillikYuzde": 14.72
+  },
+  {
+    "year": 2012,
+    "month": 1,
+    "aylikYuzde": -0.7,
+    "yilBasindanYuzde": -0.7,
+    "yillikYuzde": 12.36
+  },
+  {
+    "year": 2012,
+    "month": 2,
+    "aylikYuzde": -0.2579,
+    "yilBasindanYuzde": -0.9547,
+    "yillikYuzde": 11.2846
+  },
+  {
+    "year": 2012,
+    "month": 3,
+    "aylikYuzde": 0.93,
+    "yilBasindanYuzde": -0.03,
+    "yillikYuzde": 10.4
+  },
+  {
+    "year": 2012,
+    "month": 4,
+    "aylikYuzde": 1.86,
+    "yilBasindanYuzde": 1.83,
+    "yillikYuzde": 11.41
+  },
+  {
+    "year": 2012,
+    "month": 5,
+    "aylikYuzde": -0.14,
+    "yilBasindanYuzde": 1.69,
+    "yillikYuzde": 9.58
+  },
+  {
+    "year": 2012,
+    "month": 6,
+    "aylikYuzde": -0.95,
+    "yilBasindanYuzde": 0.73,
+    "yillikYuzde": 9.07
+  },
+  {
+    "year": 2012,
+    "month": 7,
+    "aylikYuzde": -1,
+    "yilBasindanYuzde": -0.28,
+    "yillikYuzde": 6.9
+  },
+  {
+    "year": 2012,
+    "month": 8,
+    "aylikYuzde": 1.12,
+    "yilBasindanYuzde": 0.84,
+    "yillikYuzde": 5.65
+  },
+  {
+    "year": 2012,
+    "month": 9,
+    "aylikYuzde": 1.72,
+    "yilBasindanYuzde": 2.57,
+    "yillikYuzde": 6.59
+  },
+  {
+    "year": 2012,
+    "month": 10,
+    "aylikYuzde": 0.93,
+    "yilBasindanYuzde": 3.52,
+    "yillikYuzde": 6.14
+  },
+  {
+    "year": 2012,
+    "month": 11,
+    "aylikYuzde": 0.08,
+    "yilBasindanYuzde": 3.61,
+    "yillikYuzde": 4.35
+  },
+  {
+    "year": 2012,
+    "month": 12,
+    "aylikYuzde": -0.01,
+    "yilBasindanYuzde": 3.6,
+    "yillikYuzde": 3.6
+  },
+  {
+    "year": 2013,
+    "month": 1,
+    "aylikYuzde": 1,
+    "yilBasindanYuzde": 1,
+    "yillikYuzde": 5.38
+  },
+  {
+    "year": 2013,
+    "month": 2,
+    "aylikYuzde": -0.54,
+    "yilBasindanYuzde": 0.46,
+    "yillikYuzde": 5.08
+  },
+  {
+    "year": 2013,
+    "month": 3,
+    "aylikYuzde": 0.2,
+    "yilBasindanYuzde": 0.66,
+    "yillikYuzde": 4.32
+  },
+  {
+    "year": 2013,
+    "month": 4,
+    "aylikYuzde": 0.84,
+    "yilBasindanYuzde": 1.51,
+    "yillikYuzde": 3.27
+  },
+  {
+    "year": 2013,
+    "month": 5,
+    "aylikYuzde": 0.29,
+    "yilBasindanYuzde": 1.8,
+    "yillikYuzde": 3.71
+  },
+  {
+    "year": 2013,
+    "month": 6,
+    "aylikYuzde": 1.47,
+    "yilBasindanYuzde": 3.3,
+    "yillikYuzde": 6.24
+  },
+  {
+    "year": 2013,
+    "month": 7,
+    "aylikYuzde": -0.09,
+    "yilBasindanYuzde": 3.21,
+    "yillikYuzde": 7.22
+  },
+  {
+    "year": 2013,
+    "month": 8,
+    "aylikYuzde": 0.94,
+    "yilBasindanYuzde": 4.17,
+    "yillikYuzde": 7.03
+  },
+  {
+    "year": 2013,
+    "month": 9,
+    "aylikYuzde": 2.04,
+    "yilBasindanYuzde": 6.3,
+    "yillikYuzde": 7.37
+  },
+  {
+    "year": 2013,
+    "month": 10,
+    "aylikYuzde": 1.49,
+    "yilBasindanYuzde": 7.89,
+    "yillikYuzde": 7.97
+  },
+  {
+    "year": 2013,
+    "month": 11,
+    "aylikYuzde": 0.37,
+    "yilBasindanYuzde": 8.29,
+    "yillikYuzde": 8.28
+  },
+  {
+    "year": 2013,
+    "month": 12,
+    "aylikYuzde": 1.78,
+    "yilBasindanYuzde": 10.22,
+    "yillikYuzde": 10.22
+  },
+  {
+    "year": 2014,
+    "month": 1,
+    "aylikYuzde": 2.09,
+    "yilBasindanYuzde": 2.09,
+    "yillikYuzde": 11.41
+  },
+  {
+    "year": 2014,
+    "month": 2,
+    "aylikYuzde": 2.29,
+    "yilBasindanYuzde": 4.43,
+    "yillikYuzde": 14.58
+  },
+  {
+    "year": 2014,
+    "month": 3,
+    "aylikYuzde": 0.57,
+    "yilBasindanYuzde": 5.02,
+    "yillikYuzde": 15
+  },
+  {
+    "year": 2014,
+    "month": 4,
+    "aylikYuzde": 0.34,
+    "yilBasindanYuzde": 5.38,
+    "yillikYuzde": 14.43
+  },
+  {
+    "year": 2014,
+    "month": 5,
+    "aylikYuzde": -0.78,
+    "yilBasindanYuzde": 4.56,
+    "yillikYuzde": 13.21
+  },
+  {
+    "year": 2014,
+    "month": 6,
+    "aylikYuzde": 0.31,
+    "yilBasindanYuzde": 4.89,
+    "yillikYuzde": 11.92
+  },
+  {
+    "year": 2014,
+    "month": 7,
+    "aylikYuzde": 0.25,
+    "yilBasindanYuzde": 5.15,
+    "yillikYuzde": 12.3
+  },
+  {
+    "year": 2014,
+    "month": 8,
+    "aylikYuzde": 0.59,
+    "yilBasindanYuzde": 5.77,
+    "yillikYuzde": 11.91
+  },
+  {
+    "year": 2014,
+    "month": 9,
+    "aylikYuzde": 0.06,
+    "yilBasindanYuzde": 5.84,
+    "yillikYuzde": 9.74
+  },
+  {
+    "year": 2014,
+    "month": 10,
+    "aylikYuzde": 1.75,
+    "yilBasindanYuzde": 7.69,
+    "yillikYuzde": 10.02
+  },
+  {
+    "year": 2014,
+    "month": 11,
+    "aylikYuzde": -0.68,
+    "yilBasindanYuzde": 6.97,
+    "yillikYuzde": 8.88
+  },
+  {
+    "year": 2014,
+    "month": 12,
+    "aylikYuzde": -0.44,
+    "yilBasindanYuzde": 6.49,
+    "yillikYuzde": 6.49
+  },
+  {
+    "year": 2015,
+    "month": 1,
+    "aylikYuzde": -0.88,
+    "yilBasindanYuzde": -0.88,
+    "yillikYuzde": 3.39
+  },
+  {
+    "year": 2015,
+    "month": 2,
+    "aylikYuzde": -1.28,
+    "yilBasindanYuzde": -2.14,
+    "yillikYuzde": -0.21
+  },
+  {
+    "year": 2015,
+    "month": 3,
+    "aylikYuzde": 1.77,
+    "yilBasindanYuzde": -0.41,
+    "yillikYuzde": 0.98
+  },
+  {
+    "year": 2015,
+    "month": 4,
+    "aylikYuzde": 1.51,
+    "yilBasindanYuzde": 1.09,
+    "yillikYuzde": 2.15
+  },
+  {
+    "year": 2015,
+    "month": 5,
+    "aylikYuzde": 1.62,
+    "yilBasindanYuzde": 2.73,
+    "yillikYuzde": 4.62
+  },
+  {
+    "year": 2015,
+    "month": 6,
+    "aylikYuzde": 0.44,
+    "yilBasindanYuzde": 3.18,
+    "yillikYuzde": 4.76
+  },
+  {
+    "year": 2015,
+    "month": 7,
+    "aylikYuzde": -1.24,
+    "yilBasindanYuzde": 1.9,
+    "yillikYuzde": 3.2
+  },
+  {
+    "year": 2015,
+    "month": 8,
+    "aylikYuzde": 0.8,
+    "yilBasindanYuzde": 2.72,
+    "yillikYuzde": 3.42
+  },
+  {
+    "year": 2015,
+    "month": 9,
+    "aylikYuzde": 2.98,
+    "yilBasindanYuzde": 5.78,
+    "yillikYuzde": 6.44
+  },
+  {
+    "year": 2015,
+    "month": 10,
+    "aylikYuzde": 1.52,
+    "yilBasindanYuzde": 7.39,
+    "yillikYuzde": 6.19
+  },
+  {
+    "year": 2015,
+    "month": 11,
+    "aylikYuzde": -0.94,
+    "yilBasindanYuzde": 6.38,
+    "yillikYuzde": 5.91
+  },
+  {
+    "year": 2015,
+    "month": 12,
+    "aylikYuzde": 1.31,
+    "yilBasindanYuzde": 7.78,
+    "yillikYuzde": 7.78
+  },
+  {
+    "year": 2016,
+    "month": 1,
+    "aylikYuzde": 0.47,
+    "yilBasindanYuzde": 0.47,
+    "yillikYuzde": 9.25
+  },
+  {
+    "year": 2016,
+    "month": 2,
+    "aylikYuzde": -0.17,
+    "yilBasindanYuzde": 0.31,
+    "yillikYuzde": 10.48
+  },
+  {
+    "year": 2016,
+    "month": 3,
+    "aylikYuzde": -0.21,
+    "yilBasindanYuzde": 0.09,
+    "yillikYuzde": 8.33
+  },
+  {
+    "year": 2016,
+    "month": 4,
+    "aylikYuzde": 0.99,
+    "yilBasindanYuzde": 1.09,
+    "yillikYuzde": 7.78
+  },
+  {
+    "year": 2016,
+    "month": 5,
+    "aylikYuzde": 0.76,
+    "yilBasindanYuzde": 1.86,
+    "yillikYuzde": 6.87
+  },
+  {
+    "year": 2016,
+    "month": 6,
+    "aylikYuzde": 0.46,
+    "yilBasindanYuzde": 2.33,
+    "yillikYuzde": 6.89
+  },
+  {
+    "year": 2016,
+    "month": 7,
+    "aylikYuzde": 0.88,
+    "yilBasindanYuzde": 3.23,
+    "yillikYuzde": 9.18
+  },
+  {
+    "year": 2016,
+    "month": 8,
+    "aylikYuzde": 0.75,
+    "yilBasindanYuzde": 4,
+    "yillikYuzde": 9.13
+  },
+  {
+    "year": 2016,
+    "month": 9,
+    "aylikYuzde": 0.6,
+    "yilBasindanYuzde": 4.63,
+    "yillikYuzde": 6.6
+  },
+  {
+    "year": 2016,
+    "month": 10,
+    "aylikYuzde": 1.17,
+    "yilBasindanYuzde": 5.85,
+    "yillikYuzde": 6.23
+  },
+  {
+    "year": 2016,
+    "month": 11,
+    "aylikYuzde": 1.43,
+    "yilBasindanYuzde": 7.36,
+    "yillikYuzde": 8.77
+  },
+  {
+    "year": 2016,
+    "month": 12,
+    "aylikYuzde": 2.64,
+    "yilBasindanYuzde": 10.19,
+    "yillikYuzde": 10.19
+  },
+  {
+    "year": 2017,
+    "month": 1,
+    "aylikYuzde": 2.56,
+    "yilBasindanYuzde": 2.56,
+    "yillikYuzde": 11.64
+  },
+  {
+    "year": 2017,
+    "month": 2,
+    "aylikYuzde": 1.4,
+    "yilBasindanYuzde": 4,
+    "yillikYuzde": 13.85
+  },
+  {
+    "year": 2017,
+    "month": 3,
+    "aylikYuzde": 0.59,
+    "yilBasindanYuzde": 4.61,
+    "yillikYuzde": 15.05
+  },
+  {
+    "year": 2017,
+    "month": 4,
+    "aylikYuzde": 1.85,
+    "yilBasindanYuzde": 6.54,
+    "yillikYuzde": 16.29
+  },
+  {
+    "year": 2017,
+    "month": 5,
+    "aylikYuzde": 0.39,
+    "yilBasindanYuzde": 6.95,
+    "yillikYuzde": 15.94
+  },
+  {
+    "year": 2017,
+    "month": 6,
+    "aylikYuzde": 0.68,
+    "yilBasindanYuzde": 7.68,
+    "yillikYuzde": 15.02
+  },
+  {
+    "year": 2017,
+    "month": 7,
+    "aylikYuzde": 1.5,
+    "yilBasindanYuzde": 9.29,
+    "yillikYuzde": 15.95
+  },
+  {
+    "year": 2017,
+    "month": 8,
+    "aylikYuzde": 0.42,
+    "yilBasindanYuzde": 9.75,
+    "yillikYuzde": 15.63
+  },
+  {
+    "year": 2017,
+    "month": 9,
+    "aylikYuzde": 0.51,
+    "yilBasindanYuzde": 10.31,
+    "yillikYuzde": 15.37
+  },
+  {
+    "year": 2017,
+    "month": 10,
+    "aylikYuzde": 0.92,
+    "yilBasindanYuzde": 11.32,
+    "yillikYuzde": 16.05
+  },
+  {
+    "year": 2017,
+    "month": 11,
+    "aylikYuzde": 1.31,
+    "yilBasindanYuzde": 12.78,
+    "yillikYuzde": 16.19
+  },
+  {
+    "year": 2017,
+    "month": 12,
+    "aylikYuzde": 1.69,
+    "yilBasindanYuzde": 14.68,
+    "yillikYuzde": 14.68
+  },
+  {
+    "year": 2018,
+    "month": 1,
+    "aylikYuzde": -0.22,
+    "yilBasindanYuzde": -0.22,
+    "yillikYuzde": 11.57
+  },
+  {
+    "year": 2018,
+    "month": 2,
+    "aylikYuzde": 1.61,
+    "yilBasindanYuzde": 1.39,
+    "yillikYuzde": 11.8
+  },
+  {
+    "year": 2018,
+    "month": 3,
+    "aylikYuzde": 0.87,
+    "yilBasindanYuzde": 2.26,
+    "yillikYuzde": 12.11
+  },
+  {
+    "year": 2018,
+    "month": 4,
+    "aylikYuzde": 2.75,
+    "yilBasindanYuzde": 5.07,
+    "yillikYuzde": 13.1
+  },
+  {
+    "year": 2018,
+    "month": 5,
+    "aylikYuzde": 3.65,
+    "yilBasindanYuzde": 8.91,
+    "yillikYuzde": 16.78
+  },
+  {
+    "year": 2018,
+    "month": 6,
+    "aylikYuzde": 2.94,
+    "yilBasindanYuzde": 12.11,
+    "yillikYuzde": 19.41
+  },
+  {
+    "year": 2018,
+    "month": 7,
+    "aylikYuzde": 2.26,
+    "yilBasindanYuzde": 14.64,
+    "yillikYuzde": 20.3
+  },
+  {
+    "year": 2018,
+    "month": 8,
+    "aylikYuzde": 8.42,
+    "yilBasindanYuzde": 24.29,
+    "yillikYuzde": 29.88
+  },
+  {
+    "year": 2018,
+    "month": 9,
+    "aylikYuzde": 6.2,
+    "yilBasindanYuzde": 31.99,
+    "yillikYuzde": 37.23
+  },
+  {
+    "year": 2018,
+    "month": 10,
+    "aylikYuzde": 1.58,
+    "yilBasindanYuzde": 34.08,
+    "yillikYuzde": 38.13
+  },
+  {
+    "year": 2018,
+    "month": 11,
+    "aylikYuzde": -1.6,
+    "yilBasindanYuzde": 31.93,
+    "yillikYuzde": 34.16
+  },
+  {
+    "year": 2018,
+    "month": 12,
+    "aylikYuzde": -1.49,
+    "yilBasindanYuzde": 29.96,
+    "yillikYuzde": 29.96
+  },
+  {
+    "year": 2019,
+    "month": 1,
+    "aylikYuzde": 0.53,
+    "yilBasindanYuzde": 0.53,
+    "yillikYuzde": 30.94
+  },
+  {
+    "year": 2019,
+    "month": 2,
+    "aylikYuzde": -0.15,
+    "yilBasindanYuzde": 0.37,
+    "yillikYuzde": 28.67
+  },
+  {
+    "year": 2019,
+    "month": 3,
+    "aylikYuzde": 1.33,
+    "yilBasindanYuzde": 1.71,
+    "yillikYuzde": 29.26
+  },
+  {
+    "year": 2019,
+    "month": 4,
+    "aylikYuzde": 3.95,
+    "yilBasindanYuzde": 5.72,
+    "yillikYuzde": 30.77
+  },
+  {
+    "year": 2019,
+    "month": 5,
+    "aylikYuzde": 0.47,
+    "yilBasindanYuzde": 6.22,
+    "yillikYuzde": 26.75
+  },
+  {
+    "year": 2019,
+    "month": 6,
+    "aylikYuzde": 1.27,
+    "yilBasindanYuzde": 7.57,
+    "yillikYuzde": 24.69
+  },
+  {
+    "year": 2019,
+    "month": 7,
+    "aylikYuzde": 1.07,
+    "yilBasindanYuzde": 8.72,
+    "yillikYuzde": 23.24
+  },
+  {
+    "year": 2019,
+    "month": 8,
+    "aylikYuzde": 0.38,
+    "yilBasindanYuzde": 9.12,
+    "yillikYuzde": 14.1
+  },
+  {
+    "year": 2019,
+    "month": 9,
+    "aylikYuzde": 1.88,
+    "yilBasindanYuzde": 11.18,
+    "yillikYuzde": 9.47
+  },
+  {
+    "year": 2019,
+    "month": 10,
+    "aylikYuzde": -0.42,
+    "yilBasindanYuzde": 10.71,
+    "yillikYuzde": 7.31
+  },
+  {
+    "year": 2019,
+    "month": 11,
+    "aylikYuzde": -0.47,
+    "yilBasindanYuzde": 10.2,
+    "yillikYuzde": 8.55
+  },
+  {
+    "year": 2019,
+    "month": 12,
+    "aylikYuzde": 1.33,
+    "yilBasindanYuzde": 11.66,
+    "yillikYuzde": 11.66
+  },
+  {
+    "year": 2020,
+    "month": 1,
+    "aylikYuzde": 1.6967,
+    "yilBasindanYuzde": 1.6967,
+    "yillikYuzde": 12.9631
+  },
+  {
+    "year": 2020,
+    "month": 2,
+    "aylikYuzde": 0.6204,
+    "yilBasindanYuzde": 2.3277,
+    "yillikYuzde": 13.8383
+  },
+  {
+    "year": 2020,
+    "month": 3,
+    "aylikYuzde": 0.4663,
+    "yilBasindanYuzde": 2.8049,
+    "yillikYuzde": 12.8711
+  },
+  {
+    "year": 2020,
+    "month": 4,
+    "aylikYuzde": -0.2269,
+    "yilBasindanYuzde": 2.5716,
+    "yillikYuzde": 8.3389
+  },
+  {
+    "year": 2020,
+    "month": 5,
+    "aylikYuzde": 0.7495,
+    "yilBasindanYuzde": 3.3404,
+    "yillikYuzde": 8.6399
+  },
+  {
+    "year": 2020,
+    "month": 6,
+    "aylikYuzde": 1.0056,
+    "yilBasindanYuzde": 4.3796,
+    "yillikYuzde": 8.3554
+  },
+  {
+    "year": 2020,
+    "month": 7,
+    "aylikYuzde": 1.976,
+    "yilBasindanYuzde": 6.4422,
+    "yillikYuzde": 9.329
+  },
+  {
+    "year": 2020,
+    "month": 8,
+    "aylikYuzde": 2.2814,
+    "yilBasindanYuzde": 8.8706,
+    "yillikYuzde": 11.4047
+  },
+  {
+    "year": 2020,
+    "month": 9,
+    "aylikYuzde": 1.6802,
+    "yilBasindanYuzde": 10.6999,
+    "yillikYuzde": 11.1833
+  },
+  {
+    "year": 2020,
+    "month": 10,
+    "aylikYuzde": 1.0442,
+    "yilBasindanYuzde": 11.8558,
+    "yillikYuzde": 12.8189
+  },
+  {
+    "year": 2020,
+    "month": 11,
+    "aylikYuzde": 2.4128,
+    "yilBasindanYuzde": 14.5546,
+    "yillikYuzde": 16.081
+  },
+  {
+    "year": 2020,
+    "month": 12,
+    "aylikYuzde": 0.4119,
+    "yilBasindanYuzde": 15.0265,
+    "yillikYuzde": 15.0265
+  },
+  {
+    "year": 2021,
+    "month": 1,
+    "aylikYuzde": 0.484,
+    "yilBasindanYuzde": 0.484,
+    "yillikYuzde": 13.6548
+  },
+  {
+    "year": 2021,
+    "month": 2,
+    "aylikYuzde": -0.0229,
+    "yilBasindanYuzde": 0.461,
+    "yillikYuzde": 12.9281
+  },
+  {
+    "year": 2021,
+    "month": 3,
+    "aylikYuzde": 1.3949,
+    "yilBasindanYuzde": 1.8623,
+    "yillikYuzde": 13.9718
+  },
+  {
+    "year": 2021,
+    "month": 4,
+    "aylikYuzde": 1.9414,
+    "yilBasindanYuzde": 3.8398,
+    "yillikYuzde": 16.4487
+  },
+  {
+    "year": 2021,
+    "month": 5,
+    "aylikYuzde": 1.6203,
+    "yilBasindanYuzde": 5.5223,
+    "yillikYuzde": 17.4551
+  },
+  {
+    "year": 2021,
+    "month": 6,
+    "aylikYuzde": 3.1365,
+    "yilBasindanYuzde": 8.8319,
+    "yillikYuzde": 19.9329
+  },
+  {
+    "year": 2021,
+    "month": 7,
+    "aylikYuzde": 2.2321,
+    "yilBasindanYuzde": 11.2612,
+    "yillikYuzde": 20.2341
+  },
+  {
+    "year": 2021,
+    "month": 8,
+    "aylikYuzde": 2.5397,
+    "yilBasindanYuzde": 14.0868,
+    "yillikYuzde": 20.5377
+  },
+  {
+    "year": 2021,
+    "month": 9,
+    "aylikYuzde": 2.0808,
+    "yilBasindanYuzde": 16.4608,
+    "yillikYuzde": 21.0125
+  },
+  {
+    "year": 2021,
+    "month": 10,
+    "aylikYuzde": 3.2337,
+    "yilBasindanYuzde": 20.2268,
+    "yillikYuzde": 23.6348
+  },
+  {
+    "year": 2021,
+    "month": 11,
+    "aylikYuzde": 5.521,
+    "yilBasindanYuzde": 26.8646,
+    "yillikYuzde": 27.3872
+  },
+  {
+    "year": 2021,
+    "month": 12,
+    "aylikYuzde": 15.1551,
+    "yilBasindanYuzde": 46.0911,
+    "yillikYuzde": 46.0911
+  },
+  {
+    "year": 2022,
+    "month": 1,
+    "aylikYuzde": 5.4807,
+    "yilBasindanYuzde": 5.4807,
+    "yillikYuzde": 53.3557
+  },
+  {
+    "year": 2022,
+    "month": 2,
+    "aylikYuzde": 7.1134,
+    "yilBasindanYuzde": 12.9839,
+    "yillikYuzde": 64.3021
+  },
+  {
+    "year": 2022,
+    "month": 3,
+    "aylikYuzde": 13.0529,
+    "yilBasindanYuzde": 27.7317,
+    "yillikYuzde": 83.193
+  },
+  {
+    "year": 2022,
+    "month": 4,
+    "aylikYuzde": 5.0664,
+    "yilBasindanYuzde": 34.2031,
+    "yillikYuzde": 88.809
+  },
+  {
+    "year": 2022,
+    "month": 5,
+    "aylikYuzde": 6.6325,
+    "yilBasindanYuzde": 43.1042,
+    "yillikYuzde": 98.1216
+  },
+  {
+    "year": 2022,
+    "month": 6,
+    "aylikYuzde": 9.5405,
+    "yilBasindanYuzde": 56.757,
+    "yillikYuzde": 110.4235
+  },
+  {
+    "year": 2022,
+    "month": 7,
+    "aylikYuzde": 5.2112,
+    "yilBasindanYuzde": 64.926,
+    "yillikYuzde": 116.5555
+  },
+  {
+    "year": 2022,
+    "month": 8,
+    "aylikYuzde": 3.3097,
+    "yilBasindanYuzde": 70.3846,
+    "yillikYuzde": 118.1818
+  },
+  {
+    "year": 2022,
+    "month": 9,
+    "aylikYuzde": 3.0833,
+    "yilBasindanYuzde": 75.6382,
+    "yillikYuzde": 120.3246
+  },
+  {
+    "year": 2022,
+    "month": 10,
+    "aylikYuzde": 3.4169,
+    "yilBasindanYuzde": 81.6395,
+    "yillikYuzde": 120.7154
+  },
+  {
+    "year": 2022,
+    "month": 11,
+    "aylikYuzde": 2.4789,
+    "yilBasindanYuzde": 86.1421,
+    "yillikYuzde": 114.3522
+  },
+  {
+    "year": 2022,
+    "month": 12,
+    "aylikYuzde": 4.4954,
+    "yilBasindanYuzde": 94.5098,
+    "yillikYuzde": 94.5098
+  },
+  {
+    "year": 2023,
+    "month": 1,
+    "aylikYuzde": 2.6198,
+    "yilBasindanYuzde": 2.6198,
+    "yillikYuzde": 89.2342
+  },
+  {
+    "year": 2023,
+    "month": 2,
+    "aylikYuzde": 4.649,
+    "yilBasindanYuzde": 7.3906,
+    "yillikYuzde": 84.8805
+  },
+  {
+    "year": 2023,
+    "month": 3,
+    "aylikYuzde": 2.1027,
+    "yilBasindanYuzde": 9.6486,
+    "yillikYuzde": 66.973
+  },
+  {
+    "year": 2023,
+    "month": 4,
+    "aylikYuzde": 5.2978,
+    "yilBasindanYuzde": 15.4576,
+    "yillikYuzde": 67.3407
+  },
+  {
+    "year": 2023,
+    "month": 5,
+    "aylikYuzde": 3.6192,
+    "yilBasindanYuzde": 19.6363,
+    "yillikYuzde": 62.6119
+  },
+  {
+    "year": 2023,
+    "month": 6,
+    "aylikYuzde": 11.4412,
+    "yilBasindanYuzde": 33.3241,
+    "yillikYuzde": 65.4335
+  },
+  {
+    "year": 2023,
+    "month": 7,
+    "aylikYuzde": 9.9016,
+    "yilBasindanYuzde": 46.5253,
+    "yillikYuzde": 72.8085
+  },
+  {
+    "year": 2023,
+    "month": 8,
+    "aylikYuzde": 8.1449,
+    "yilBasindanYuzde": 58.4596,
+    "yillikYuzde": 80.8963
+  },
+  {
+    "year": 2023,
+    "month": 9,
+    "aylikYuzde": 3.2677,
+    "yilBasindanYuzde": 63.6375,
+    "yillikYuzde": 81.2198
+  },
+  {
+    "year": 2023,
+    "month": 10,
+    "aylikYuzde": 1.9202,
+    "yilBasindanYuzde": 66.7797,
+    "yillikYuzde": 78.5971
+  },
+  {
+    "year": 2023,
+    "month": 11,
+    "aylikYuzde": 4.4245,
+    "yilBasindanYuzde": 74.1589,
+    "yillikYuzde": 81.988
+  },
+  {
+    "year": 2023,
+    "month": 12,
+    "aylikYuzde": 5.4395,
+    "yilBasindanYuzde": 83.6324,
+    "yillikYuzde": 83.6324
+  },
+  {
+    "year": 2024,
+    "month": 1,
+    "aylikYuzde": 3.8365,
+    "yilBasindanYuzde": 3.8365,
+    "yillikYuzde": 85.8096
+  },
+  {
+    "year": 2024,
+    "month": 2,
+    "aylikYuzde": 4.5923,
+    "yilBasindanYuzde": 8.605,
+    "yillikYuzde": 85.7089
+  },
+  {
+    "year": 2024,
+    "month": 3,
+    "aylikYuzde": 6.9081,
+    "yilBasindanYuzde": 16.1075,
+    "yillikYuzde": 94.4492
+  },
+  {
+    "year": 2024,
+    "month": 4,
+    "aylikYuzde": 5.92,
+    "yilBasindanYuzde": 22.981,
+    "yillikYuzde": 95.5982
+  },
+  {
+    "year": 2024,
+    "month": 5,
+    "aylikYuzde": 3.4989,
+    "yilBasindanYuzde": 27.284,
+    "yillikYuzde": 95.3709
+  },
+  {
+    "year": 2024,
+    "month": 6,
+    "aylikYuzde": 4.4799,
+    "yilBasindanYuzde": 32.9862,
+    "yillikYuzde": 83.1668
+  },
+  {
+    "year": 2024,
+    "month": 7,
+    "aylikYuzde": 3.5093,
+    "yilBasindanYuzde": 37.653,
+    "yillikYuzde": 72.5132
+  },
+  {
+    "year": 2024,
+    "month": 8,
+    "aylikYuzde": 3.2806,
+    "yilBasindanYuzde": 42.1689,
+    "yillikYuzde": 64.7537
+  },
+  {
+    "year": 2024,
+    "month": 9,
+    "aylikYuzde": 2.5252,
+    "yilBasindanYuzde": 45.7589,
+    "yillikYuzde": 63.5691
+  },
+  {
+    "year": 2024,
+    "month": 10,
+    "aylikYuzde": 3.2187,
+    "yilBasindanYuzde": 50.4505,
+    "yillikYuzde": 65.6532
+  },
+  {
+    "year": 2024,
+    "month": 11,
+    "aylikYuzde": 0.7827,
+    "yilBasindanYuzde": 51.6281,
+    "yillikYuzde": 59.8759
+  },
+  {
+    "year": 2024,
+    "month": 12,
+    "aylikYuzde": 1.0994,
+    "yilBasindanYuzde": 53.295,
+    "yillikYuzde": 53.295
+  },
+  {
+    "year": 2025,
+    "month": 1,
+    "aylikYuzde": 2.0152,
+    "yilBasindanYuzde": 2.0152,
+    "yillikYuzde": 50.6062
+  },
+  {
+    "year": 2025,
+    "month": 2,
+    "aylikYuzde": 2.1556,
+    "yilBasindanYuzde": 4.2142,
+    "yillikYuzde": 47.0974
+  },
+  {
+    "year": 2025,
+    "month": 3,
+    "aylikYuzde": 4.2788,
+    "yilBasindanYuzde": 8.6733,
+    "yillikYuzde": 43.4797
+  },
+  {
+    "year": 2025,
+    "month": 4,
+    "aylikYuzde": 4.0576,
+    "yilBasindanYuzde": 13.0828,
+    "yillikYuzde": 40.9569
+  },
+  {
+    "year": 2025,
+    "month": 5,
+    "aylikYuzde": 2.7085,
+    "yilBasindanYuzde": 16.1456,
+    "yillikYuzde": 39.8805
+  },
+  {
+    "year": 2025,
+    "month": 6,
+    "aylikYuzde": 1.4165,
+    "yilBasindanYuzde": 17.7909,
+    "yillikYuzde": 35.7791
+  },
+  {
+    "year": 2025,
+    "month": 7,
+    "aylikYuzde": 3.1687,
+    "yilBasindanYuzde": 21.5233,
+    "yillikYuzde": 35.3324
+  },
+  {
+    "year": 2025,
+    "month": 8,
+    "aylikYuzde": 3.3455,
+    "yilBasindanYuzde": 25.5888,
+    "yillikYuzde": 35.4174
+  },
+  {
+    "year": 2025,
+    "month": 9,
+    "aylikYuzde": 5.3873,
+    "yilBasindanYuzde": 32.3547,
+    "yillikYuzde": 39.1977
+  },
+  {
+    "year": 2025,
+    "month": 10,
+    "aylikYuzde": 1.0911,
+    "yilBasindanYuzde": 33.7988,
+    "yillikYuzde": 36.3284
+  },
+  {
+    "year": 2025,
+    "month": 11,
+    "aylikYuzde": 0.8127,
+    "yilBasindanYuzde": 34.8862,
+    "yillikYuzde": 36.369
+  },
+  {
+    "year": 2025,
+    "month": 12,
+    "aylikYuzde": 3.3857,
+    "yilBasindanYuzde": 39.453,
+    "yillikYuzde": 39.453
+  },
+  {
+    "year": 2026,
+    "month": 1,
+    "aylikYuzde": 1.9748,
+    "yilBasindanYuzde": 1.9748,
+    "yillikYuzde": 39.3978
+  },
+  {
+    "year": 2026,
+    "month": 2,
+    "aylikYuzde": 2.758,
+    "yilBasindanYuzde": 4.7872,
+    "yillikYuzde": 40.2199
+  },
+  {
+    "year": 2026,
+    "month": 3,
+    "aylikYuzde": 2.1796,
+    "yilBasindanYuzde": 7.0712,
+    "yillikYuzde": 37.3971
+  },
+  {
+    "year": 2026,
+    "month": 4,
+    "aylikYuzde": 4.6243,
+    "yilBasindanYuzde": 12.0225,
+    "yillikYuzde": 38.1454
+  },
+  {
+    "year": 2026,
+    "month": 5,
+    "aylikYuzde": 2.0643,
+    "yilBasindanYuzde": 14.3349,
+    "yillikYuzde": 37.2789
+  },
+  {
+    "year": 2026,
+    "month": 6,
+    "aylikYuzde": 2.2867,
+    "yilBasindanYuzde": 16.9494,
+    "yillikYuzde": 38.4568
+  },
+  {
+    "year": 2026,
+    "month": 7,
+    "aylikYuzde": 2.9,
+    "yilBasindanYuzde": 20.34,
+    "yillikYuzde": 38.1
+  }
+]

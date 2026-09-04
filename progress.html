@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KKTC TÜFE API - Geliştirme Takip Panosu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(20, 27, 45, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-glow: rgba(59, 130, 246, 0.3);
+      --primary: #3b82f6;
+      --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      --accent: #10b981;
+      --accent-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #60a5fa;
+      margin-bottom: 1rem;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3b82f6;
+      box-shadow: 0 0 10px #3b82f6;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(to right, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .stats-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .stats-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .stats-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .stats-count {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #60a5fa;
+    }
+
+    .progress-bar-bg {
+      height: 12px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-gradient);
+      border-radius: 9999px;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+
+    .phase-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .phase-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .phase-card:hover {
+      border-color: var(--card-border-glow);
+      transform: translateY(-2px);
+    }
+
+    .phase-card.active {
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.2);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .phase-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .phase-number {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+    }
+
+    .phase-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .phase-status {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-pending {
+      background: rgba(148, 163, 184, 0.1);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .status-active {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .status-completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .task-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: background 0.2s;
+    }
+
+    .task-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .task-checkbox {
+      margin-top: 0.2rem;
+      width: 18px;
+      height: 18px;
+      accent-color: #3b82f6;
+      cursor: default;
+    }
+
+    .task-label {
+      font-size: 0.925rem;
+      color: #cbd5e1;
+      flex: 1;
+    }
+
+    .task-item.done .task-label {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">
+        <span class="pulse"></span>
+        Cloudflare Edge Üzerinde Canlıda • v1.0.0
+      </div>
+      <h1>KKTC TÜFE API Geliştirme Panosu</h1>
+      <p class="subtitle">Resmi KKTC İstatistik Kurumu verilerini açık kaynaklı, yüksek performanslı bir RESTful API'ye dönüştürme süreci.</p>
+      <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="https://kktc-tufe-api.stevevaius.workers.dev" target="_blank" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.3); color: #fb923c; text-decoration: none; font-size: 0.85rem; font-weight: 700;">
+          🌐 Canlı API: kktc-tufe-api.stevevaius.workers.dev ↗
+        </a>
+        <a href="https://kktc-tufe-api.stevevaius.workers.dev/docs" target="_blank" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #60a5fa; text-decoration: none; font-size: 0.85rem; font-weight: 700;">
+          📖 Swagger UI (/docs) ↗
+        </a>
+      </div>
+    </header>
+
+    <section class="stats-card">
+      <div class="stats-header">
+        <span class="stats-title">Genel İlerleme</span>
+        <span class="stats-count" id="progress-text">17 / 17 Görev Tamamlandı (%100)</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar" style="width: 100%; background: var(--accent-gradient);"></div>
+      </div>
+    </section>
+
+    <main class="phase-list">
+      <!-- FAZ 1 -->
+      <div class="phase-card" id="phase-1">
+        <div class="phase-header">
+          <div class="phase-title-group">
+            <span class="phase-number">FAZ 1</span>
+            <h2 class="phase-title">Çekirdek Veri Motoru ve Scraper Entegrasyonu</h2>
+          </div>
+          <span class="phase-status status-completed">Tamamlandı</span>
+        </div>
+        <ul class="task-list">
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t1_1" checked>
+            <label class="task-label" for="t1_1">Proje paket bağımlılıklarının yapılandırılması (package.json, modern ES modülleri)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t1_2" checked>
+            <label class="task-label" for="t1_2">Scraper modülünün inşası (RSS haber akışı ayrıştırma & resmi XLS indirme)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t1_3" checked>
+            <label class="task-label" for="t1_3">Excel ayrıştırıcı (XLS to JSON) & zaman serisi doğrulayıcı motoru</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t1_4" checked>
+            <label class="task-label" for="t1_4">Yerel veri depolama & in-memory indeksleme altyapısının kurulması (data/tufe.json, meta.json)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t1_5" checked>
+            <label class="task-label" for="t1_5">Kapalı devre test: 1977-günümüz 590+ kaydın sıfırdan başarıyla çekilip doğrulanması</label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FAZ 2 -->
+      <div class="phase-card" id="phase-2">
+        <div class="phase-header">
+          <div class="phase-title-group">
+            <span class="phase-number">FAZ 2</span>
+            <h2 class="phase-title">RESTful API Mimarisi ve Uç Noktalar</h2>
+          </div>
+          <span class="phase-status status-completed">Tamamlandı</span>
+        </div>
+        <ul class="task-list">
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t2_1" checked>
+            <label class="task-label" for="t2_1">Express.js API sunucusu, CORS, Helmet ve Rate Limiter middleware entegrasyonu</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t2_2" checked>
+            <label class="task-label" for="t2_2">Sistem uç noktaları: <code>GET /health</code> ve <code>GET /api/v1/meta</code></label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t2_3" checked>
+            <label class="task-label" for="t2_3">TÜFE sorgulama uç noktaları: <code>GET /api/v1/latest</code>, <code>/api/v1/tufe</code> (filtrelemeli)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t2_4" checked>
+            <label class="task-label" for="t2_4">Detay uç noktaları: <code>GET /api/v1/tufe/:year</code> ve <code>/api/v1/tufe/:year/:month</code></label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t2_5" checked>
+            <label class="task-label" for="t2_5">Özel KKTC dönem kümülatifi: <code>GET /api/v1/periods</code> (Ocak-Haziran / Temmuz-Aralık)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t2_6" checked>
+            <label class="task-label" for="t2_6">Bileşik enflasyon hesaplama aracı: <code>GET /api/v1/calculate</code></label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t2_7" checked>
+            <label class="task-label" for="t2_7">Admin manuel senkronizasyon endpoint'i: <code>POST /api/v1/sync</code></label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FAZ 3 -->
+      <div class="phase-card" id="phase-3">
+        <div class="phase-header">
+          <div class="phase-title-group">
+            <span class="phase-number">FAZ 3</span>
+            <h2 class="phase-title">İnteraktif API Dokümantasyonu & Portal</h2>
+          </div>
+          <span class="phase-status status-completed">Tamamlandı</span>
+        </div>
+        <ul class="task-list">
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t3_1" checked>
+            <label class="task-label" for="t3_1">Swagger UI & OpenAPI 3.0 şemasının <code>/docs</code> rotasında yayına alınması</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t3_2" checked>
+            <label class="task-label" for="t3_2">Kullanıcı dostu kök rota (Landing & Quickstart rehberi <code>GET /</code>)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t3_3" checked>
+            <label class="task-label" for="t3_3">Standart hata yönetimi (RFC 7807 uyumlu tutarlı JSON hata yanıtları)</label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FAZ 4 -->
+      <div class="phase-card" id="phase-4">
+        <div class="phase-header">
+          <div class="phase-title-group">
+            <span class="phase-number">FAZ 4</span>
+            <h2 class="phase-title">Otomasyon, Zamanlayıcı (Cron) ve Docker</h2>
+          </div>
+          <span class="phase-status status-completed">Tamamlandı</span>
+        </div>
+        <ul class="task-list">
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t4_1" checked>
+            <label class="task-label" for="t4_1">Dahili arka plan zamanlayıcısı (node-cron entegrasyonu)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t4_2" checked>
+            <label class="task-label" for="t4_2">Production-ready Dockerfile ve docker-compose.yml hazırlığı</label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FAZ 5 -->
+      <div class="phase-card" id="phase-5">
+        <div class="phase-header">
+          <div class="phase-title-group">
+            <span class="phase-number">FAZ 5</span>
+            <h2 class="phase-title">Açık Kaynak Belgeleri & Kapalı Devre Doğrulama</h2>
+          </div>
+          <span class="phase-status status-completed">Tamamlandı</span>
+        </div>
+        <ul class="task-list">
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t5_1" checked>
+            <label class="task-label" for="t5_1">Açık kaynak belgeleri: README.md, MIT Lisansı ve CONTRIBUTING.md</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t5_2" checked>
+            <label class="task-label" for="t5_2">Örnek istemci kodları (cURL, JavaScript, Python)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t5_3" checked>
+            <label class="task-label" for="t5_3">Carmack kapalı devre uçtan uca test: Tüm endpoint'lerin otomatik doğrulanması</label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FAZ 6 -->
+      <div class="phase-card" id="phase-6">
+        <div class="phase-header">
+          <div class="phase-title-group">
+            <span class="phase-number">FAZ 6</span>
+            <h2 class="phase-title">Sepet Madde Fiyatları (520 Kalem & 139 Ay, 2015–2026)</h2>
+          </div>
+          <span class="phase-status status-completed">Tamamlandı</span>
+        </div>
+        <ul class="task-list">
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t6_1" checked>
+            <label class="task-label" for="t6_1"><code>GRETL_TUFE.csv</code> veri pipeline'ı (520 kalem, 139 ay ayrıştırma & optimize JSON çıktısı)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t6_2" checked>
+            <label class="task-label" for="t6_2">Hafıza içi <code>ItemsStore</code> arama, sayfalama ve karşılaştırma motoru</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t6_3" checked>
+            <label class="task-label" for="t6_3">RESTful uç noktaları: <code>/items</code>, <code>/items/:item</code>, <code>/prices</code>, <code>/items/compare</code></label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t6_4" checked>
+            <label class="task-label" for="t6_4">Cloudflare Workers Edge entegrasyonu ve canlı dağıtım (208 KB gzipped)</label>
+          </li>
+          <li class="task-item done">
+            <input type="checkbox" class="task-checkbox" id="t6_5" checked>
+            <label class="task-label" for="t6_5">OpenAPI / Swagger 3.0 şeması ve interaktif kullanım kılavuzu portalı güncellemesi</label>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer>
+      KKTC TÜFE API • Açık Kaynak Geliştirme Takip Paneli • Antigravity Manager-Implementer Protocol
+    </footer>
+  </div>
+
+  <script>
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.task-checkbox');
+      const total = checkboxes.length;
+      let checked = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          checked++;
+          cb.closest('.task-item').classList.add('done');
+        } else {
+          cb.closest('.task-item').classList.remove('done');
+        }
+      });
+      const pct = Math.round((checked / total) * 100);
+      document.getElementById('progress-bar').style.width = pct + '%';
+      document.getElementById('progress-text').textContent = `${checked} / ${total} Görev Tamamlandı (%${pct})`;
+    }
+    updateProgress();
+  </script>
+</body>
+</html>

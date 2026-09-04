@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kktc-tufe-api",
+  "main": "src/worker.js",
+  "compatibility_date": "2024-09-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  // Not: Worker'da "scheduled" handler yoktur; veri build-time'da bundle'a
+  // gömülür. Senkronizasyon + yeniden yayınlama işini GitHub Actions
+  // (.github/workflows/sync_and_deploy.yml) üstlenir.
+  "vars": {
+    "ENVIRONMENT": "production"
+  }
+}

@@ -1,0 +1,94 @@
+name: TÜFE Güncelle ve Cloudflare'e Yayınla
+
+on:
+  schedule:
+    # Her gün 09:00 UTC'de kontrol eder.
+    # - Genel TÜFE: Kurum bülteni genelde ayın 3-5. günü yayınlanır.
+    # - Sepet CSV'si (GRETL_TUFE.csv): RYucel/kktc_tufe deposuna elle yüklenir,
+    #   ayın herhangi bir gününde gelebilir. Günlük kontrol ikisini de kapsar.
+    - cron: "0 9 * * *"
+
+  # RYucel/kktc_tufe deposuna yeni CSV yüklendiğinde anında tetiklenir.
+  # (Kurulum için: docs/trigger-api-sync.yml)
+  repository_dispatch:
+    types: [csv-updated]
+
+  workflow_dispatch: {}
+
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "data/**"
+      - "GRETL_TUFE.csv"
+      - "wrangler.jsonc"
+      - "package.json"
+
+permissions:
+  contents: write
+
+# Eşzamanlı çalışmaların birbirinin push'unu ezmesini engeller
+concurrency:
+  group: sync-and-deploy
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+    steps:
+      - name: Depoyu Klonla
+        uses: actions/checkout@v4
+
+      - name: Node.js Kurulumu
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Bağımlılıkları Yükle
+        run: npm ci --no-audit --no-fund
+
+      - name: Verileri Resmi Kaynaktan Senkronize Et
+        run: npm run sync
+
+      - name: Kapalı Devre Doğrulama (Testler)
+        run: npm test
+
+      - name: Veri Değişikliğini Kontrol Et
+        id: git-check
+        run: |
+          if git diff --quiet -- GRETL_TUFE.csv data/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Veri dosyalarında değişiklik yok."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Değişen dosyalar:"
+            git diff --name-only -- GRETL_TUFE.csv data/
+          fi
+
+      - name: Yeni Veri Varsa Commit ve Push Yap
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add GRETL_TUFE.csv data/
+          git commit -m "chore(data): TÜFE ve sepet verileri güncellendi [$(date -u +'%Y-%m-%d')]"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && exit 0
+            echo "Push denemesi $i başarısız, tekrar deneniyor..."
+            sleep 5
+          done
+          echo "::error::Push 3 denemede başarısız oldu."
+          exit 1
+
+      - name: Cloudflare Workers'a Yayınla (Deploy)
+        # Zamanlanmış çalışmalarda yalnızca veri değiştiyse; elle/push/dispatch
+        # tetiklemelerinde her zaman yayınlanır.
+        if: >-
+          env.CLOUDFLARE_API_TOKEN != '' &&
+          (steps.git-check.outputs.changed == 'true' || github.event_name != 'schedule')
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
