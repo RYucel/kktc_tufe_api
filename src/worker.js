@@ -423,15 +423,24 @@ app.get("/docs", (c) => {
 });
 
 // 11. Kullanım Kılavuzu & Geliştirici Portalı
-app.get("/", (c) => {
-  return c.html(renderGuideHtml());
-});
-app.get("/guide", (c) => {
-  return c.html(renderGuideHtml());
-});
-app.get("/kilavuz", (c) => {
-  return c.html(renderGuideHtml());
-});
+// Kapsam rakamları paketlenmiş veriden okunur; her deploy'da kendiliğinden tazelenir.
+function guideStats() {
+  const latest = tufeData[tufeData.length - 1];
+  return {
+    recordCount: tufeData.length,
+    tufeEnd: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
+    totalItems: itemsMeta.totalItems,
+    totalMonths: itemsMeta.totalMonths,
+    itemsStart: itemsMeta.startPeriod,
+    itemsEnd: itemsMeta.endPeriod,
+  };
+}
+
+const sendGuide = (c) => c.html(renderGuideHtml({ stats: guideStats() }));
+
+app.get("/", sendGuide);
+app.get("/guide", sendGuide);
+app.get("/kilavuz", sendGuide);
 
 export default app;
 

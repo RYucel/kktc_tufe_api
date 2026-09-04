@@ -6,6 +6,8 @@ import swaggerUi from "swagger-ui-express";
 import { config } from "../config.js";
 import { swaggerSpec } from "./docs/swaggerSpec.js";
 import { renderGuideHtml } from "../views/guide.js";
+import { dataStore } from "../engine/dataStore.js";
+import { itemsStore } from "../engine/itemsStore.js";
 
 import tufeRouter from "./routes/tufe.js";
 import periodsRouter from "./routes/periods.js";
@@ -83,9 +85,24 @@ export function createApp() {
   app.use("/api/v1", itemsRouter);
 
   // Kök Rota & Kullanım Kılavuzu Portalı
+  // Kapsam rakamları canlı veri motorlarından okunur, sabit kodlanmaz.
   const sendGuide = (req, res) => {
+    const latest = dataStore.getLatest();
+    const itemsMeta = itemsStore.getMeta() || {};
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.send(renderGuideHtml({ liveUrl: `http://${req.headers.host || 'localhost:' + config.port}` }));
+    res.send(
+      renderGuideHtml({
+        liveUrl: `http://${req.headers.host || "localhost:" + config.port}`,
+        stats: {
+          recordCount: dataStore.records.length,
+          tufeEnd: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
+          totalItems: itemsMeta.totalItems ?? null,
+          totalMonths: itemsMeta.totalMonths ?? null,
+          itemsStart: itemsMeta.startPeriod ?? null,
+          itemsEnd: itemsMeta.endPeriod ?? null,
+        },
+      })
+    );
   };
 
   app.get("/", sendGuide);

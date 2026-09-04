@@ -11,7 +11,8 @@
     "test": "node test/test_all.js",
     "test:live": "node test/test_live.js",
     "deploy": "npx wrangler deploy",
-    "preview": "npx wrangler dev"
+    "preview": "npx wrangler dev",
+    "build:docs": "node src/scripts/build_docs.js"
   },
   "keywords": [
     "kktc",

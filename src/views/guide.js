@@ -2,7 +2,39 @@
  * KKTC TÜFE RESTful API - Modern, Yüksek Okunabilirlikli Kullanım Kılavuzu & Geliştirici Portalı
  */
 
-export function renderGuideHtml({ liveUrl = "https://kktc-tufe-api.stevevaius.workers.dev" } = {}) {
+export function renderGuideHtml({
+  liveUrl = "https://kktc-tufe-api.stevevaius.workers.dev",
+  stats = {},
+} = {}) {
+  // Kılavuzdaki kapsam rakamları canlı veriden beslenir; böylece her yeni ay
+  // veya kalem yüklendiğinde portal kendiliğinden güncellenir.
+  const s = {
+    recordCount: stats.recordCount ?? null,
+    tufeEnd: stats.tufeEnd ?? null,
+    totalItems: stats.totalItems ?? null,
+    totalMonths: stats.totalMonths ?? null,
+    itemsStart: stats.itemsStart ?? null,
+    itemsEnd: stats.itemsEnd ?? null,
+  };
+
+  const MONTHS_TR = ["", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+    "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+
+  // "2026-07" -> "Temmuz 2026"
+  const prettyPeriod = (period) => {
+    if (!period || !/^\d{4}-\d{2}$/.test(period)) return null;
+    const [y, m] = period.split("-");
+    return `${MONTHS_TR[Number(m)]} ${y}`;
+  };
+
+  const itemCountLabel = s.totalItems !== null ? String(s.totalItems) : "520";
+  const monthCountLabel = s.totalMonths !== null ? String(s.totalMonths) : "139";
+  const recordCountLabel = s.recordCount !== null ? `${s.recordCount} Kayıt` : "590+ Kayıt";
+  const itemsStartYear = s.itemsStart ? s.itemsStart.slice(0, 4) : "2015";
+  const itemsEndYear = s.itemsEnd ? s.itemsEnd.slice(0, 4) : "2026";
+  const tufeEndLabel = prettyPeriod(s.tufeEnd) || "Günümüz";
+  const itemsEndLabel = prettyPeriod(s.itemsEnd) || "günümüze";
+
   return `<!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -642,7 +674,7 @@ export function renderGuideHtml({ liveUrl = "https://kktc-tufe-api.stevevaius.wo
         <li><a href="#ep-latest" class="sidebar-link">📊 En Son Enflasyon (/latest)</a></li>
         <li><a href="#ep-tufe" class="sidebar-link">🔍 Zaman Serisi (/tufe)</a></li>
         <li><a href="#ep-year" class="sidebar-link">📅 Yıllık Döküm (/:year)</a></li>
-        <li><a href="#basket-items" class="sidebar-link">🛒 Sepet Fiyatları (520 Kalem)</a></li>
+        <li><a href="#basket-items" class="sidebar-link">🛒 Sepet Fiyatları (${itemCountLabel} Kalem)</a></li>
         <li><a href="#periods" class="sidebar-link">🏛️ KKTC Maaş Dönemleri</a></li>
         <li><a href="#calculate" class="sidebar-link">🧮 Enflasyon Hesaplayıcı</a></li>
         <li><a href="#code-examples" class="sidebar-link">💻 JS & Python Örnekleri</a></li>
@@ -667,7 +699,7 @@ export function renderGuideHtml({ liveUrl = "https://kktc-tufe-api.stevevaius.wo
           </div>
           <div class="meta-item">
             <span class="meta-label">Veri Derinliği</span>
-            <span class="meta-value">1977 – Günümüz (590+ Kayıt)</span>
+            <span class="meta-value">1977 – ${tufeEndLabel} (${recordCountLabel})</span>
           </div>
           <div class="meta-item">
             <span class="meta-label">Altyapı & Yanıt Süresi</span>
@@ -823,10 +855,10 @@ export function renderGuideHtml({ liveUrl = "https://kktc-tufe-api.stevevaius.wo
       <section class="section-box" id="basket-items">
         <div class="section-title-group">
           <span style="font-size: 1.5rem;">🛒</span>
-          <h2 class="section-title">Sepet Madde Fiyatları (2015 – 2026 / 520 Kalem)</h2>
+          <h2 class="section-title">Sepet Madde Fiyatları (${itemsStartYear} – ${itemsEndYear} / ${itemCountLabel} Kalem)</h2>
         </div>
         <p class="section-desc">
-          KKTC Tüketici Fiyat Endeksi sepetinde yer alan <strong>520 mal ve hizmet kaleminin</strong> (ekmek, pirinç, et, süt, akaryakıt, kira, elektrik, muayene ücreti vb.) 
+          KKTC Tüketici Fiyat Endeksi sepetinde yer alan <strong>${itemCountLabel} mal ve hizmet kaleminin</strong> (ekmek, pirinç, et, süt, akaryakıt, kira, elektrik, muayene ücreti vb.) 
           Ocak 2015'ten günümüze kadar olan tüm resmi aylık fiyatları, değişim oranları ve karşılaştırma motoru.
         </p>
 
@@ -837,7 +869,7 @@ export function renderGuideHtml({ liveUrl = "https://kktc-tufe-api.stevevaius.wo
               <span class="method-get">GET</span>
               <span class="endpoint-url">/api/v1/items</span>
             </div>
-            <span class="endpoint-desc-badge">520 Kalemin Tam Listesi & Arama</span>
+            <span class="endpoint-desc-badge">${itemCountLabel} Kalemin Tam Listesi & Arama</span>
           </div>
           <div class="endpoint-body">
             <p>Sepetteki tüm ürünleri listeler. Arama (<code>?search=ekmek</code>) ve sayfalama destekler. İlk fiyat (2015), son fiyat ve kümülatif artış oranını özetler.</p>
@@ -892,7 +924,7 @@ export function renderGuideHtml({ liveUrl = "https://kktc-tufe-api.stevevaius.wo
             <span class="endpoint-desc-badge">Tekil Kalem Aylık Fiyat Geçmişi & Artış İstatistikleri</span>
           </div>
           <div class="endpoint-body">
-            <p>Belirtilen ürünün (örn: <code>ekmek</code>, <code>benzin</code>, <code>dana-eti-taze</code>) 2015'ten günümüze 139 aylık kesintisiz fiyat geçmişini, her ayın bir önceki aya göre yüzde değişimini ve min/max istatistiklerini getirir.</p>
+            <p>Belirtilen ürünün (örn: <code>ekmek</code>, <code>benzin</code>, <code>dana-eti-taze</code>) ${itemsStartYear}'ten ${itemsEndLabel} dönemine kadar ${monthCountLabel} aylık kesintisiz fiyat geçmişini, her ayın bir önceki aya göre yüzde değişimini ve min/max istatistiklerini getirir.</p>
             <table class="param-table">
               <thead>
                 <tr>
