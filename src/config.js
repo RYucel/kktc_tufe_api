@@ -20,7 +20,7 @@ export const config = {
   apiKey: process.env.API_KEY || "kktc_tufe_secret_key_2026",
   rateLimitWindowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || "60000", 10), // 1 dakika
   rateLimitMax: parseInt(process.env.RATE_LIMIT_MAX || "120", 10), // 120 istek / dakika
-  cronSchedule: process.env.CRON_SCHEDULE || "0 9 * * *", // Her gün 09:00 UTC (TÜFE bülteni + sepet CSV kontrolü)
+  cronSchedule: process.env.CRON_SCHEDULE || "0 15 * * *", // Her gün 15:00 UTC (kaynak deponun güncellemesinden sonra)
   paths: {
     root: ROOT_DIR,
     dataDir: path.join(ROOT_DIR, "data"),

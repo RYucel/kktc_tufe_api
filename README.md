@@ -139,7 +139,7 @@ Uç noktalar ham URL yerine **rota kalıbıyla** kaydedilir (`/api/v1/items/ekme
 | `HOST` | `0.0.0.0` | Bağlanılacak ağ arayüzü |
 | `API_KEY` | `kktc_tufe_secret_key_2026` | `POST /api/v1/sync` için yetkilendirme anahtarı |
 | `RATE_LIMIT_MAX`| `120` | Dakika başına izin verilen maksimum istek sayısı |
-| `CRON_SCHEDULE` | `0 9 * * *` | Otomatik senkronizasyon zamanı (Her gün 09:00 UTC) |
+| `CRON_SCHEDULE` | `0 15 * * *` | Kaynak deponun kontrol edilme zamanı (Her gün 15:00 UTC) |
 | `GITHUB_TUFE_JSON_URL` | `.../kktc_tufe/main/docs/data/tufe.json` | Aylık TÜFE serisi kaynağı (birincil) |
 | `GITHUB_ITEMS_CSV_URL` | `.../kktc_tufe/main/GRETL_TUFE.csv` | Sepet madde fiyatları CSV kaynağı |
 | `RSS_URL` | `istatistik.gov.ct.tr/.../rss` | Yedek kaynak: veri deposu erişilemezse doğrudan tarama |
@@ -152,22 +152,24 @@ Tüm veriler tek bir kaynaktan gelir: [**`RYucel/kktc_tufe`**](https://github.co
 
 | Hat | Nasıl üretilir | API nasıl alır |
 | :--- | :--- | :--- |
-| **Aylık TÜFE** (1977→, 593 kayıt) | `kktc_tufe` her gün 09:00 UTC'de resmî KKTC İstatistik Kurumu sitesini tarar (RSS → haber sayfası → `TUFE_ARSIV_*.xls`) ve `docs/data/tufe.json` olarak yayınlar | Her gün o JSON'u çeker |
+| **Aylık TÜFE** (1977→, 593 kayıt) | `kktc_tufe`, **ayın ilk 10 günü** resmî KKTC İstatistik Kurumu sitesini tarar (RSS → haber sayfası → `TUFE_ARSIV_*.xls`) ve `docs/data/tufe.json` olarak yayınlar | Her gün o JSON'u çeker |
 | **Sepet Madde Fiyatları** (520 kalem × 139 ay) | `GRETL_TUFE.csv` aynı depoya **elle yüklenir** | Her gün o CSV'yi çeker |
 
 ```
               istatistik.gov.ct.tr (resmî kaynak)
                           │
-                          ↓  kktc_tufe cron'u tarar (her gün 09:00 UTC)
+                          ↓  kktc_tufe cron'u tarar (ayın ilk 10 günü)
               ┌───────────────────────────┐
               │   kktc_tufe veri deposu   │
               │  docs/data/tufe.json      │ ← otomatik
               │  GRETL_TUFE.csv           │ ← elle yüklenir
               └───────────────────────────┘
                           │
-                          ↓  bu API her gün çeker + doğrular
+                          ↓  bu API her gün 15:00 UTC'de çeker + doğrular
               GitHub Actions → testler → commit → Cloudflare deploy
 ```
+
+> **Neden ayın ilk 10 günü?** Kurum bültenleri genelde ayın 3-5. günü yayınlanır. Tarama penceresi bilinçli olarak dar tutulmuştur; API tarafı ise her gün kontrol ettiği için depo ne zaman güncellenirse ertesi çalışmada alınır.
 
 **Neden tek kaynak?** Daha önce hem dashboard hem API resmî siteyi ayrı ayrı tarıyordu. Kurum sayfa yapısını değiştirdiğinde iki yerin de düzeltilmesi gerekiyordu ve biri düzelmezse ikisi farklı rakam gösterebilirdi. Artık ayrıştırma mantığı tek yerde yaşar.
 

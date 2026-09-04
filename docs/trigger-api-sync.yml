@@ -17,7 +17,7 @@
 #      adı: API_REPO_DISPATCH_TOKEN
 #   3. Bu dosyayı yukarıdaki konuma ekleyip commit'leyin.
 #
-#  Bu kurulum YAPILMAZSA da sistem çalışır: TUFE_API her gün 09:00 UTC'de
+#  Bu kurulum YAPILMAZSA da sistem çalışır: TUFE_API her gün 15:00 UTC'de
 #  CSV'yi kontrol eder. Dispatch yalnızca gecikmeyi ~24 saatten ~1 dakikaya indirir.
 # ============================================================================
 

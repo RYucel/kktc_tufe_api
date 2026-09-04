@@ -2,11 +2,14 @@ name: TÜFE Güncelle ve Cloudflare'e Yayınla
 
 on:
   schedule:
-    # Her gün 09:00 UTC'de kontrol eder.
-    # - Genel TÜFE: Kurum bülteni genelde ayın 3-5. günü yayınlanır.
-    # - Sepet CSV'si (GRETL_TUFE.csv): RYucel/kktc_tufe deposuna elle yüklenir,
-    #   ayın herhangi bir gününde gelebilir. Günlük kontrol ikisini de kapsar.
-    - cron: "0 9 * * *"
+    # Her gün 15:00 UTC.
+    #
+    # Neden 09:00 değil: Veri kaynağımız olan kktc_tufe deposunun cron'u da
+    # nominal 09:00'da tanımlı, ancak GitHub zamanlanmış işleri yoğunlukta
+    # saatlerce geciktiriyor (gözlenen gerçek çalışma saatleri ~13:17 UTC).
+    # Aynı saatte çalışsaydık deponun yeni veriyi commit'lemesinden ÖNCE
+    # çekip yeni veriyi bir gün geç almış olurduk. 15:00 bu marjı bırakır.
+    - cron: "0 15 * * *"
 
   # RYucel/kktc_tufe deposuna yeni CSV yüklendiğinde anında tetiklenir.
   # (Kurulum için: docs/trigger-api-sync.yml)

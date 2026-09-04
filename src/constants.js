@@ -27,6 +27,6 @@ export const TUFE_META_SOURCE_URL =
   "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/meta.json";
 
 export const UPDATE_SCHEDULE_TEXT =
-  "Resmi TÜFE bülteni ve sepet madde fiyatları her gün 09:00 UTC'de otomatik kontrol edilir.";
+  "Kaynak veri deposu her gün 15:00 UTC'de kontrol edilir; aylık TÜFE serisi ayın ilk 10 gününde resmi kurumdan tazelenir.";
 
 export const LICENSE = "MIT - Açık Kaynak";
