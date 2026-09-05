@@ -1,12 +1,12 @@
 {
-  "lastChecked": "2026-09-04T11:56:53.388Z",
-  "lastChanged": "2026-08-05T11:21:08.184Z",
-  "latestHeadline": "Tüketici Fiyat Endeksi - Temmuz 2026",
-  "latestNewsUrl": "https://istatistik.gov.ct.tr/HABERLER/t252ketici-fiyat-endeksi-temmuz-2026",
-  "latestPubDate": "Tue, 04 Aug 2026 11:31:00 GMT",
-  "archiveUrl": "https://istatistik.gov.ct.tr/Portals/39/TUFE_ARSIV_YUZDE_TEMMUZ_2026_WEB.xls",
-  "recordCount": 593,
+  "lastChecked": "2026-09-05T17:01:56.918Z",
+  "lastChanged": "2026-09-05T17:01:56.918Z",
+  "latestHeadline": "Tüketici Fiyat Endeksi - Ağustos 2026",
+  "latestNewsUrl": "https://istatistik.gov.ct.tr/HABERLER/t252ketici-fiyat-endeksi-a%c4%9fustos-2026",
+  "latestPubDate": "Fri, 04 Sep 2026 12:00:00 GMT",
+  "archiveUrl": "https://istatistik.gov.ct.tr/Portals/39/TUFE_ARSIV_YUZDE_AGUSTOS_2026_WEB.xls",
+  "recordCount": 594,
   "startPeriod": "1977-03",
-  "endPeriod": "2026-07",
+  "endPeriod": "2026-08",
   "dataSource": "kktc_tufe veri deposu (github.com/RYucel/kktc_tufe)"
 }
