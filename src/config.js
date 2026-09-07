@@ -23,7 +23,7 @@ export const config = {
   apiKey: process.env.API_KEY || null,
   rateLimitWindowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || "60000", 10), // 1 dakika
   rateLimitMax: parseInt(process.env.RATE_LIMIT_MAX || "120", 10), // 120 istek / dakika
-  cronSchedule: process.env.CRON_SCHEDULE || "0 15 * * *", // Her gün 15:00 UTC (kaynak deponun güncellemesinden sonra)
+  cronSchedule: process.env.CRON_SCHEDULE || "0 20 * * *", // Her gün 20:00 UTC (kaynak deponun güncellemesinden sonra)
   paths: {
     root: ROOT_DIR,
     dataDir: path.join(ROOT_DIR, "data"),

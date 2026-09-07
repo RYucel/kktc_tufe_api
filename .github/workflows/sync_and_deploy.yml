@@ -2,14 +2,18 @@ name: TÜFE Güncelle ve Cloudflare'e Yayınla
 
 on:
   schedule:
-    # Her gün 15:00 UTC.
+    # Her gün 20:00 UTC.
     #
-    # Neden 09:00 değil: Veri kaynağımız olan kktc_tufe deposunun cron'u da
-    # nominal 09:00'da tanımlı, ancak GitHub zamanlanmış işleri yoğunlukta
-    # saatlerce geciktiriyor (gözlenen gerçek çalışma saatleri ~13:17 UTC).
-    # Aynı saatte çalışsaydık deponun yeni veriyi commit'lemesinden ÖNCE
-    # çekip yeni veriyi bir gün geç almış olurduk. 15:00 bu marjı bırakır.
-    - cron: "0 15 * * *"
+    # Zincir: kurum ~15:30 KKTC'de yayınlar -> kktc_tufe deposu nominal
+    # 14:00 UTC'de kontrol eder -> bu API onun çıktısını tüketir.
+    #
+    # GitHub zamanlanmış işleri 0,6-5,0 saat geciktiriyor, yani kaynak depo
+    # gerçekte 14:36-19:00 UTC arasında çalışıyor. Bu API'nin nominal saati
+    # o aralığın tamamen dışında olmalı; aksi halde kaynak henüz commit
+    # etmeden çekip yeni veriyi bir gün geç alırız. 20:00 bu payı bırakır.
+    #
+    # Gecikmeyi ~1 dakikaya indirmek için: docs/trigger-api-sync.yml
+    - cron: "0 20 * * *"
 
   # RYucel/kktc_tufe deposuna yeni CSV yüklendiğinde anında tetiklenir.
   # (Kurulum için: docs/trigger-api-sync.yml)

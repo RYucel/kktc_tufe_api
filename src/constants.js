@@ -27,6 +27,6 @@ export const TUFE_META_SOURCE_URL =
   "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/meta.json";
 
 export const UPDATE_SCHEDULE_TEXT =
-  "Kaynak veri deposu her gün 15:00 UTC'de kontrol edilir; aylık TÜFE serisi ayın ilk 10 gününde resmi kurumdan tazelenir.";
+  "Kaynak veri deposu her gün 20:00 UTC'de kontrol edilir; aylık TÜFE serisi ayın ilk 10 günü, kurum bülteni yayınlandıktan sonra (14:00 UTC) resmi siteden tazelenir.";
 
 export const LICENSE = "MIT - Açık Kaynak";
