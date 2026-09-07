@@ -40,8 +40,11 @@ export class UsageCounter extends DurableObject {
     const counts = batch?.counts || {};
     const days = batch?.days || {};
 
-    for (const [path, n] of Object.entries(counts)) {
+    for (const [rawPath, n] of Object.entries(counts)) {
       if (!Number.isFinite(n) || n <= 0) continue;
+      // Worker tarafı zaten sunucu tanımlı kalıp gönderir; burada ikinci bir
+      // savunma katmanı olarak uzun/boş anahtarlar tek kovaya indirilir.
+      const path = !rawPath || rawPath.length > 120 ? "__unmatched__" : rawPath;
       this.sql.exec(
         `INSERT INTO endpoints (path, count) VALUES (?, ?)
          ON CONFLICT(path) DO UPDATE SET count = count + excluded.count`,
@@ -77,9 +80,14 @@ export class UsageCounter extends DurableObject {
    * Toplam, uç nokta kırılımı ve son günlerin serisini döner.
    * @param {number} dayLimit Kaç günlük seri dönecek
    */
-  async stats(dayLimit = 30) {
+  async stats(dayLimit = 30, endpointLimit = 100) {
+    // Liste sınırlanır; toplam ayrı hesaplanır ki sınır toplamı bozmasın.
     const endpoints = this.sql
-      .exec(`SELECT path, count FROM endpoints ORDER BY count DESC`)
+      .exec(`SELECT path, count FROM endpoints ORDER BY count DESC LIMIT ?`, endpointLimit)
+      .toArray();
+
+    const totalRow = this.sql
+      .exec(`SELECT COALESCE(SUM(count), 0) AS total, COUNT(*) AS distinctPaths FROM endpoints`)
       .toArray();
 
     const daily = this.sql
@@ -90,10 +98,12 @@ export class UsageCounter extends DurableObject {
       .exec(`SELECT value FROM meta WHERE key = 'firstSeen'`)
       .toArray();
 
-    const total = endpoints.reduce((sum, r) => sum + Number(r.count), 0);
+    const total = totalRow.length > 0 ? Number(totalRow[0].total) : 0;
+    const distinctPaths = totalRow.length > 0 ? Number(totalRow[0].distinctPaths) : 0;
 
     return {
       total,
+      distinctPaths,
       firstSeen: firstSeenRow.length > 0 ? firstSeenRow[0].value : null,
       endpoints: endpoints.map((r) => ({ path: r.path, count: Number(r.count) })),
       daily: daily.map((r) => ({ day: r.day, count: Number(r.count) })).reverse(),

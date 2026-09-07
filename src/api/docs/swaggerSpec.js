@@ -507,7 +507,7 @@ Bu API, resmi **KKTC Başbakanlık İstatistik Kurumu** tarafından yayınlanan 
         type: "apiKey",
         in: "header",
         name: "X-API-Key",
-        description: "Sunucu API Güvenlik Anahtarı (varsayılan: kktc_tufe_secret_key_2026)",
+        description: "Sunucu API Güvenlik Anahtarı. Sunucuda API_KEY ortam değişkeni ile tanımlanır; tanımlı değilse uç nokta 503 döner.",
       },
     },
   },

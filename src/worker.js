@@ -10,6 +10,7 @@ import { itemsStore } from "./engine/itemsStore.js";
 import { swaggerSpec } from "./api/docs/swaggerSpec.js";
 import { renderGuideHtml } from "./views/guide.js";
 import { track, flush } from "./engine/usageBuffer.js";
+import { checkRateLimit } from "./engine/rateLimiter.js";
 import {
   API_VERSION,
   OFFICIAL_SOURCE,
@@ -29,6 +30,34 @@ const app = new Hono();
 app.use("*", cors());
 app.use("*", secureHeaders());
 
+// Hız sınırı: yalnızca /api/ altındaki uç noktalara uygulanır; kılavuz,
+// /docs ve /health serbest bırakılır ki tarayıcıdan gezinme ve sağlık
+// kontrolü etkilenmesin.
+app.use("/api/*", async (c, next) => {
+  const ip = c.req.header("CF-Connecting-IP") || c.req.header("X-Forwarded-For") || "";
+  const verdict = checkRateLimit(ip);
+
+  if (!verdict.allowed) {
+    return c.json(
+      {
+        success: false,
+        error: `Çok fazla istek gönderildi. ${verdict.retryAfterSeconds} saniye sonra tekrar deneyin.`,
+        limit: `${verdict.limit} istek / dakika`,
+      },
+      429,
+      {
+        "Retry-After": String(verdict.retryAfterSeconds),
+        "RateLimit-Limit": String(verdict.limit),
+        "RateLimit-Remaining": "0",
+      }
+    );
+  }
+
+  await next();
+  c.header("RateLimit-Limit", String(verdict.limit));
+  c.header("RateLimit-Remaining", String(verdict.remaining));
+});
+
 /** Tek global sayaç örneğine erişim; binding yoksa undefined döner. */
 function counterStub(env) {
   const ns = env?.USAGE_COUNTER;
@@ -38,13 +67,25 @@ function counterStub(env) {
 
 // Kullanım sayacı: yanıt üretildikten sonra, engellemeden kaydeder.
 // Binding yoksa (yerel test, eski deploy) sessizce devre dışı kalır.
+/**
+ * Sayaç anahtarını yalnızca SUNUCU tarafından tanımlı bir değere indirger.
+ *
+ * Ham istek yolu kullanılamaz: eşleşmeyen her istek kalıcı bir satır
+ * yaratacağı için saldırgan sınırsız anahtar üretip Durable Object'in
+ * günlük yazma kotasını ve depolamasını tüketebilir. Eşleşmeyen tüm
+ * istekler tek bir kovada toplanır.
+ */
+function counterKey(c) {
+  const routePath = c.req.routePath;
+  if (!routePath || routePath === "/*") return "__unmatched__";
+  // Kalıp sunucu tarafından tanımlıdır; uzunluk siniri savunma amaçlıdır.
+  return routePath.length > 120 ? "__unmatched__" : routePath;
+}
+
 app.use("*", async (c, next) => {
   await next();
   try {
-    // Ham URL yerine eşleşen rota kalıbı kullanılır; aksi halde
-    // /api/v1/items/<520 farkli slug> gibi sınırsız anahtar oluşurdu.
-    const path = c.req.routePath && c.req.routePath !== "/*" ? c.req.routePath : c.req.path;
-    track(path, counterStub(c.env), c.executionCtx);
+    track(counterKey(c), counterStub(c.env), c.executionCtx);
   } catch {
     // sayaç hatası asla isteği etkilemez
   }
@@ -390,6 +431,9 @@ app.get("/api/v1/stats", async (c) => {
       data: {
         totalRequests: stats.total,
         countingSince: stats.firstSeen,
+        // Liste en çok çağrılan ilk 100 ile sınırlıdır; kaç farklı uç nokta
+        // kaydedildiği ayrıca verilir.
+        distinctEndpoints: stats.distinctPaths,
         endpoints: stats.endpoints,
         dailyRequests: stats.daily,
       },

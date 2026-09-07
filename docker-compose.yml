@@ -10,7 +10,9 @@ services:
     environment:
       - PORT=3000
       - HOST=0.0.0.0
-      - API_KEY=kktc_tufe_secret_key_2026
+      # Kendi rastgele anahtarinizi verin (orn: openssl rand -hex 32).
+      # Tanimlanmazsa POST /api/v1/sync kapali kalir.
+      - API_KEY=${API_KEY:-}
       - CRON_SCHEDULE=0 9 1-10 * *
       - RATE_LIMIT_MAX=120
     volumes:

@@ -2,10 +2,32 @@
  * KKTC TÜFE RESTful API - Modern, Yüksek Okunabilirlikli Kullanım Kılavuzu & Geliştirici Portalı
  */
 
+const DEFAULT_LIVE_URL = "https://kktc-tufe-api.stevevaius.workers.dev";
+
+/**
+ * liveUrl'i HTML'e basmadan once katı bir beyaz listeden gecirir.
+ *
+ * Bu deger Express tarafinda Host basligindan geliyor, yani tamamen istemci
+ * kontrolunde. Sayfada üç ayri baglamda kullaniliyor: HTML metni, href
+ * niteligi ve onclick icindeki JavaScript dizesi. Her biri icin ayri kacis
+ * yapmak yerine, sonucta yalnizca sema + ana bilgisayar + port karakterleri
+ * kalacak sekilde dogrulanir; kaliba uymayan deger tamamen reddedilir.
+ * Boylece tirnak, açi parantezi veya parantez hicbir zaman iceri giremez.
+ * @param {unknown} url
+ * @returns {string}
+ */
+function sanitizeLiveUrl(url) {
+  const candidate = String(url ?? "");
+  return /^https?:\/\/[A-Za-z0-9.-]{1,253}(?::\d{1,5})?$/.test(candidate)
+    ? candidate
+    : DEFAULT_LIVE_URL;
+}
+
 export function renderGuideHtml({
-  liveUrl = "https://kktc-tufe-api.stevevaius.workers.dev",
+  liveUrl: rawLiveUrl = DEFAULT_LIVE_URL,
   stats = {},
 } = {}) {
+  const liveUrl = sanitizeLiveUrl(rawLiveUrl);
   // Kılavuzdaki kapsam rakamları canlı veriden beslenir; böylece her yeni ay
   // veya kalem yüklendiğinde portal kendiliğinden güncellenir.
   const s = {

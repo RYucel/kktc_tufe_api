@@ -137,7 +137,7 @@ Uç noktalar ham URL yerine **rota kalıbıyla** kaydedilir (`/api/v1/items/ekme
 | :--- | :--- | :--- |
 | `PORT` | `3000` | HTTP dinleme portu |
 | `HOST` | `0.0.0.0` | Bağlanılacak ağ arayüzü |
-| `API_KEY` | `kktc_tufe_secret_key_2026` | `POST /api/v1/sync` için yetkilendirme anahtarı |
+| `API_KEY` | *(yok)* | `POST /api/v1/sync` için yetkilendirme anahtarı. Tanımlanmazsa uç nokta kapalı kalır (503). |
 | `RATE_LIMIT_MAX`| `120` | Dakika başına izin verilen maksimum istek sayısı |
 | `CRON_SCHEDULE` | `0 15 * * *` | Kaynak deponun kontrol edilme zamanı (Her gün 15:00 UTC) |
 | `GITHUB_TUFE_JSON_URL` | `.../kktc_tufe/main/docs/data/tufe.json` | Aylık TÜFE serisi kaynağı (birincil) |

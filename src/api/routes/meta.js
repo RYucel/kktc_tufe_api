@@ -89,6 +89,7 @@ router.get("/api/v1/stats", (req, res) => {
     data: {
       totalRequests: stats.total,
       countingSince: stats.firstSeen,
+      distinctEndpoints: stats.endpoints.length,
       endpoints: stats.endpoints,
       dailyRequests: stats.daily,
     },

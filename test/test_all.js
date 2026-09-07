@@ -11,6 +11,7 @@ const testSuites = [
   "test_items.js",
   "test_scheduler.js",
   "test_usage.js",
+  "test_security.js",
   "test_worker.js",
 ];
 

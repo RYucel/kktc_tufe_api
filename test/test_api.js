@@ -93,9 +93,24 @@ async function runApiTests() {
 
     // 9. Sync API Auth Protection
     console.log("\n[Test 9] POST /api/v1/sync (Yetkisiz Erişim Kontrolü)");
+    // API_KEY yapılandırılmamışsa uç nokta hiç açılmaz (503); yapılandırılmışsa
+    // yanlış anahtar 401 alır. Yayınlanmış bir varsayılan anahtar YOKTUR.
     const resUnauthorized = await fetch(`${baseUrl}/api/v1/sync`, { method: "POST" });
-    assert.equal(resUnauthorized.status, 401);
-    console.log(`✓ /api/v1/sync yetkisiz istekleri 401 ile başarıyla engelliyor.`);
+
+    if (process.env.API_KEY) {
+      assert.equal(resUnauthorized.status, 401);
+      const resYanlisAnahtar = await fetch(`${baseUrl}/api/v1/sync`, {
+        method: "POST",
+        headers: { "X-API-Key": "kesinlikle-yanlis-anahtar" },
+      });
+      assert.equal(resYanlisAnahtar.status, 401);
+      console.log(`✓ /api/v1/sync anahtarsız ve yanlış anahtarlı istekleri 401 ile engelliyor.`);
+    } else {
+      assert.equal(resUnauthorized.status, 503);
+      const jsonKapali = await resUnauthorized.json();
+      assert.match(jsonKapali.error, /API_KEY/);
+      console.log(`✓ API_KEY tanımsızken /api/v1/sync tamamen kapalı (503).`);
+    }
 
     // 10. 404 Route Handling
     console.log("\n[Test 10] 404 Route Test");
