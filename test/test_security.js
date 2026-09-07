@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
 import { renderGuideHtml } from "../src/views/guide.js";
-import { checkRateLimit, resetRateLimiter } from "../src/engine/rateLimiter.js";
 import { config } from "../src/config.js";
 
 console.log("=== GÜVENLİK REGRESYON TESTLERİ ===\n");
@@ -39,31 +38,8 @@ for (const iyi of [
 }
 console.log("✓ Meşru host'lar olduğu gibi kullanılıyor.\n");
 
-// --- Test 3: hız sınırlayıcı ---
-console.log("[Test 3] Hız sınırlayıcı IP başına doğru sayıyor mu?");
-resetRateLimiter();
-let izin = 0;
-let ilkRed = null;
-for (let i = 1; i <= 260; i++) {
-  const v = checkRateLimit("198.51.100.7");
-  if (v.allowed) izin++;
-  else if (!ilkRed) ilkRed = i;
-}
-assert.equal(izin, 240, "dakikada 240 istek geçmeliydi");
-assert.equal(ilkRed, 241, "241. istek reddedilmeliydi");
-assert.equal(checkRateLimit("198.51.100.8").allowed, true, "farklı IP etkilenmemeli");
-console.log(`✓ 240 istek geçti, ${ilkRed}. istek 429 aldı, diğer IP etkilenmedi.\n`);
-
-// --- Test 4: sınırlayıcı belleği sınırsız büyümemeli ---
-console.log("[Test 4] Sınırlayıcı bellek büyümesi sınırlı mı?");
-resetRateLimiter();
-for (let i = 0; i < 6000; i++) checkRateLimit(`10.0.${(i / 256) | 0}.${i % 256}`);
-// MAX_TRACKED_IPS = 5000; tahliye çalışmazsa bellek sınırsız büyürdü
-assert.equal(checkRateLimit("10.0.0.1").allowed, true);
-console.log("✓ 6000 farklı IP sonrası sınırlayıcı hâlâ çalışıyor (tahliye devrede).\n");
-
-// --- Test 5: yayınlanmış varsayılan API anahtarı kalmamalı ---
-console.log("[Test 5] Varsayılan API anahtarı kaldırıldı mı?");
+// --- Test 3: yayınlanmış varsayılan API anahtarı kalmamalı ---
+console.log("[Test 3] Varsayılan API anahtarı kaldırıldı mı?");
 if (!process.env.API_KEY) {
   assert.equal(config.apiKey, null, "API_KEY tanımsızken varsayılan anahtar olmamalı");
 }

@@ -189,6 +189,26 @@ Varsayılan olarak API günlük cron ile kontrol eder; yeni veri en geç ertesi 
 
 ---
 
+## 🔒 Güvenlik Notları
+
+**Hız sınırlaması (edge).** Cloudflare Workers sürümünde uygulama içi hız sınırı **yoktur** ve bilerek eklenmemiştir. Worker isolate'i içinde tutulan bir sayaç işe yaramaz: Cloudflare aynı IP'den gelen sıralı istekleri bile birçok isolate'e dağıtır. Ölçüldü, aynı IP'den 280 sıralı istek (24 saniye) hiç engellenmedi. Böyle bir sayaç yalnızca uygulanmayan bir sınırı ilan eder ve yanlış güven verir.
+
+Gerçek koruma için Cloudflare panosundan bir **Rate Limiting kuralı** tanımlayın (ücretsiz plan bir kural içerir). Kural edge'de, uygulamaya hiç ulaşmadan çalışır ve gecikme eklemez:
+
+> Security → WAF → Rate limiting rules → Create rule
+> Eşleşme: `URI Path starts with /api/`
+> Sınır: 10 saniyede 100 istek, aynı IP
+> Eylem: Block, 10 saniye
+
+**Kendi sunucunuzda (Node/Docker)** hız sınırı uygulama içinde çalışır (`express-rate-limit`, varsayılan dakikada 120 istek, `RATE_LIMIT_MAX` ile değiştirilir).
+
+**`POST /api/v1/sync` uç noktası** yalnızca Node sürümünde vardır ve `API_KEY` ortam değişkeni tanımlıysa açılır. Tanımlı değilse 503 döner. Yayınlanmış bir varsayılan anahtar yoktur; kendi değerinizi üretin (`openssl rand -hex 32`). Anahtar karşılaştırması sabit zamanlıdır.
+
+**Kullanım sayacı** yalnızca sunucu tarafında tanımlı rota kalıplarını saklar. Eşleşmeyen istekler tek bir `__unmatched__` kovasında toplanır; aksi halde istemci, kalıcı kayıt üreterek Durable Object kotasını tüketebilirdi.
+
+
+---
+
 ## 💡 Kullanım Örnekleri
 
 ### cURL

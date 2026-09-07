@@ -10,7 +10,6 @@ import { itemsStore } from "./engine/itemsStore.js";
 import { swaggerSpec } from "./api/docs/swaggerSpec.js";
 import { renderGuideHtml } from "./views/guide.js";
 import { track, flush } from "./engine/usageBuffer.js";
-import { checkRateLimit } from "./engine/rateLimiter.js";
 import {
   API_VERSION,
   OFFICIAL_SOURCE,
@@ -29,34 +28,6 @@ const app = new Hono();
 // Güvenlik Başlıkları & CORS
 app.use("*", cors());
 app.use("*", secureHeaders());
-
-// Hız sınırı: yalnızca /api/ altındaki uç noktalara uygulanır; kılavuz,
-// /docs ve /health serbest bırakılır ki tarayıcıdan gezinme ve sağlık
-// kontrolü etkilenmesin.
-app.use("/api/*", async (c, next) => {
-  const ip = c.req.header("CF-Connecting-IP") || c.req.header("X-Forwarded-For") || "";
-  const verdict = checkRateLimit(ip);
-
-  if (!verdict.allowed) {
-    return c.json(
-      {
-        success: false,
-        error: `Çok fazla istek gönderildi. ${verdict.retryAfterSeconds} saniye sonra tekrar deneyin.`,
-        limit: `${verdict.limit} istek / dakika`,
-      },
-      429,
-      {
-        "Retry-After": String(verdict.retryAfterSeconds),
-        "RateLimit-Limit": String(verdict.limit),
-        "RateLimit-Remaining": "0",
-      }
-    );
-  }
-
-  await next();
-  c.header("RateLimit-Limit", String(verdict.limit));
-  c.header("RateLimit-Remaining", String(verdict.remaining));
-});
 
 /** Tek global sayaç örneğine erişim; binding yoksa undefined döner. */
 function counterStub(env) {
