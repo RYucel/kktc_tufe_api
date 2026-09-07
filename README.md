@@ -177,6 +177,8 @@ Tüm veriler tek bir kaynaktan gelir: [**`RYucel/kktc_tufe`**](https://github.co
 
 Güncel `GRETL_TUFE.csv` dosyasını `kktc_tufe` deposunun `main` dalına yükleyin; gerisi otomatiktir.
 
+**Yanlışlıkla bu depoya yükleme koruması:** `GRETL_TUFE.csv` kaynak depo yerine bu depoya yüklenirse, senkronizasyon üzerine yazmak yerine **açık bir hatayla durur** ve doğru depoyu gösterir. Eskiden bu durum sessizce geri alınıyordu.
+
 **Doğrulama kalkanı:** Her iki veri hattı da diske yazılmadan önce kontrol edilir. Kayıt/kalem sayısı düşerse, zaman serisi kısalırsa veya gelen veri mevcut olandan eskiyse **güncelleme reddedilir ve yayındaki veri korunur** ([`tufeSource.js`](src/engine/tufeSource.js), [`syncItemsService.js`](src/engine/syncItemsService.js)). Hatalı bir yükleme canlı API'yi bozamaz.
 
 **Yedek yol:** Veri deposuna ulaşılamazsa API resmî siteyi doğrudan tarayan yedek yola düşer ([`scraper.js`](src/engine/scraper.js)). Aynı resmî kaynaktan beslendiği için sapma üretmez, yalnızca kesinti anında verinin bayatlamasını önler. Hangi yolun kullanıldığı `/api/v1/meta` yanıtındaki `dataSource` alanında görünür.

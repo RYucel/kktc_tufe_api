@@ -24,6 +24,49 @@ function normalizeCsv(text) {
 }
 
 /**
+ * Yerel CSV kaynaktakinden daha yeniyse üzerine yazmayı engeller.
+ *
+ * Bu senaryo pratikte tek bir şeyden çıkar: GRETL_TUFE.csv yanlışlıkla
+ * kaynak veri deposu (RYucel/kktc_tufe) yerine doğrudan API deposuna
+ * yüklenmiştir. Eskiden bu durum sessizce üzerine yazılıyor, yükleme
+ * saniyeler içinde geri alınıyor ve hiçbir uyarı çıkmıyordu.
+ *
+ * Not: assertPayloadIsSane() bu vakayı yakalayamaz, çünkü o karşılaştırmayı
+ * data/items_meta.json üzerinden yapar; elle yüklemede yalnızca CSV değişir,
+ * türetilmiş JSON eski kaldığı için doğrulama "sorun yok" der.
+ *
+ * @param {{periods: string[]}} candidate İndirilen (kaynaktaki) veri
+ * @param {{totalMonths: number, endPeriod: string}|null} localCsvMeta Yerel CSV'nin gerçek kapsamı
+ */
+export function assertLocalIsNotAhead(candidate, localCsvMeta) {
+  if (!localCsvMeta) return;
+
+  const inMonths = candidate.periods.length;
+  const inEnd = candidate.periods[inMonths - 1];
+
+  const ahead =
+    inMonths < localCsvMeta.totalMonths ||
+    (localCsvMeta.endPeriod && inEnd < localCsvMeta.endPeriod);
+
+  if (!ahead) return;
+
+  const err = new Error(
+    `Yerel GRETL_TUFE.csv kaynaktan DAHA YENİ ` +
+      `(yerel: ${localCsvMeta.totalMonths} ay / ${localCsvMeta.endPeriod}, ` +
+      `kaynak: ${inMonths} ay / ${inEnd}). Üzerine yazılmadı.
+` +
+      `  Muhtemel sebep: CSV yanlışlıkla bu depoya yüklendi.
+` +
+      `  Doğru yer: https://github.com/RYucel/kktc_tufe -> GRETL_TUFE.csv
+` +
+      `  Oraya yükleyip "Commit changes" adımını tamamlayın; bu depo onu otomatik alacaktır.`
+  );
+  // sync scripti bunu ölümcül sayar ve CI'ı kırar (ağ hatalarından farklı olarak)
+  err.fatal = true;
+  throw err;
+}
+
+/**
  * İndirilen CSV'yi diske yazmadan önce mantıksal olarak doğrular.
  * CSV depoya elle yüklendiği için hatalı/eksik bir dosyanın sessizce
  * canlı veriyi ezmesini engeller.
@@ -117,6 +160,21 @@ export async function syncItemsFromGithub() {
 
   // Diske yazmadan önce hafızada ayrıştır ve doğrula
   const { payload: candidate } = parseItemPricesFromText(newCsvContent);
+
+  // Yerel dosyanın GERÇEK kapsamını oku (türetilmiş JSON'a değil CSV'ye bak)
+  let localCsvMeta = null;
+  if (existsSync(config.paths.itemsCsvFile)) {
+    try {
+      const local = parseItemPricesFromText(
+        normalizeCsv(readFileSync(config.paths.itemsCsvFile, "utf-8"))
+      );
+      localCsvMeta = local.meta;
+    } catch {
+      // Yerel dosya okunamıyorsa koruma atlanır; kaynak zaten doğrulanacak
+    }
+  }
+
+  assertLocalIsNotAhead(candidate, localCsvMeta);
   assertPayloadIsSane(candidate, prevMeta);
 
   console.log(
