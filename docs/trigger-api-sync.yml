@@ -1,24 +1,19 @@
 # ============================================================================
-#  BU DOSYA "RYucel/kktc_tufe" DEPOSUNA KOPYALANACAKTIR.
-#  Hedef konum: .github/workflows/trigger-api-sync.yml
+#  REFERANS KOPYA - bu dosya "RYucel/kktc_tufe" deposuna KURULMUŞTUR.
+#  Canlı konumu: kktc_tufe/.github/workflows/trigger-api-sync.yml
 #
-#  Amaç: Bu depodaki veri her güncellendiğinde (elle yüklenen GRETL_TUFE.csv
-#        veya cron'un çektiği docs/data/tufe.json) TUFE_API deposunu ANINDA
-#        tetikler; API bir sonraki günlük cron'u beklemeden yayına alınır.
+#  Ne yapar: Kaynak depoda veri değiştiğinde (elle yüklenen GRETL_TUFE.csv
+#  veya cron'un çektiği docs/data/tufe.json) bu API deposuna
+#  repository_dispatch gönderir; API günlük cron'u beklemeden senkronize
+#  olur. Gecikme 2-8 saatten ~1 dakikaya iner.
 #
-#  KURULUM (tek seferlik):
-#   1. https://github.com/settings/personal-access-tokens adresinden
-#      "Fine-grained token" oluşturun:
-#        - Repository access: yalnızca "RYucel/kktc_tufe_api"
-#        - Permissions -> Repository permissions -> Contents: Read and write
-#      (Klasik token kullanacaksanız "repo" kapsamı yeterlidir.)
-#   2. Token'ı "RYucel/kktc_tufe" deposunda
-#      Settings -> Secrets and variables -> Actions -> New repository secret
-#      adı: API_REPO_DISPATCH_TOKEN
-#   3. Bu dosyayı yukarıdaki konuma ekleyip commit'leyin.
+#  Yetkilendirme: kaynak depodaki API_REPO_DISPATCH_TOKEN secret'i,
+#  yalnızca kktc_tufe_api deposuna "Contents: Read and write" izni verilmiş
+#  ince ayarlı bir token tutar. POST /repos/.../dispatches ucunun
+#  gerektirdiği tek izin budur.
 #
-#  Bu kurulum YAPILMAZSA da sistem çalışır: TUFE_API her gün 20:00 UTC'de
-#  CSV'yi kontrol eder. Dispatch yalnızca gecikmeyi ~24 saatten ~1 dakikaya indirir.
+#  Bu tetikleyici çalışmazsa veri kaybı olmaz: API'nin günlük 20:00 UTC
+#  cron'u yedek olarak devrede kalır, yalnızca gecikme geri gelir.
 # ============================================================================
 
 name: TÜFE API'sini Tetikle

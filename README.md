@@ -192,9 +192,13 @@ Güncel `GRETL_TUFE.csv` dosyasını `kktc_tufe` deposunun `main` dalına yükle
 
 **Yedek yol:** Veri deposuna ulaşılamazsa API resmî siteyi doğrudan tarayan yedek yola düşer ([`scraper.js`](src/engine/scraper.js)). Aynı resmî kaynaktan beslendiği için sapma üretmez, yalnızca kesinti anında verinin bayatlamasını önler. Hangi yolun kullanıldığı `/api/v1/meta` yanıtındaki `dataSource` alanında görünür.
 
-### Anında tetikleme (opsiyonel)
+### Anında tetikleme (kurulu)
 
-Varsayılan olarak API günlük cron ile kontrol eder; yeni veri en geç ertesi sabah yayına girer. Gecikmeyi ~1 dakikaya indirmek için [`docs/trigger-api-sync.yml`](docs/trigger-api-sync.yml) dosyasını `kktc_tufe` deposuna kopyalayın — kurulum adımları dosyanın başındaki yorumda anlatılmıştır.
+Kaynak depoda veri değiştiği anda bu API tetiklenir; günlük cron beklenmez. Zincirdeki gecikme 2-8 saatten **~1 dakikaya** iner.
+
+`kktc_tufe` deposundaki [`trigger-api-sync.yml`](https://github.com/RYucel/kktc_tufe/blob/main/.github/workflows/trigger-api-sync.yml) workflow'u, `GRETL_TUFE.csv` veya `docs/data/tufe.json` değiştiğinde bu depoya `repository_dispatch` gönderir. Referans kopyası: [`docs/trigger-api-sync.yml`](docs/trigger-api-sync.yml).
+
+Tetikleyici çalışmazsa veri kaybı olmaz: günlük 20:00 UTC cron'u yedek olarak devrededir.
 
 ---
 
