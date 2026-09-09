@@ -638,6 +638,7 @@
         <li><a href="#ep-tufe" class="sidebar-link">🔍 Zaman Serisi (/tufe)</a></li>
         <li><a href="#ep-year" class="sidebar-link">📅 Yıllık Döküm (/:year)</a></li>
         <li><a href="#basket-items" class="sidebar-link">🛒 Sepet Fiyatları (520 Kalem)</a></li>
+        <li><a href="#minimum-wage" class="sidebar-link">💵 Asgari Ücret (/wage)</a></li>
         <li><a href="#periods" class="sidebar-link">🏛️ KKTC Maaş Dönemleri</a></li>
         <li><a href="#calculate" class="sidebar-link">🧮 Enflasyon Hesaplayıcı</a></li>
         <li><a href="#code-examples" class="sidebar-link">💻 JS & Python Örnekleri</a></li>
@@ -1028,6 +1029,167 @@
         </div>
 
       </section>
+
+      <!-- Asgari Ücret (1977 - günümüz) -->
+      <section class="section-box" id="minimum-wage">
+        <div class="section-title-group">
+          <span style="font-size: 1.5rem;">💵</span>
+          <h2 class="section-title">Asgari Ücret (1977 – Ağustos 2026 / 79 Karar)</h2>
+        </div>
+        <p class="section-desc">
+          KKTC brüt asgari ücretinin <strong>1977'den Ağustos 2026 ayına kadar tam tarihçesi</strong>.
+          Yürürlükteki tutar <strong>70.893 TL</strong> (Temmuz 2026 itibarıyla).
+          Reel değerler bu API'nin kendi TÜFE serisinden hesaplanır, ayrıca saklanmaz; TÜFE her güncellendiğinde
+          reel seri de kendiliğinden tutarlı kalır. 2005 YTL geçişi (1 TL = 1.000.000 eski TL) motor tarafından
+          ele alınır, bu yüzden 1977 ile bugün doğrudan karşılaştırılabilir.
+        </p>
+
+        <!-- 1. Yürürlükteki Ücret -->
+        <div class="endpoint-card" style="margin-bottom: 1.5rem;">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/wage/latest</span>
+            </div>
+            <span class="endpoint-desc-badge">Yürürlükteki Brüt Asgari Ücret</span>
+          </div>
+          <div class="endpoint-body">
+            <p>
+              Şu an geçerli asgari ücreti, bir önceki karara göre <strong>nominal</strong> ve <strong>reel</strong>
+              değişimiyle birlikte döndürür. <code>previous.realIncreasePercent</code> negatifse, zam önceki ücretin
+              yürürlükte olduğu sürede biriken enflasyonun altında kalmış demektir.
+            </p>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/wage/latest</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/wage/latest', 'output-wage-latest')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-wage-latest"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Nominal Seri -->
+        <div class="endpoint-card" style="margin-bottom: 1.5rem;">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/wage</span>
+            </div>
+            <span class="endpoint-desc-badge">Nominal Asgari Ücret Tarihçesi</span>
+          </div>
+          <div class="endpoint-body">
+            <p>
+              Varsayılan olarak yalnızca ücretin <strong>değiştiği 79 dönemi</strong> döndürür.
+              Grafik çizmek için <code>granularity=monthly</code> ile her ayın yürürlükteki ücretini alabilirsiniz.
+              Tutarlar açıklandığı günün para birimindedir: 2005 öncesi <code>TRL</code> (eski TL), sonrası <code>TRY</code>.
+            </p>
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">granularity</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td><code>changes</code> (varsayılan) veya <code>monthly</code></td>
+                </tr>
+                <tr>
+                  <td class="param-name">start_period / end_period</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Dönem aralığı: <code>YYYY-MM</code> (örn: <code>start_period=2020-01</code>)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">sort</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td><code>asc</code> (varsayılan) veya <code>desc</code></td>
+                </tr>
+                <tr>
+                  <td class="param-name">limit / offset</td>
+                  <td class="param-type">integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Sayfalama. Varsayılan: tüm kayıtlar</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/wage?sort=desc&limit=5</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/wage?sort=desc&limit=5', 'output-wage-series')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-wage-series"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Reel Ücret -->
+        <div class="endpoint-card">
+          <div class="endpoint-header">
+            <div class="endpoint-badge-group">
+              <span class="method-get">GET</span>
+              <span class="endpoint-url">/api/v1/wage/real</span>
+            </div>
+            <span class="endpoint-desc-badge">Enflasyondan Arındırılmış (Reel) Asgari Ücret</span>
+          </div>
+          <div class="endpoint-body">
+            <p>
+              Her ayın nominal asgari ücretini, seçtiğiniz taban dönemin satın alma gücüne çevirir.
+              <code>base</code> vermezseniz taban en son TÜFE dönemidir, yani sonuçlar <strong>bugünün parasıyla</strong> gelir.
+              Bu sayede "1977'nin asgari ücreti bugünün parasıyla ne ederdi?" sorusu tek çağrıyla yanıtlanır.
+            </p>
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Parametre</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Açıklama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="param-name">base</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Taban dönem <code>YYYY-MM</code>. Varsayılan: Ağustos 2026 (en son TÜFE dönemi)</td>
+                </tr>
+                <tr>
+                  <td class="param-name">start_period / end_period</td>
+                  <td class="param-type">string</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Dönem aralığı filtreleme</td>
+                </tr>
+                <tr>
+                  <td class="param-name">sort / limit / offset</td>
+                  <td class="param-type">string, integer</td>
+                  <td><span class="param-opt">Opsiyonel</span></td>
+                  <td>Sıralama ve sayfalama</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="live-tester">
+              <div class="live-tester-header">
+                <span class="live-tester-title">⚡ Canlı Test: <code>/api/v1/wage/real?start_period=1977-05&end_period=1977-05</code></span>
+                <button class="btn-run" onclick="runLiveTest('https://kktc-tufe-api.stevevaius.workers.dev/api/v1/wage/real?start_period=1977-05&end_period=1977-05', 'output-wage-real')">Çalıştır ▶</button>
+              </div>
+              <div class="live-output" id="output-wage-real"></div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
 
       <!-- KKTC Dönemleri (Periods) -->
       <section class="section-box" id="periods">

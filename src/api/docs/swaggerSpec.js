@@ -488,6 +488,180 @@ Bu API, resmi **KKTC Başbakanlık İstatistik Kurumu** tarafından yayınlanan 
         },
       },
     },
+    "/api/v1/wage/latest": {
+      get: {
+        summary: "Yürürlükteki Brüt Asgari Ücret",
+        description:
+          "Şu an geçerli brüt asgari ücreti, bir önceki karara göre nominal ve REEL değişimiyle birlikte döndürür. Reel değişim, önceki ücretin yürürlükte olduğu süre boyunca biriken TÜFE enflasyonuna göre hesaplanır: negatif bir değer, zammın enflasyonun altında kaldığını gösterir.",
+        tags: ["Asgari Ücret"],
+        responses: {
+          200: {
+            description: "Yürürlükteki asgari ücret",
+            content: {
+              "application/json": {
+                example: {
+                  success: true,
+                  data: {
+                    effectiveFrom: "2026-07",
+                    year: 2026,
+                    month: 7,
+                    monthName: "Temmuz",
+                    amount: 70893,
+                    currency: "TRY",
+                    monthsInEffect: 2,
+                    previous: {
+                      effectiveFrom: "2026-01",
+                      amount: 60618,
+                      currency: "TRY",
+                      nominalIncreasePercent: 16.95,
+                      realIncreasePercent: -0.9,
+                    },
+                  },
+                },
+              },
+            },
+          },
+          404: { description: "Yüklü asgari ücret verisi yok" },
+        },
+      },
+    },
+    "/api/v1/wage": {
+      get: {
+        summary: "Nominal Asgari Ücret Serisi",
+        description:
+          "Asgari ücret tarihçesi. `granularity=changes` (varsayılan) yalnızca ücretin değiştiği dönemleri döndürür; `granularity=monthly` her ay için yürürlükteki ücreti ileri doldurma ile verir. Tutarlar açıklandığı günün para birimindedir: 2005-01 öncesi TRL (eski TL), sonrası TRY. Dönemler arası karşılaştırmalar bu fark gözetilerek yapılır.",
+        tags: ["Asgari Ücret"],
+        parameters: [
+          {
+            name: "granularity",
+            in: "query",
+            description: "changes = yalnızca ücret kararları, monthly = aylık seri",
+            schema: { type: "string", enum: ["changes", "monthly"], default: "changes" },
+          },
+          {
+            name: "start_period",
+            in: "query",
+            description: "Başlangıç dönemi (YYYY-MM)",
+            schema: { type: "string", example: "2020-01" },
+          },
+          {
+            name: "end_period",
+            in: "query",
+            description: "Bitiş dönemi (YYYY-MM)",
+            schema: { type: "string", example: "2026-08" },
+          },
+          {
+            name: "sort",
+            in: "query",
+            description: "Sıralama yönü",
+            schema: { type: "string", enum: ["asc", "desc"], default: "asc" },
+          },
+          {
+            name: "limit",
+            in: "query",
+            description: "Döndürülecek kayıt sayısı (varsayılan: tümü)",
+            schema: { type: "integer", minimum: 1, maximum: 1200 },
+          },
+          {
+            name: "offset",
+            in: "query",
+            description: "Atlanacak kayıt sayısı",
+            schema: { type: "integer", default: 0, minimum: 0 },
+          },
+        ],
+        responses: {
+          200: {
+            description: "Asgari ücret serisi",
+            content: {
+              "application/json": {
+                example: {
+                  success: true,
+                  granularity: "changes",
+                  pagination: { total: 79, limit: 79, offset: 0, returned: 79 },
+                  data: [
+                    { effectiveFrom: "2026-01", amount: 60618, currency: "TRY", nominalIncreasePercent: 18.39 },
+                    { effectiveFrom: "2026-07", amount: 70893, currency: "TRY", nominalIncreasePercent: 16.95 },
+                  ],
+                },
+              },
+            },
+          },
+          400: { description: "Geçersiz parametre" },
+        },
+      },
+    },
+    "/api/v1/wage/real": {
+      get: {
+        summary: "Reel (Enflasyondan Arındırılmış) Asgari Ücret",
+        description:
+          "Her ayın nominal asgari ücretini, seçilen taban dönemin satın alma gücüne KKTC TÜFE serisiyle çevirir. Böylece 1977 ile 2026 doğrudan karşılaştırılabilir hale gelir. Sonuçlar taban dönemin para biriminde ifade edilir. Reel değerler saklanmaz, her istekte güncel TÜFE serisinden hesaplanır.",
+        tags: ["Asgari Ücret"],
+        parameters: [
+          {
+            name: "base",
+            in: "query",
+            description: "Taban dönem (YYYY-MM). Varsayılan: en son TÜFE dönemi, yani bugünün parası.",
+            schema: { type: "string", example: "2026-08" },
+          },
+          {
+            name: "start_period",
+            in: "query",
+            description: "Başlangıç dönemi (YYYY-MM)",
+            schema: { type: "string", example: "1977-05" },
+          },
+          {
+            name: "end_period",
+            in: "query",
+            description: "Bitiş dönemi (YYYY-MM)",
+            schema: { type: "string", example: "2026-08" },
+          },
+          {
+            name: "sort",
+            in: "query",
+            description: "Sıralama yönü",
+            schema: { type: "string", enum: ["asc", "desc"], default: "asc" },
+          },
+          {
+            name: "limit",
+            in: "query",
+            description: "Döndürülecek kayıt sayısı (varsayılan: tümü)",
+            schema: { type: "integer", minimum: 1, maximum: 1200 },
+          },
+          {
+            name: "offset",
+            in: "query",
+            description: "Atlanacak kayıt sayısı",
+            schema: { type: "integer", default: 0, minimum: 0 },
+          },
+        ],
+        responses: {
+          200: {
+            description: "Reel asgari ücret serisi",
+            content: {
+              "application/json": {
+                example: {
+                  success: true,
+                  base: "2026-08",
+                  baseCurrency: "TRY",
+                  data: [
+                    {
+                      period: "1977-05",
+                      year: 1977,
+                      month: 5,
+                      monthName: "Mayıs",
+                      nominalAmount: 1820,
+                      nominalCurrency: "TRL",
+                      realAmount: 30511.5,
+                    },
+                  ],
+                },
+              },
+            },
+          },
+          400: { description: "Geçersiz taban dönem veya parametre" },
+        },
+      },
+    },
     "/api/v1/sync": {
       post: {
         summary: "Manuel Veri Senkronizasyonu Tetikleme",

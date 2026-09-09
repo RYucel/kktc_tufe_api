@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { dataStore } from "../../engine/dataStore.js";
 import { itemsStore } from "../../engine/itemsStore.js";
+import { wageStore } from "../../engine/wageStore.js";
 import { usageStore } from "../../engine/usageStore.js";
 import { config } from "../../config.js";
 import {
@@ -42,6 +43,12 @@ router.get("/health", (req, res) => {
           ? `${itemsMeta.startPeriod} - ${itemsMeta.endPeriod}`
           : null,
     },
+    wageEngine: {
+      initialized: wageStore.isInitialized,
+      changeCount: wageStore.getMeta().changeCount,
+      currentSince: wageStore.getMeta().currentSince,
+      currentAmount: wageStore.getMeta().currentAmount,
+    },
     version: API_VERSION,
   });
 });
@@ -67,6 +74,7 @@ router.get("/api/v1/meta", (req, res) => {
       deployedOn: "Node.js (Express)",
       license: LICENSE,
       itemPrices: itemsStore.getMeta(),
+      minimumWage: wageStore.getMeta(),
     },
   });
 });

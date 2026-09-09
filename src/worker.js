@@ -7,8 +7,11 @@ import itemsData from "../data/items_data.json" with { type: "json" };
 import itemsMeta from "../data/items_meta.json" with { type: "json" };
 import { calculateYearPeriods, calculateInflationBetween } from "./engine/calculator.js";
 import { itemsStore } from "./engine/itemsStore.js";
+import { wageStore } from "./engine/wageStore.js";
+import { latestPayload, seriesPayload, realPayload } from "./engine/wagePayload.js";
 import { swaggerSpec } from "./api/docs/swaggerSpec.js";
 import { renderGuideHtml } from "./views/guide.js";
+import { buildGuideStats } from "./views/guideStats.js";
 import { track, flush } from "./engine/usageBuffer.js";
 import {
   API_VERSION,
@@ -22,6 +25,8 @@ import {
 
 // Edge ortamı için sepet motorunu başlat
 itemsStore.init(itemsData, itemsMeta);
+// Asgari ücret motoru reel değerleri paketlenmiş TÜFE serisinden türetir.
+wageStore.init(tufeData);
 
 const app = new Hono();
 
@@ -94,6 +99,12 @@ app.get("/health", (c) => {
       totalMonths: itemsMeta.totalMonths,
       periodRange: `${itemsMeta.startPeriod} - ${itemsMeta.endPeriod}`,
     },
+    wageEngine: {
+      initialized: wageStore.isInitialized,
+      changeCount: wageStore.getMeta().changeCount,
+      currentSince: wageStore.getMeta().currentSince,
+      currentAmount: wageStore.getMeta().currentAmount,
+    },
     version: API_VERSION,
   });
 });
@@ -114,6 +125,7 @@ app.get("/api/v1/meta", (c) => {
       deployedOn: "Cloudflare Edge Network",
       license: LICENSE,
       itemPrices: itemsMeta,
+      minimumWage: wageStore.getMeta(),
     },
   });
 });
@@ -503,18 +515,29 @@ app.get("/docs", (c) => {
   `);
 });
 
+// 10b. Asgari Ücret
+// Gövdeler Express ile ortak modülden üretilir; iki çalışma ortamı tanım
+// gereği aynı çıktıyı verir.
+function wageRoute(c, build) {
+  try {
+    return c.json(build());
+  } catch (err) {
+    return c.json({ success: false, error: err.message }, err.status || 500);
+  }
+}
+
+app.get("/api/v1/wage/latest", (c) => wageRoute(c, () => latestPayload(wageStore)));
+app.get("/api/v1/wage/real", (c) => wageRoute(c, () => realPayload(wageStore, c.req.query())));
+app.get("/api/v1/wage", (c) => wageRoute(c, () => seriesPayload(wageStore, c.req.query())));
+
 // 11. Kullanım Kılavuzu & Geliştirici Portalı
 // Kapsam rakamları paketlenmiş veriden okunur; her deploy'da kendiliğinden tazelenir.
 function guideStats() {
-  const latest = tufeData[tufeData.length - 1];
-  return {
-    recordCount: tufeData.length,
-    tufeEnd: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
-    totalItems: itemsMeta.totalItems,
-    totalMonths: itemsMeta.totalMonths,
-    itemsStart: itemsMeta.startPeriod,
-    itemsEnd: itemsMeta.endPeriod,
-  };
+  return buildGuideStats({
+    tufeRecords: tufeData,
+    itemsMeta,
+    wageMeta: wageStore.getMeta(),
+  });
 }
 
 const sendGuide = (c) => c.html(renderGuideHtml({ stats: guideStats() }));

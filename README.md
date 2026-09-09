@@ -24,6 +24,7 @@ Bu proje, resmi **KKTC Başbakanlık İstatistik Kurumu**'nun yayınladığı ay
 - ⚡ **Mikrosaniye Yanıt Süresi:** Akıllı in-memory indeksleme sayesinde harici veritabanı gerektirmeden ultra hızlı yanıtlar.
 - 📖 **İnteraktif OpenAPI / Swagger UI:** Tüm parametreleri tarayıcı üzerinden doğrudan deneyebilme (`/docs`).
 - ⏰ **Tek Kaynaklı Otomatik Senkronizasyon:** Aylık TÜFE ve sepet fiyatları tek veri deposundan (`kktc_tufe`) her gün çekilir; doğrulanır, test edilir ve otomatik yayına alınır.
+- 💵 **Asgari Ücret Serisi (1977-günümüz):** 79 ücret kararının tam tarihçesi ve **reel (enflasyondan arındırılmış)** değerleri. Reel rakamlar saklanmaz, API'nin kendi TÜFE serisinden hesaplanır; 2005 YTL geçişi motor tarafından ele alınır.
 - 📈 **Herkese Açık Kullanım Sayacı:** `/api/v1/stats` ile toplam çağrı sayısı, uç nokta bazında dağılım ve günlük istek serisi. Edge'de Durable Object üzerinde kalıcı tutulur.
 - 🐳 **Docker & Docker-Compose:** Tek komutla prodüksiyon ortamında ayağa kaldırılmaya hazır.
 
@@ -41,6 +42,9 @@ Bu proje, resmi **KKTC Başbakanlık İstatistik Kurumu**'nun yayınladığı ay
 | `GET` | `/api/v1/tufe/:year/:month` | Belirli bir yıl ve aya ait detaylı oranlar |
 | `GET` | `/api/v1/periods` | KKTC 6 aylık hayat pahalılığı / maaş endeksleme kümülatifleri |
 | `GET` | `/api/v1/calculate` | İki tarih arası bileşik enflasyon ve para değerleme aracı |
+| `GET` | `/api/v1/wage/latest` | Yürürlükteki brüt asgari ücret, bir önceki karara göre nominal ve reel değişim |
+| `GET` | `/api/v1/wage` | Asgari ücret tarihçesi (`granularity=changes\|monthly`, `start_period`, `end_period`, `sort`, `limit`, `offset`) |
+| `GET` | `/api/v1/wage/real` | Reel asgari ücret serisi; `base=YYYY-MM` ile istenen dönemin parasına çevrilir |
 | `POST`| `/api/v1/sync` | Resmi kaynaktan anlık senkronizasyon tetikleme (*API Key korumalı*) |
 | `GET` | `/docs` | İnteraktif Swagger UI dokümantasyon sayfası |
 | `GET` | `/api/v1/stats` | API kullanım sayacı: toplam çağrı, uç nokta dağılımı, günlük seri |
@@ -181,6 +185,25 @@ Tüm veriler tek bir kaynaktan gelir: [**`RYucel/kktc_tufe`**](https://github.co
 > İkisi de yayın saatinin güvenle sonrasında kalıyor. Zincirdeki bu bekleme süresini tamamen ortadan kaldırmak için aşağıdaki anında tetikleme kurulabilir.
 
 **Neden tek kaynak?** Daha önce hem dashboard hem API resmî siteyi ayrı ayrı tarıyordu. Kurum sayfa yapısını değiştirdiğinde iki yerin de düzeltilmesi gerekiyordu ve biri düzelmezse ikisi farklı rakam gösterebilirdi. Artık ayrıştırma mantığı tek yerde yaşar.
+
+### Asgari ücreti güncellemek (elle, yılda 2 kez)
+
+Asgari ücret yılda iki kez belirlenir ve kazınacak bir kaynağı yoktur; tek elle bakım yapılan veri budur. Yeni ücret açıklandığında [`data/wage.json`](data/wage.json) dosyasındaki `changes` dizisinin **sonuna tek satır** eklemeniz yeterlidir:
+
+```json
+{ "effectiveFrom": "2027-01", "amount": 80000 }
+```
+
+- `effectiveFrom` — ücretin geçerli olduğu **ilk ay** (`YYYY-MM`)
+- `amount` — açıklandığı günün para biriminde **brüt** tutar
+
+Bu dosyayı düzenleyip `main` dalına push ettiğinizde CI kendiliğinden çalışır: kılavuz sayfası yeniden üretilir, testler koşar ve Cloudflare'e yayınlanır.
+
+**Neden reel ücret bu dosyada tutulmuyor?** Çünkü zaten elimizde. Enflasyondan arındırılmış değerler API'nin kendi TÜFE serisinden her istekte hesaplanır. Aynı endeksi ikinci kez saklasaydık, TÜFE her güncellendiğinde iki kopya birbirinden sapabilirdi.
+
+**Doğrulama:** Dosya bozuksa (dönemler sırasız veya tekrarlı, tutar negatif, biçim hatalı) motor **açılışta hata verir**, yanlış rakam yayınlamaz. Bu, elle girilen veri için tek savunmadır ve testlerle sabitlenmiştir.
+
+**2005 YTL geçişi:** 1 Ocak 2005'te 1 TL = 1.000.000 eski TL oldu. Motor bu dönüşümü bilir, bu yüzden 1977 ile bugünün ücreti doğrudan karşılaştırılabilir. 2005 öncesi kayıtlar `TRL`, sonrası `TRY` olarak etiketlenir.
 
 ### Sepet verisini güncellemek
 

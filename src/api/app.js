@@ -6,8 +6,10 @@ import swaggerUi from "swagger-ui-express";
 import { config } from "../config.js";
 import { swaggerSpec } from "./docs/swaggerSpec.js";
 import { renderGuideHtml } from "../views/guide.js";
+import { buildGuideStats } from "../views/guideStats.js";
 import { dataStore } from "../engine/dataStore.js";
 import { itemsStore } from "../engine/itemsStore.js";
+import { wageStore } from "../engine/wageStore.js";
 import { usageStore } from "../engine/usageStore.js";
 
 import tufeRouter from "./routes/tufe.js";
@@ -16,9 +18,15 @@ import calculateRouter from "./routes/calculate.js";
 import metaRouter from "./routes/meta.js";
 import syncRouter from "./routes/sync.js";
 import itemsRouter from "./routes/items.js";
+import wageRouter from "./routes/wage.js";
 
 export function createApp() {
   const app = express();
+
+  // Asgari ucret motoru reel degerleri TUFE serisinden turetir, bu yuzden
+  // dataStore yuklendikten SONRA baglanir. createApp her iki cagirandan da
+  // (server.js, testler) dataStore.init() sonrasi cagrilir.
+  wageStore.init(dataStore.records);
 
   // Güvenlik Başlıkları
   app.use(
@@ -99,24 +107,20 @@ export function createApp() {
   app.use("/api/v1", metaRouter);
   app.use("/api/v1", syncRouter);
   app.use("/api/v1", itemsRouter);
+  app.use("/api/v1", wageRouter);
 
   // Kök Rota & Kullanım Kılavuzu Portalı
   // Kapsam rakamları canlı veri motorlarından okunur, sabit kodlanmaz.
   const sendGuide = (req, res) => {
-    const latest = dataStore.getLatest();
-    const itemsMeta = itemsStore.getMeta() || {};
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.send(
       renderGuideHtml({
         liveUrl: `http://${req.headers.host || "localhost:" + config.port}`,
-        stats: {
-          recordCount: dataStore.records.length,
-          tufeEnd: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
-          totalItems: itemsMeta.totalItems ?? null,
-          totalMonths: itemsMeta.totalMonths ?? null,
-          itemsStart: itemsMeta.startPeriod ?? null,
-          itemsEnd: itemsMeta.endPeriod ?? null,
-        },
+        stats: buildGuideStats({
+          tufeRecords: dataStore.records,
+          itemsMeta: itemsStore.getMeta() || {},
+          wageMeta: wageStore.getMeta(),
+        }),
       })
     );
   };

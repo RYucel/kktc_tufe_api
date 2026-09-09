@@ -7,21 +7,20 @@
 import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { renderGuideHtml } from "../views/guide.js";
+import { buildGuideStats } from "../views/guideStats.js";
+import { wageStore } from "../engine/wageStore.js";
 import { config } from "../config.js";
 import tufeData from "../../data/tufe.json" with { type: "json" };
 import itemsMeta from "../../data/items_meta.json" with { type: "json" };
 
 export function buildDocs() {
-  const latest = tufeData[tufeData.length - 1];
+  wageStore.init(tufeData);
   const html = renderGuideHtml({
-    stats: {
-      recordCount: tufeData.length,
-      tufeEnd: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
-      totalItems: itemsMeta.totalItems,
-      totalMonths: itemsMeta.totalMonths,
-      itemsStart: itemsMeta.startPeriod,
-      itemsEnd: itemsMeta.endPeriod,
-    },
+    stats: buildGuideStats({
+      tufeRecords: tufeData,
+      itemsMeta,
+      wageMeta: wageStore.getMeta(),
+    }),
   });
 
   const outPath = path.join(config.paths.root, "docs", "index.html");

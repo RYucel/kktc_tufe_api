@@ -1,0 +1,341 @@
+{
+  "_aciklama": [
+    "KKTC brut asgari ucret tarihcesi. ELLE duzenlenir; otomatik senkronizasyon YOKTUR.",
+    "Yeni ucret aciklandiginda 'changes' dizisinin SONUNA tek bir satir ekleyin:",
+    "  { \"effectiveFrom\": \"2027-01\", \"amount\": 80000 }",
+    "effectiveFrom: ucretin gecerli oldugu ILK ay (YYYY-MM).",
+    "amount: aciklandigi gunun para biriminde brut tutar. 2005-01 oncesi eski TL, sonrasi TL (YTL gecisi).",
+    "blended: true -> ucret ay ICINDE degisti, tutar o ayin agirlikli ortalamasidir (tarihsel, yeni kayitta kullanmayin).",
+    "Reel ucret bu dosyada TUTULMAZ; API'nin kendi TUFE serisinden hesaplanir."
+  ],
+  "currency": {
+    "redenominationFrom": "2005-01",
+    "factor": 1000000,
+    "note": "1 YTL = 1.000.000 TL (1 Ocak 2005)"
+  },
+  "source": "KKTC Calisma ve Sosyal Guvenlik Bakanligi asgari ucret kararlari",
+  "changes": [
+    {
+      "effectiveFrom": "1977-05",
+      "amount": 1820
+    },
+    {
+      "effectiveFrom": "1978-08",
+      "amount": 1863.64,
+      "blended": true
+    },
+    {
+      "effectiveFrom": "1978-09",
+      "amount": 2780
+    },
+    {
+      "effectiveFrom": "1979-07",
+      "amount": 3485.91,
+      "blended": true
+    },
+    {
+      "effectiveFrom": "1979-08",
+      "amount": 4333
+    },
+    {
+      "effectiveFrom": "1980-04",
+      "amount": 8041.86,
+      "blended": true
+    },
+    {
+      "effectiveFrom": "1980-05",
+      "amount": 8660
+    },
+    {
+      "effectiveFrom": "1981-06",
+      "amount": 10238.18,
+      "blended": true
+    },
+    {
+      "effectiveFrom": "1981-07",
+      "amount": 13000
+    },
+    {
+      "effectiveFrom": "1982-06",
+      "amount": 19136.36,
+      "blended": true
+    },
+    {
+      "effectiveFrom": "1982-07",
+      "amount": 22000
+    },
+    {
+      "effectiveFrom": "1983-07",
+      "amount": 23639.44,
+      "blended": true
+    },
+    {
+      "effectiveFrom": "1983-08",
+      "amount": 24270
+    },
+    {
+      "effectiveFrom": "1984-02",
+      "amount": 26280
+    },
+    {
+      "effectiveFrom": "1984-03",
+      "amount": 30300
+    },
+    {
+      "effectiveFrom": "1985-01",
+      "amount": 46000
+    },
+    {
+      "effectiveFrom": "1986-01",
+      "amount": 75000
+    },
+    {
+      "effectiveFrom": "1987-01",
+      "amount": 90000
+    },
+    {
+      "effectiveFrom": "1988-01",
+      "amount": 121000
+    },
+    {
+      "effectiveFrom": "1989-01",
+      "amount": 205001
+    },
+    {
+      "effectiveFrom": "1990-01",
+      "amount": 340500
+    },
+    {
+      "effectiveFrom": "1991-01",
+      "amount": 520000
+    },
+    {
+      "effectiveFrom": "1992-01",
+      "amount": 806000
+    },
+    {
+      "effectiveFrom": "1993-01",
+      "amount": 1373000
+    },
+    {
+      "effectiveFrom": "1994-01",
+      "amount": 3000000
+    },
+    {
+      "effectiveFrom": "1994-08",
+      "amount": 5000000
+    },
+    {
+      "effectiveFrom": "1995-01",
+      "amount": 9420000
+    },
+    {
+      "effectiveFrom": "1995-09",
+      "amount": 11590000
+    },
+    {
+      "effectiveFrom": "1996-01",
+      "amount": 14800000
+    },
+    {
+      "effectiveFrom": "1997-01",
+      "amount": 23000000
+    },
+    {
+      "effectiveFrom": "1997-09",
+      "amount": 33800000
+    },
+    {
+      "effectiveFrom": "1998-01",
+      "amount": 50250000
+    },
+    {
+      "effectiveFrom": "1998-09",
+      "amount": 67000000
+    },
+    {
+      "effectiveFrom": "1999-01",
+      "amount": 85000000
+    },
+    {
+      "effectiveFrom": "1999-06",
+      "amount": 103000000
+    },
+    {
+      "effectiveFrom": "2000-01",
+      "amount": 137000000
+    },
+    {
+      "effectiveFrom": "2000-07",
+      "amount": 160000000
+    },
+    {
+      "effectiveFrom": "2001-01",
+      "amount": 200000000
+    },
+    {
+      "effectiveFrom": "2001-08",
+      "amount": 240000000
+    },
+    {
+      "effectiveFrom": "2002-01",
+      "amount": 320000000
+    },
+    {
+      "effectiveFrom": "2002-10",
+      "amount": 380000000
+    },
+    {
+      "effectiveFrom": "2003-01",
+      "amount": 440000000
+    },
+    {
+      "effectiveFrom": "2003-08",
+      "amount": 500000000
+    },
+    {
+      "effectiveFrom": "2004-03",
+      "amount": 550000000
+    },
+    {
+      "effectiveFrom": "2004-07",
+      "amount": 627000000
+    },
+    {
+      "effectiveFrom": "2005-06",
+      "amount": 720
+    },
+    {
+      "effectiveFrom": "2006-01",
+      "amount": 780
+    },
+    {
+      "effectiveFrom": "2006-08",
+      "amount": 860
+    },
+    {
+      "effectiveFrom": "2007-02",
+      "amount": 950
+    },
+    {
+      "effectiveFrom": "2008-01",
+      "amount": 1060
+    },
+    {
+      "effectiveFrom": "2008-09",
+      "amount": 1190
+    },
+    {
+      "effectiveFrom": "2009-10",
+      "amount": 1237
+    },
+    {
+      "effectiveFrom": "2011-01",
+      "amount": 1300
+    },
+    {
+      "effectiveFrom": "2013-01",
+      "amount": 1415
+    },
+    {
+      "effectiveFrom": "2014-01",
+      "amount": 1560
+    },
+    {
+      "effectiveFrom": "2014-11",
+      "amount": 1675
+    },
+    {
+      "effectiveFrom": "2015-09",
+      "amount": 1730
+    },
+    {
+      "effectiveFrom": "2016-07",
+      "amount": 1834
+    },
+    {
+      "effectiveFrom": "2017-02",
+      "amount": 2010.7
+    },
+    {
+      "effectiveFrom": "2017-03",
+      "amount": 2020
+    },
+    {
+      "effectiveFrom": "2017-07",
+      "amount": 2170
+    },
+    {
+      "effectiveFrom": "2018-03",
+      "amount": 2365
+    },
+    {
+      "effectiveFrom": "2018-08",
+      "amount": 2620
+    },
+    {
+      "effectiveFrom": "2019-02",
+      "amount": 3150
+    },
+    {
+      "effectiveFrom": "2019-09",
+      "amount": 3400
+    },
+    {
+      "effectiveFrom": "2020-02",
+      "amount": 3820
+    },
+    {
+      "effectiveFrom": "2021-02",
+      "amount": 4400
+    },
+    {
+      "effectiveFrom": "2021-09",
+      "amount": 4970
+    },
+    {
+      "effectiveFrom": "2022-01",
+      "amount": 7000
+    },
+    {
+      "effectiveFrom": "2022-07",
+      "amount": 9885
+    },
+    {
+      "effectiveFrom": "2023-01",
+      "amount": 13563
+    },
+    {
+      "effectiveFrom": "2023-07",
+      "amount": 18103
+    },
+    {
+      "effectiveFrom": "2024-01",
+      "amount": 27587
+    },
+    {
+      "effectiveFrom": "2024-05",
+      "amount": 34070
+    },
+    {
+      "effectiveFrom": "2024-09",
+      "amount": 40436
+    },
+    {
+      "effectiveFrom": "2025-01",
+      "amount": 43469
+    },
+    {
+      "effectiveFrom": "2025-07",
+      "amount": 51200
+    },
+    {
+      "effectiveFrom": "2026-01",
+      "amount": 60618
+    },
+    {
+      "effectiveFrom": "2026-07",
+      "amount": 70893
+    }
+  ]
+}
