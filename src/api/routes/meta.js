@@ -3,6 +3,7 @@ import { dataStore } from "../../engine/dataStore.js";
 import { itemsStore } from "../../engine/itemsStore.js";
 import { wageStore } from "../../engine/wageStore.js";
 import { usageStore } from "../../engine/usageStore.js";
+import { computeFreshness } from "../../engine/freshness.js";
 import { config } from "../../config.js";
 import {
   API_VERSION,
@@ -23,6 +24,10 @@ const router = Router();
 router.get("/health", (req, res) => {
   const latest = dataStore.getLatest();
   const itemsMeta = itemsStore.getMeta() || {};
+  const freshness = computeFreshness({
+    tufeEnd: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
+    itemsEnd: itemsMeta.endPeriod ?? null,
+  });
 
   res.json({
     status: "healthy",
@@ -49,6 +54,10 @@ router.get("/health", (req, res) => {
       currentSince: wageStore.getMeta().currentSince,
       currentAmount: wageStore.getMeta().currentAmount,
     },
+    // Iki seri arasindaki ay farki. "status" veri tazeligini anlatir;
+    // ustteki "status: healthy" servisin kendi ayakta olusudur, ikisi
+    // kasten ayridir: bayat veri servisi cokmus saymaz.
+    dataFreshness: freshness,
     version: API_VERSION,
   });
 });
@@ -75,6 +84,10 @@ router.get("/api/v1/meta", (req, res) => {
       license: LICENSE,
       itemPrices: itemsStore.getMeta(),
       minimumWage: wageStore.getMeta(),
+      dataFreshness: computeFreshness({
+        tufeEnd: meta.endPeriod ?? null,
+        itemsEnd: itemsStore.getMeta()?.endPeriod ?? null,
+      }),
     },
   });
 });

@@ -10,6 +10,7 @@ const testSuites = [
   "test_api.js",
   "test_items.js",
   "test_wage.js",
+  "test_freshness.js",
   "test_scheduler.js",
   "test_usage.js",
   "test_security.js",

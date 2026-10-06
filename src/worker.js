@@ -8,6 +8,7 @@ import itemsMeta from "../data/items_meta.json" with { type: "json" };
 import { calculateYearPeriods, calculateInflationBetween } from "./engine/calculator.js";
 import { itemsStore } from "./engine/itemsStore.js";
 import { wageStore } from "./engine/wageStore.js";
+import { computeFreshness } from "./engine/freshness.js";
 import { latestPayload, seriesPayload, realPayload } from "./engine/wagePayload.js";
 import { swaggerSpec } from "./api/docs/swaggerSpec.js";
 import { renderGuideHtml } from "./views/guide.js";
@@ -84,6 +85,10 @@ function enrichRecord(rec) {
 // 1. Health
 app.get("/health", (c) => {
   const latest = tufeData[tufeData.length - 1];
+  const freshness = computeFreshness({
+    tufeEnd: latest ? `${latest.year}-${String(latest.month).padStart(2, "0")}` : null,
+    itemsEnd: itemsMeta.endPeriod ?? null,
+  });
   return c.json({
     status: "healthy",
     platform: "Cloudflare Workers (Edge)",
@@ -105,6 +110,10 @@ app.get("/health", (c) => {
       currentSince: wageStore.getMeta().currentSince,
       currentAmount: wageStore.getMeta().currentAmount,
     },
+    // Iki seri arasindaki ay farki. "status" veri tazeligini anlatir;
+    // ustteki "status: healthy" servisin kendi ayakta olusudur, ikisi
+    // kasten ayridir: bayat veri servisi cokmus saymaz.
+    dataFreshness: freshness,
     version: API_VERSION,
   });
 });
@@ -126,6 +135,10 @@ app.get("/api/v1/meta", (c) => {
       license: LICENSE,
       itemPrices: itemsMeta,
       minimumWage: wageStore.getMeta(),
+      dataFreshness: computeFreshness({
+        tufeEnd: metaData.endPeriod ?? null,
+        itemsEnd: itemsMeta.endPeriod ?? null,
+      }),
     },
   });
 });

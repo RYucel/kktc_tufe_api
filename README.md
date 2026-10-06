@@ -24,6 +24,7 @@ Bu proje, resmi **KKTC Başbakanlık İstatistik Kurumu**'nun yayınladığı ay
 - ⚡ **Mikrosaniye Yanıt Süresi:** Akıllı in-memory indeksleme sayesinde harici veritabanı gerektirmeden ultra hızlı yanıtlar.
 - 📖 **İnteraktif OpenAPI / Swagger UI:** Tüm parametreleri tarayıcı üzerinden doğrudan deneyebilme (`/docs`).
 - ⏰ **Tek Kaynaklı Otomatik Senkronizasyon:** Aylık TÜFE ve sepet fiyatları tek veri deposundan (`kktc_tufe`) her gün çekilir; doğrulanır, test edilir ve otomatik yayına alınır.
+- 🕐 **Veri Tazeliği Sinyali:** `dataFreshness` alanı, elle yüklenen sepet fiyatlarının otomatik güncellenen TÜFE serisinin kaç ay gerisinde olduğunu bildirir. Atlanan bir yükleme artık sessiz kalmaz.
 - 💵 **Asgari Ücret Serisi (1977-günümüz):** 79 ücret kararının tam tarihçesi ve **reel (enflasyondan arındırılmış)** değerleri. Reel rakamlar saklanmaz, API'nin kendi TÜFE serisinden hesaplanır; 2005 YTL geçişi motor tarafından ele alınır.
 - 📈 **Herkese Açık Kullanım Sayacı:** `/api/v1/stats` ile toplam çağrı sayısı, uç nokta bazında dağılım ve günlük istek serisi. Edge'de Durable Object üzerinde kalıcı tutulur.
 - 🐳 **Docker & Docker-Compose:** Tek komutla prodüksiyon ortamında ayağa kaldırılmaya hazır.
@@ -34,7 +35,7 @@ Bu proje, resmi **KKTC Başbakanlık İstatistik Kurumu**'nun yayınladığı ay
 
 | Metot | Uç Nokta | Açıklama |
 | :--- | :--- | :--- |
-| `GET` | `/health` | Servis sağlık kontrolü, uptime ve önbellek durumu |
+| `GET` | `/health` | Servis sağlık kontrolü, uptime, önbellek durumu ve **veri tazeliği** (`dataFreshness`) |
 | `GET` | `/api/v1/meta` | Kaynak bülten linki, son kontrol/değişim tarihleri ve kayıt sayısı |
 | `GET` | `/api/v1/latest` | En son açıklanan resmi ayın enflasyon verisi |
 | `GET` | `/api/v1/tufe` | Filtreli zaman serisi (`year`, `start_year`, `end_year`, `month`, `sort`, `limit`, `offset`) |
@@ -185,6 +186,32 @@ Tüm veriler tek bir kaynaktan gelir: [**`RYucel/kktc_tufe`**](https://github.co
 > İkisi de yayın saatinin güvenle sonrasında kalıyor. Zincirdeki bu bekleme süresini tamamen ortadan kaldırmak için aşağıdaki anında tetikleme kurulabilir.
 
 **Neden tek kaynak?** Daha önce hem dashboard hem API resmî siteyi ayrı ayrı tarıyordu. Kurum sayfa yapısını değiştirdiğinde iki yerin de düzeltilmesi gerekiyordu ve biri düzelmezse ikisi farklı rakam gösterebilirdi. Artık ayrıştırma mantığı tek yerde yaşar.
+
+### Veri tazeliği: iki serinin birbirini tutması
+
+Genel TÜFE otomatik güncellenir, sepet madde fiyatları ise elle yüklenir. Bu yüzden TÜFE yeni aya geçtiği anda iki seri arasında bir pencere açılır. `/health` ve `/api/v1/meta` bu pencereyi `dataFreshness` alanında yayınlar:
+
+```json
+{
+  "status": "pending",
+  "tufeEnd": "2026-09",
+  "itemsEnd": "2026-08",
+  "itemsLagMonths": 1,
+  "note": "Genel TÜFE 2026-09 dönemine geçti, sepet madde fiyatları 2026-08 döneminde. Yeni GRETL_TUFE.csv kaynak depoya yüklendiğinde kapanır: https://github.com/RYucel/kktc_tufe"
+}
+```
+
+| `status` | Anlamı | Yapılacak |
+| :--- | :--- | :--- |
+| `current` | İki seri aynı ayda | Yok |
+| `pending` | Sepet 1 ay geride | Yeni CSV'yi kaynak depoya yükleyin |
+| `stale` | Sepet 2+ ay geride | Bir yükleme atlanmış, kontrol edin |
+| `ahead` | Sepet TÜFE'den ileride | TÜFE bülteni henüz çıkmamış olabilir |
+| `unknown` | Serilerden biri yüklenmemiş | Veri motorunu kontrol edin |
+
+**Neden ayrı bir alan?** Üstteki `status: "healthy"` servisin kendi ayakta oluşudur ve veri gecikmesinden etkilenmez. Bayat veri, çökmüş bir servis değildir; ikisini aynı alana sıkıştırmak izlemeyi yanıltırdı.
+
+*Bu alanın çıkış noktası:* 6 Ekim 2026'da TÜFE 01:11 UTC'de Eylül'e geçti, sepet 07:34'te yetişti. Arada 6 saat 23 dakika boyunca iki uç nokta da farkı hiç belirtmeden "sağlıklı" dedi. Pencere kısaydı ama görünmezdi; atlanan bir yükleme aynı sessizlikle aylarca sürebilirdi.
 
 ### Asgari ücreti güncellemek (elle, yılda 2 kez)
 

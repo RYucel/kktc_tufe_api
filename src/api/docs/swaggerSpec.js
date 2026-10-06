@@ -35,7 +35,8 @@ Bu API, resmi **KKTC Başbakanlık İstatistik Kurumu** tarafından yayınlanan 
     "/health": {
       get: {
         summary: "Sistem Sağlık Durumu",
-        description: "API servisinin ve veri motorunun durumunu, çalışma süresini ve önbellekteki kayıt sayısını döndürür.",
+        description:
+          "API servisinin ve veri motorlarının durumunu döndürür. `dataFreshness` bloğu sepet madde fiyatlarının genel TÜFE serisinin kaç ay gerisinde olduğunu bildirir: `current` (aynı ay), `pending` (1 ay geride, TÜFE yeni yayımlandı ve CSV bekleniyor), `stale` (2+ ay geride, bir yükleme atlanmış), `ahead` (sepet ileride), `unknown` (seri yüklenmemiş). Üstteki `status` alanı servisin kendi ayakta oluşudur ve veri gecikmesinden etkilenmez; ikisi kasten ayrıdır.",
         tags: ["Sistem"],
         responses: {
           200: {
@@ -45,17 +46,30 @@ Bu API, resmi **KKTC Başbakanlık İstatistik Kurumu** tarafından yayınlanan 
                 example: {
                   status: "healthy",
                   platform: "Cloudflare Workers (Edge)",
-                  timestamp: "2026-09-04T10:45:00.000Z",
+                  timestamp: "2026-10-06T08:15:00.000Z",
                   dataEngine: {
                     initialized: true,
-                    recordCount: 593,
-                    latestDataPeriod: "2026-07",
+                    recordCount: 595,
+                    latestDataPeriod: "2026-09",
                   },
                   itemsEngine: {
                     initialized: true,
                     totalItems: 520,
-                    totalMonths: 139,
-                    periodRange: "2015-01 - 2026-07",
+                    totalMonths: 141,
+                    periodRange: "2015-01 - 2026-09",
+                  },
+                  wageEngine: {
+                    initialized: true,
+                    changeCount: 79,
+                    currentSince: "2026-07",
+                    currentAmount: 70893,
+                  },
+                  dataFreshness: {
+                    status: "current",
+                    tufeEnd: "2026-09",
+                    itemsEnd: "2026-09",
+                    itemsLagMonths: 0,
+                    note: "Sepet madde fiyatları ve genel TÜFE aynı dönemde (2026-09).",
                   },
                   version: API_VERSION,
                 },
