@@ -53,17 +53,60 @@ export function assertLocalIsNotAhead(candidate, localCsvMeta) {
   const err = new Error(
     `Yerel GRETL_TUFE.csv kaynaktan DAHA YENİ ` +
       `(yerel: ${localCsvMeta.totalMonths} ay / ${localCsvMeta.endPeriod}, ` +
-      `kaynak: ${inMonths} ay / ${inEnd}). Üzerine yazılmadı.
-` +
-      `  Muhtemel sebep: CSV yanlışlıkla bu depoya yüklendi.
-` +
-      `  Doğru yer: https://github.com/RYucel/kktc_tufe -> GRETL_TUFE.csv
-` +
+      `kaynak: ${inMonths} ay / ${inEnd}). Üzerine yazılmadı.\n` +
+      `  Muhtemel sebep: CSV yanlışlıkla bu depoya yüklendi.\n` +
+      `  Doğru yer: https://github.com/RYucel/kktc_tufe -> GRETL_TUFE.csv\n` +
       `  Oraya yükleyip "Commit changes" adımını tamamlayın; bu depo onu otomatik alacaktır.`
   );
   // sync scripti bunu ölümcül sayar ve CI'ı kırar (ağ hatalarından farklı olarak)
   err.fatal = true;
   throw err;
+}
+
+/**
+ * Paketlenmiş JSON'ların kaynak CSV'den türetilmiş güncel veriyi içerip
+ * içermediğini doğrular. Sadece dönem meta verisini değil, fiyat matrisini de
+ * karşılaştırır; böylece CSV aynı kalıp JSON'lar eksik/eski olduğunda da
+ * senkronizasyon bunları yeniden üretebilir.
+ * @param {object|null} storedPayload data/items_data.json içeriği
+ * @param {object|null} storedMeta data/items_meta.json içeriği
+ * @param {{periods: string[], items: object[]}} candidate Kaynak CSV'den ayrıştırılmış veri
+ */
+export function isDerivedDataCurrent(storedPayload, storedMeta, candidate) {
+  if (!storedPayload || !storedMeta || !candidate) return false;
+  if (!Array.isArray(storedPayload.periods) || !Array.isArray(storedPayload.items)) return false;
+  if (!Array.isArray(candidate.periods) || !Array.isArray(candidate.items)) return false;
+
+  if (
+    storedPayload.periods.length !== candidate.periods.length ||
+    storedPayload.items.length !== candidate.items.length ||
+    storedPayload.itemCount !== candidate.items.length ||
+    storedPayload.periods.some((period, i) => period !== candidate.periods[i])
+  ) {
+    return false;
+  }
+
+  for (let i = 0; i < candidate.items.length; i++) {
+    const storedItem = storedPayload.items[i];
+    const sourceItem = candidate.items[i];
+    if (
+      !storedItem ||
+      storedItem.id !== sourceItem.id ||
+      storedItem.name !== sourceItem.name ||
+      !Array.isArray(storedItem.prices) ||
+      storedItem.prices.length !== sourceItem.prices.length ||
+      storedItem.prices.some((price, j) => price !== sourceItem.prices[j])
+    ) {
+      return false;
+    }
+  }
+
+  return (
+    storedMeta.totalItems === candidate.items.length &&
+    storedMeta.totalMonths === candidate.periods.length &&
+    storedMeta.startPeriod === candidate.periods[0] &&
+    storedMeta.endPeriod === candidate.periods[candidate.periods.length - 1]
+  );
 }
 
 /**
@@ -138,30 +181,13 @@ export async function syncItemsFromGithub() {
   // BOM/CRLF farklarının sahte "değişiklik" üretmesini engeller
   const newCsvContent = normalizeCsv(rawCsv);
   const prevMeta = itemsStore.getMeta();
+  const csvChanged = !existsSync(config.paths.itemsCsvFile) ||
+    normalizeCsv(readFileSync(config.paths.itemsCsvFile, "utf-8")) !== newCsvContent;
 
-  let isDifferent = true;
-  if (existsSync(config.paths.itemsCsvFile)) {
-    const existingContent = normalizeCsv(readFileSync(config.paths.itemsCsvFile, "utf-8"));
-    isDifferent = existingContent !== newCsvContent;
-  }
+  // Kaynak dosyayı doğrula; CSV aynı olsa bile türetilmiş JSON'ların sağlamasını yap.
+  const { payload: candidate, meta: candidateMeta } = parseItemPricesFromText(newCsvContent);
 
-  if (!isDifferent) {
-    console.log("[ItemsSync] Yerel sepet verisi GitHub ile birebir aynı, güncelleme gerekmiyor.");
-    return {
-      changed: false,
-      itemCount: prevMeta?.totalItems ?? 0,
-      periodCount: prevMeta?.totalMonths ?? 0,
-      startPeriod: prevMeta?.startPeriod ?? null,
-      endPeriod: prevMeta?.endPeriod ?? null,
-    };
-  }
-
-  console.log("[ItemsSync] GitHub'da yeni/değişen sepet verisi tespit edildi. Doğrulanıyor...");
-
-  // Diske yazmadan önce hafızada ayrıştır ve doğrula
-  const { payload: candidate } = parseItemPricesFromText(newCsvContent);
-
-  // Yerel dosyanın GERÇEK kapsamını oku (türetilmiş JSON'a değil CSV'ye bak)
+  // Yerel dosyanın GERÇEK kapsamını oku (türetilmiş JSON'a değil)
   let localCsvMeta = null;
   if (existsSync(config.paths.itemsCsvFile)) {
     try {
@@ -177,14 +203,44 @@ export async function syncItemsFromGithub() {
   assertLocalIsNotAhead(candidate, localCsvMeta);
   assertPayloadIsSane(candidate, prevMeta);
 
+  let storedPayload = null;
+  let storedMeta = null;
+  try {
+    storedPayload = JSON.parse(readFileSync(config.paths.itemsDataFile, "utf-8"));
+    storedMeta = JSON.parse(readFileSync(config.paths.itemsMetaFile, "utf-8"));
+  } catch {
+    // Dosyalar yoksa veya bozuksa aşağıda güvenli biçimde yeniden oluşturulur.
+  }
+
+  const derivedDataCurrent = isDerivedDataCurrent(storedPayload, storedMeta, candidate);
+  if (!csvChanged && derivedDataCurrent) {
+    console.log(
+      `[ItemsSync] CSV ve türetilmiş sepet verisi güncel (${candidateMeta.endPeriod}); değişiklik yok.`
+    );
+    return {
+      changed: false,
+      itemCount: candidateMeta.totalItems,
+      periodCount: candidateMeta.totalMonths,
+      startPeriod: candidateMeta.startPeriod,
+      endPeriod: candidateMeta.endPeriod,
+    };
+  }
+
+  if (csvChanged) {
+    console.log("[ItemsSync] GitHub'da yeni/değişen sepet verisi tespit edildi.");
+    writeFileSync(config.paths.itemsCsvFile, newCsvContent, "utf-8");
+  } else {
+    console.warn(
+      `[ItemsSync] CSV güncel (${candidateMeta.endPeriod}) ancak türetilmiş JSON eski/eksik; JSON verileri yeniden oluşturuluyor.`
+    );
+  }
+
   console.log(
     `[ItemsSync] Doğrulama başarılı (${candidate.items.length} kalem, ` +
-      `${candidate.periods.length} ay, son dönem: ${candidate.periods[candidate.periods.length - 1]}). Yazılıyor...`
+      `${candidate.periods.length} ay, son dönem: ${candidateMeta.endPeriod}). JSON oluşturuluyor...`
   );
 
-  writeFileSync(config.paths.itemsCsvFile, newCsvContent, "utf-8");
-
-  // JSON matrislerini yeniden derle (data/items_data.json + data/items_meta.json)
+  // CSV değişmiş veya JSON'lar CSV ile uyumsuzsa türetilmiş dosyaları yeniden oluştur.
   const { payload, meta } = parseItemPrices(config.paths.itemsCsvFile);
 
   // itemsStore hafızasını yenile

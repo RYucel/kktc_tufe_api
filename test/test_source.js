@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { assertRecordsAreSane } from "../src/engine/tufeSource.js";
-import { assertLocalIsNotAhead } from "../src/engine/syncItemsService.js";
+import {
+  assertLocalIsNotAhead,
+  isDerivedDataCurrent,
+} from "../src/engine/syncItemsService.js";
 
 console.log("=== TÜFE VERİ KAYNAĞI TESTLERİ ===\n");
 
@@ -54,7 +57,7 @@ console.log("✓ Önceki meta olmadan da doğrulanıyor.\n");
 // Gerçek vaka (7 Eylül 2026): GRETL_TUFE.csv yanlışlıkla API deposuna
 // yüklendi; CI kaynaktaki eski sürümü indirip 22 saniye içinde sessizce
 // üzerine yazdı. Kimse fark etmedi.
-console.log("[Test 6] Yerel CSV kaynaktan yeniyse durduruluyor mu?");
+console.log("[Test 6] Yerel CSV kaynaktan daha yeniyse durduruluyor mu?");
 
 const aylar = (n, son) => ({
   payload: { periods: Array.from({ length: n }, (_, i) => `p${i}`) },
@@ -76,13 +79,42 @@ assert.match(yakalandi.message, /DAHA YENİ/);
 assert.match(yakalandi.message, /kktc_tufe/);
 console.log("✓ Yanlış depoya yükleme yakalandı ve ölümcül işaretlendi.");
 
-
 // --- Test 7: normal akış engellenmemeli ---
 console.log("[Test 7] Normal güncelleme ve değişiklik yok durumları geçiyor mu?");
 assert.doesNotThrow(() => assertLocalIsNotAhead(yerelAgustos.payload, kaynakTemmuz.meta)); // kaynak yeni
-assert.doesNotThrow(() => assertLocalIsNotAhead(yerelAgustos.payload, yerelAgustos.meta)); // ayni
+assert.doesNotThrow(() => assertLocalIsNotAhead(yerelAgustos.payload, yerelAgustos.meta)); // aynı
 assert.doesNotThrow(() => assertLocalIsNotAhead(yerelAgustos.payload, null)); // ilk kurulum
-console.log("✓ Kaynak yeni / aynı / ilk kurulum durumları serbest geçiyor.");
+console.log("✓ Kaynak yeni / aynı / ilk kurulum durumları serbest geçiyor.\n");
 
+// --- Test 8: CSV aynı olsa bile eski/bozuk üretilmiş JSON güncel sayılmamalı ---
+console.log("[Test 8] Kaynak CSV ile türetilmiş JSON tutarlılığı kontrol ediliyor mu?");
+const candidate = {
+  periods: ["2026-09", "2026-10"],
+  itemCount: 1,
+  items: [{ id: "ekmek", name: "Ekmek", prices: [10, 11] }],
+};
+const currentPayload = structuredClone(candidate);
+const currentMeta = {
+  totalItems: 1,
+  totalMonths: 2,
+  startPeriod: "2026-09",
+  endPeriod: "2026-10",
+};
+assert.equal(isDerivedDataCurrent(currentPayload, currentMeta, candidate), true);
+
+const stalePayload = {
+  periods: ["2026-09"],
+  itemCount: 1,
+  items: [{ id: "ekmek", name: "Ekmek", prices: [10] }],
+};
+const staleMeta = { ...currentMeta, totalMonths: 1, endPeriod: "2026-09" };
+assert.equal(isDerivedDataCurrent(stalePayload, staleMeta, candidate), false);
+assert.equal(isDerivedDataCurrent(currentPayload, staleMeta, candidate), false);
+
+const incorrectPrices = structuredClone(currentPayload);
+incorrectPrices.items[0].prices[1] = 999;
+assert.equal(isDerivedDataCurrent(incorrectPrices, currentMeta, candidate), false);
+assert.equal(isDerivedDataCurrent(null, currentMeta, candidate), false);
+console.log("✓ Eksik dönem, eski meta, bozuk fiyatlar ve eksik dosyalar güncel sayılmıyor.");
 
 console.log("🎉 VERİ KAYNAĞI TESTLERİ BAŞARIYLA GEÇTİ!");
